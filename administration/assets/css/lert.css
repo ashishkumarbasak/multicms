@@ -1,0 +1,85 @@
+#mainForm #filesForm .options{display:none;margin-bottom:5px;padding:0px;border-bottom:1px solid #ccc;}
+
+
+#lertOverlay{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 90;
+	width: 100%;
+	height: 500px;
+	background-color: #000;
+	filter:alpha(opacity=60);
+	-moz-opacity: 0.6;
+	opacity: 0.6;
+}
+
+#lertContainer{
+	position: absolute;
+	top: 40px;
+	left: 0;
+	width: 100%;
+	z-index: 100;
+	text-align: center;
+}
+
+#lertWindow {
+position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 1050;
+  max-height: 500px;
+  overflow: auto;
+  width: 560px;
+  margin: -250px 0 0 -280px;
+  background-color: #ffffff;
+  border: 1px solid #999;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  *border: 1px solid #999;
+  /* IE6-7 */
+
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box;
+padding: 20px;
+}
+
+#lertMessage {
+	font-weight:normal;
+	font-size:12px;
+	font-family: Tahoma, Verdana, Sans;
+	clear:right;
+	padding-top:10px;
+	padding-bottom:10px;
+	width:80%;
+	text-align:left;
+	margin-left:62px;
+
+}
+
+#lertIcon {
+	float:left;
+	padding:10px;
+}
+
+#lertButtons {
+	clear:both;
+	text-align:right;
+	margin-bottom:5px;
+}
+
+.lertButton {
+	margin: 0px 5px;
+}
+
+.lertButton:hover {
+}
+
+#lertDefaultButton {
+}
