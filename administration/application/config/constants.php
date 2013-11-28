@@ -41,6 +41,7 @@ define('BILLS_ATTACHMENT_UPLOAD_PATH',$_SERVER['DOCUMENT_ROOT']."/multicms/asset
 define('CATEGORY_ATTACHMENT_UPLOAD_PATH',$_SERVER['DOCUMENT_ROOT']."/multicms/assets/category_images/");
 define('DOCUMENT_ATTACHMENT_UPLOAD_PATH',$_SERVER['DOCUMENT_ROOT']."/multicms/assets/documents/");
 define('VIDEO_ATTACHMENT_UPLOAD_PATH',$_SERVER['DOCUMENT_ROOT']."/multicms/assets/videos/");
+define('IMPORT_FILE_UPLOAD_PATH',$_SERVER['DOCUMENT_ROOT']."/multicms/assets/import/");
 
 
 /* End of file constants.php */

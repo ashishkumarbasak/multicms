@@ -94,6 +94,28 @@ class Fileuploader
 			//print_r($this->filedata);
 		}
 	}
+
+	function upload_import_file($form_field_name){
+		$upload_path = IMPORT_FILE_UPLOAD_PATH;
+		if(!is_dir($upload_path)) mkdir($upload_path,0777,true);
+		$config['upload_path'] = $upload_path; // after baseurl, ./uploads/
+		$config['allowed_types'] = '*';
+		$config['encrypt_name']=TRUE;
+		$config['remove_spaces'] = true;
+		$config['max_size']	= 10000;
+		$this->obj->load->library('upload', $config);
+	
+		if ( ! $this->obj->upload->do_upload($form_field_name)){
+			array_push($this->error,$this->obj->upload->display_errors());
+			$this->obj->template->assign('file_upload_error',$this->error[0]);
+			print_r($this->error);
+		}	
+		else{	
+			$data = array('upload_data' => $this->obj->upload->data());
+			$this->filedata=$data['upload_data'];
+			//print_r($this->filedata);
+		}
+	}
 	
 	function upload_video($form_field_name){
 		$upload_path = VIDEO_ATTACHMENT_UPLOAD_PATH;

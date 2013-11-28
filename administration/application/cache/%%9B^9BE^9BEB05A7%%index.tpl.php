@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.19, created on 2013-11-10 18:33:06
+<?php /* Smarty version 2.6.19, created on 2013-11-26 17:28:55
          compiled from manage/products/index.tpl */ ?>
 <?php echo '
 <style type="text/css">
@@ -32,6 +32,10 @@
                         <?php endif; ?>
 					
 					<form action="" method="post">
+						<div style="text-align:right;">
+							<a class="btn btn-danger btn-small" href="<?php echo $this->_tpl_vars['baseurl']; ?>
+manage/products/import">Import Products</a>
+						</div>
 						<table cellpadding="0" cellspacing="0" width="100%" class="sortable">
 						
 							<thead>

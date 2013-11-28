@@ -12,9 +12,9 @@ class Template extends Smarty
 		$this->assign('mainsite_url',$this->obj->config->item('mainsite_url'));
 		$this->template_language_variable();
 		
-		$this->template_dir = $_SERVER['DOCUMENT_ROOT']."/multicms/administration/application/views";
-		$this->config_dir = $_SERVER['DOCUMENT_ROOT']."/multicms/administration/application/views/conf";
-		$this->compile_dir = $_SERVER['DOCUMENT_ROOT']."/multicms/administration/application/cache/";
+		$this->template_dir = $_SERVER['DOCUMENT_ROOT']."/administration/application/views";
+		$this->config_dir = $_SERVER['DOCUMENT_ROOT']."/administration/application/views/conf";
+		$this->compile_dir = $_SERVER['DOCUMENT_ROOT']."/administration/application/cache/";
 	}
 	
 	function template_language_variable()

@@ -49,9 +49,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'typogrou_multicm';
-$db['default']['password'] = 'mD7TuO4EexZ5U8TZq';
-$db['default']['database'] = 'typogrou_multicms';
+$db['default']['username'] = 'root';
+$db['default']['password'] = 'root';
+$db['default']['database'] = 'multicms';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = 'trv_';
 $db['default']['pconnect'] = TRUE;

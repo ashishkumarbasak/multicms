@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.19, created on 2013-11-06 19:08:59
+<?php /* Smarty version 2.6.19, created on 2013-11-26 19:19:41
          compiled from manage/language/create_language_form_it.tpl */ ?>
 						<?php if (isset ( $this->_tpl_vars['language_installed_successfully'] )): ?>
                         	<div class="message info">
@@ -264,7 +264,7 @@ if ($this->_foreach['listoferror']['total'] > 0):
 <option value="ug">Uganda</option>
 <option value="ua">Ukraine</option>
 <option value="ae">United Arab Emirates</option>
-<option value="gb">United Kingdom</option>
+<option value="en">United Kingdom</option>
 <option value="us">United States</option>
 <option value="um">United States Minor Outlying Islands</option>
 <option value="uy">Uruguay</option>

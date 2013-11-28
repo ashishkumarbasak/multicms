@@ -326,5 +326,107 @@ class Products extends CI_Controller{
 		$this->page_model->delete_additional_field($field_id);
 	}
 	
+	public function import(){
+		$this->template->assign('section','Product');
+		$this->template->assign('operation','Import');
+		
+		if($this->input->post('Import')){
+			$filename = $this->upload_import_file();
+			if($filename!=NULL){
+				$this->import_products($filename);
+				$this->template->assign('product_create_successfully',"yes");
+			}
+		}
+		
+		$this->template->assign('page','manage/products/import.tpl');	
+		$this->template->display('layouts/layout.tpl');
+	}
+	
+	function import_products($filename=NULL){
+		if($filename!=NULL){
+			$upload_path = IMPORT_FILE_UPLOAD_PATH;
+			$filename = $upload_path.$filename;
+			$handle = fopen("$filename", "r");
+			$row = 1;
+			while (($data = fgetcsv($handle, 1000, ",")) !== FALSE)
+			{
+				$productID = mysql_real_escape_string($data[0]);
+				$categoryID = mysql_real_escape_string($data[1]);
+				$product_name_italian = mysql_real_escape_string($data[2]);
+				$product_description_italian = mysql_real_escape_string($data[3]);
+				$product_keyword_italian = mysql_real_escape_string($data[4]);
+				
+				$product_name_english = mysql_real_escape_string($data[5]);
+				$product_description_english = mysql_real_escape_string($data[6]);
+				$product_keyword_english = mysql_real_escape_string($data[7]);
+				
+				$product_name_french = mysql_real_escape_string($data[8]);
+				$product_description_french = mysql_real_escape_string($data[9]);
+				$product_keyword_french = mysql_real_escape_string($data[10]);
+				
+				
+				if($row>1) {		 			  
+					$this->myvalidation->data['page_template'] = "products.php";
+					$this->myvalidation->data['mother_page'] = "-1";
+					$this->myvalidation->data['is_home_page'] = "0";
+					$this->myvalidation->data['page_title'] = $product_name_italian;
+					$this->myvalidation->data['page_seotitle'] = "";
+					$this->myvalidation->data['page_seokeywords'] = "";
+					$this->myvalidation->data['page_seodescription'] = "";
+					$this->myvalidation->data['language_id'] = $this->language_model->get_language_id('it');
+					$this->myvalidation->data['page_url'] = str_replace(" ", "-", $product_name_italian);
+					
+					
+					$this->myvalidation->data['main_photo'] = "";
+					$this->myvalidation->data['description_1'] = $product_description_italian;
+					$this->myvalidation->data['photo_1'] = "";
+					$this->myvalidation->data['description_2'] = "";
+					$this->myvalidation->data['photo_2'] = "";
+					$this->myvalidation->data['m_ref_page_id'] = 0;
+					
+					$page_id = $this->page_model->save_content($this->myvalidation->data);
+					$product_id = $this->page_model->save_product($page_id, $productID, $categoryID, $product_keyword_italian);
+					$this->myvalidation->data['m_ref_page_id'] = $page_id;
+					$this->page_model->update_m_ref_page_id($page_id);
+					
+					$this->myvalidation->data['page_title'] = $product_name_english;
+					$this->myvalidation->data['language_id'] = $this->language_model->get_language_id('en');
+					$this->myvalidation->data['page_url'] = str_replace(" ", "-", $product_name_english);
+					$this->myvalidation->data['description_1'] = $product_description_english;
+					$page_id = $this->page_model->save_content($this->myvalidation->data);
+					$product_id = $this->page_model->save_product($page_id, $productID, $categoryID, $product_keyword_english);
+					
+					$this->myvalidation->data['page_title'] = $product_name_french;
+					$this->myvalidation->data['language_id'] = $this->language_model->get_language_id('fr');
+					$this->myvalidation->data['page_url'] = str_replace(" ", "-", $product_name_french);
+					$this->myvalidation->data['description_1'] = $product_description_french;
+					$page_id = $this->page_model->save_content($this->myvalidation->data);
+					$product_id = $this->page_model->save_product($page_id, $productID, $categoryID, $product_keyword_french);
+					
+				}	
+				$row++;		
+				//echo "<hr>";	  			
+			}	
+		 	fclose($handle);
+		 }
+	}
+	
+	function upload_import_file(){
+		if(!empty($_FILES)){
+			$form_field_name="files";
+			
+			if($_FILES[$form_field_name]['name']!=NULL){
+				$this->fileuploader->upload_import_file($form_field_name);
+				$this->myvalidation->data['user_file'] = $this->fileuploader->filedata['file_name'];
+			}
+			else
+				$this->myvalidation->data['user_file'] = NULL;										
+		}
+		else{
+			$this->myvalidation->data['user_file'] = NULL;
+		}
+		return $this->myvalidation->data['user_file'];
+	}
+	
 }
 ?>

@@ -29,6 +29,9 @@
                         {/if}
 					
 					<form action="" method="post">
+						<div style="text-align:right;">
+							<a class="btn btn-danger btn-small" href="{$baseurl}manage/products/import">Import Products</a>
+						</div>
 						<table cellpadding="0" cellspacing="0" width="100%" class="sortable">
 						
 							<thead>

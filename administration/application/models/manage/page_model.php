@@ -144,9 +144,16 @@ class Page_model extends CI_Model{
 	
 	
 	
-	function save_product($page_id=NULL){
+	function save_product($page_id=NULL, $productID=NULL, $categoryID=NULL, $keyword = NULL){
 		if($page_id!=NULL){
 			$this->db->set('page_id',$page_id);
+			if($productID!=NULL)
+				$this->db->set('productID',$productID);
+			if($categoryID!=NULL)
+				$this->db->set('categoryID',$categoryID);
+			if($keyword!=NULL)
+				$this->db->set('keyword',$keyword);
+			
 			$this->db->insert('products');
 			
 			return $this->db->insert_id();
