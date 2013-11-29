@@ -1,5 +1,5 @@
-<?php /* Smarty version 2.6.19, created on 2013-11-28 20:32:33
-         compiled from manage/products/import.tpl */ ?>
+<?php /* Smarty version 2.6.19, created on 2013-11-28 20:34:11
+         compiled from manage/packagings/import.tpl */ ?>
 <link rel="stylesheet" href="<?php echo $this->_tpl_vars['baseurl']; ?>
 assets/js/jQuery-File-Upload/css/jquery.fileupload-ui.css">
 <?php echo '
@@ -13,11 +13,11 @@ assets/js/jQuery-File-Upload/css/jquery.fileupload-ui.css">
 	<div class="wrapper">		
 		<div class="block">
 			<div class="block_content">
-				<h1>Import Product</h1>
-                		<?php if (isset ( $this->_tpl_vars['product_create_successfully'] )): ?>
+				<h1>Import Packagings</h1>
+                		<?php if (isset ( $this->_tpl_vars['package_create_successfully'] )): ?>
                         	<div class="message info">
                             <p>
-                            	Product Imported Successfully.
+                            	Packaging Imported Successfully.
                             </p>
                             </div>
                         <?php endif; ?>

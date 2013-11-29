@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.19, created on 2013-11-26 19:21:10
+<?php /* Smarty version 2.6.19, created on 2013-11-29 18:35:39
          compiled from manage/products/edit.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'manage/products/edit.tpl', 111, false),array('modifier', 'count', 'manage/products/edit.tpl', 240, false),array('modifier', 'in_array', 'manage/products/edit.tpl', 294, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'manage/products/edit.tpl', 112, false),array('modifier', 'count', 'manage/products/edit.tpl', 241, false),array('modifier', 'in_array', 'manage/products/edit.tpl', 295, false),)), $this); ?>
 <link rel="stylesheet" href="<?php echo $this->_tpl_vars['baseurl']; ?>
 assets/js/jQuery-File-Upload/css/jquery.fileupload-ui.css">
 <?php echo '
@@ -26,6 +26,7 @@ assets/js/jQuery-File-Upload/css/jquery.fileupload-ui.css">
                           <li class="active"><a href="#home" data-toggle="tab">Informazioni</a></li>
                           <li><a href="#profile" data-toggle="tab">Additional Fields</a></li>
                           <li><a href="#seo" data-toggle="tab">Seo</a></li>
+                          <li><a href="#tab_packaging" data-toggle="tab">Packaging</a></li>
                           <li><a href="#show_in_pages" data-toggle="tab">Show In Pages</a></li>
                           <li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
 manage/products/edit/<?php echo $this->_tpl_vars['page_id']; ?>
@@ -303,7 +304,7 @@ unset($_smarty_tpl_vars);
                                                     </td>
                                                     <td>
                                                     	<a class="close" href="javascript:void(0);" onclick="delete_additional_field('<?php echo $this->_tpl_vars['additional_field']->field_id; ?>
-');">×</a>
+');">��</a>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -363,7 +364,7 @@ assets/images/flags/png/<?php echo $this->_tpl_vars['lang_code']; ?>
                          </table>
 					</div>
                     
-                    <div class="tab-pane" id="show_in_pages"> 
+                    		<div class="tab-pane" id="show_in_pages"> 
                             	<table cellpadding="0" cellspacing="0" width="100%" class="sortable">
                                     <tr>
                                         <td width="200"><label>Included In:</label></td>
@@ -414,6 +415,124 @@ if ($this->_foreach['listofsubpages']['total'] > 0):
                                     </tr>
                                 </table>
                             </div>
+                            
+                            
+                            <div class="tab-pane" id="tab_packaging"> 
+                            <table cellpadding="0" cellspacing="0" width="100%" class="sortable">	
+										<?php echo '
+											<script type="text/javascript">
+												function show_pack_code(select_id , textbox_id){
+													var v = $(\'#\'+select_id).val();
+													$(\'#\'+textbox_id).val(v.split(\'#\')[1]);
+												}
+											</script>
+										'; ?>
+
+								<?php $this->assign('p_p_p', count($this->_tpl_vars['product_packagings'])); ?>
+								<?php if ($this->_tpl_vars['product_packagings'] != NULL): ?>
+									<?php $_from = $this->_tpl_vars['product_packagings']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['listofproductpackagings'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['listofproductpackagings']['total'] > 0):
+    foreach ($_from as $this->_tpl_vars['ppk'] => $this->_tpl_vars['included_package']):
+        $this->_foreach['listofproductpackagings']['iteration']++;
+?>
+										<tr>
+											<td width="200">
+												<label>Packaging <?php echo $this->_tpl_vars['ppk']+1; ?>
+:<br><img src="<?php echo $this->_tpl_vars['baseurl']; ?>
+assets/images/flags/png/<?php echo $this->_tpl_vars['lang_code']; ?>
+.png" style="border:0px; padding-top:3px;"></label>
+											</td>
+											<td>
+												<select name="packagings[]" id="packagings_<?php echo $this->_tpl_vars['ppk']; ?>
+"  style="width:400px;" onchange="show_pack_code('packagings_<?php echo $this->_tpl_vars['ppk']; ?>
+', 'packaging_code_<?php echo $this->_tpl_vars['ppk']; ?>
+');">
+													<option value="">Select Package</option>
+													<?php $_from = $this->_tpl_vars['packagings_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['listofpackagings'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['listofpackagings']['total'] > 0):
+    foreach ($_from as $this->_tpl_vars['ppk'] => $this->_tpl_vars['packagings']):
+        $this->_foreach['listofpackagings']['iteration']++;
+?>
+														<option value="<?php echo $this->_tpl_vars['packagings']->packaging_id; ?>
+#<?php echo $this->_tpl_vars['packagings']->pack_code; ?>
+" <?php if (in_array ( $this->_tpl_vars['packagings']->packaging_id , $this->_tpl_vars['packaging_ids'] )): ?> selected="selected" <?php endif; ?>><?php echo $this->_tpl_vars['packagings']->pack_title; ?>
+</option>
+													<?php endforeach; endif; unset($_from); ?>
+			                                   	</select><br><br>
+			                                	<input name="packaging_code_<?php echo $this->_tpl_vars['ppk']; ?>
+" type="text" class="text small" id="packaging_code_<?php echo $this->_tpl_vars['ppk']; ?>
+" value="<?php echo $this->_tpl_vars['included_package']->pack_code; ?>
+" />	                    
+		                                	</td>
+										</tr>	
+									<?php endforeach; endif; unset($_from); ?>
+								<?php endif; ?>
+								
+								<?php unset($this->_sections['foo']);
+$this->_sections['foo']['name'] = 'foo';
+$this->_sections['foo']['start'] = (int)$this->_tpl_vars['p_p_p'];
+$this->_sections['foo']['loop'] = is_array($_loop=5) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
+$this->_sections['foo']['step'] = ((int)1) == 0 ? 1 : (int)1;
+$this->_sections['foo']['show'] = true;
+$this->_sections['foo']['max'] = $this->_sections['foo']['loop'];
+if ($this->_sections['foo']['start'] < 0)
+    $this->_sections['foo']['start'] = max($this->_sections['foo']['step'] > 0 ? 0 : -1, $this->_sections['foo']['loop'] + $this->_sections['foo']['start']);
+else
+    $this->_sections['foo']['start'] = min($this->_sections['foo']['start'], $this->_sections['foo']['step'] > 0 ? $this->_sections['foo']['loop'] : $this->_sections['foo']['loop']-1);
+if ($this->_sections['foo']['show']) {
+    $this->_sections['foo']['total'] = min(ceil(($this->_sections['foo']['step'] > 0 ? $this->_sections['foo']['loop'] - $this->_sections['foo']['start'] : $this->_sections['foo']['start']+1)/abs($this->_sections['foo']['step'])), $this->_sections['foo']['max']);
+    if ($this->_sections['foo']['total'] == 0)
+        $this->_sections['foo']['show'] = false;
+} else
+    $this->_sections['foo']['total'] = 0;
+if ($this->_sections['foo']['show']):
+
+            for ($this->_sections['foo']['index'] = $this->_sections['foo']['start'], $this->_sections['foo']['iteration'] = 1;
+                 $this->_sections['foo']['iteration'] <= $this->_sections['foo']['total'];
+                 $this->_sections['foo']['index'] += $this->_sections['foo']['step'], $this->_sections['foo']['iteration']++):
+$this->_sections['foo']['rownum'] = $this->_sections['foo']['iteration'];
+$this->_sections['foo']['index_prev'] = $this->_sections['foo']['index'] - $this->_sections['foo']['step'];
+$this->_sections['foo']['index_next'] = $this->_sections['foo']['index'] + $this->_sections['foo']['step'];
+$this->_sections['foo']['first']      = ($this->_sections['foo']['iteration'] == 1);
+$this->_sections['foo']['last']       = ($this->_sections['foo']['iteration'] == $this->_sections['foo']['total']);
+?>
+								<tr>
+									<td width="200">
+										<label>Packaging <?php echo $this->_sections['foo']['index']+1; ?>
+:<br><img src="<?php echo $this->_tpl_vars['baseurl']; ?>
+assets/images/flags/png/<?php echo $this->_tpl_vars['lang_code']; ?>
+.png" style="border:0px; padding-top:3px;"></label>
+									</td>
+									<td>
+										<select name="packagings[]" id="packagings_<?php echo $this->_sections['foo']['index']+1; ?>
+"  style="width:400px;" onchange="show_pack_code('packagings_<?php echo $this->_sections['foo']['index']+1; ?>
+', 'packaging_code_<?php echo $this->_sections['foo']['index']+1; ?>
+');">
+											<option value="">Select Package</option>
+											<?php $_from = $this->_tpl_vars['packagings_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['listofpackagings'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['listofpackagings']['total'] > 0):
+    foreach ($_from as $this->_tpl_vars['ppk'] => $this->_tpl_vars['packagings']):
+        $this->_foreach['listofpackagings']['iteration']++;
+?>
+												<option value="<?php echo $this->_tpl_vars['packagings']->packaging_id; ?>
+#<?php echo $this->_tpl_vars['packagings']->pack_code; ?>
+"><?php echo $this->_tpl_vars['packagings']->pack_title; ?>
+</option>
+											<?php endforeach; endif; unset($_from); ?>
+	                                   	</select><br><br>
+	                                	<input name="packaging_code_<?php echo $this->_sections['foo']['index']+1; ?>
+" type="text" class="text small" id="packaging_code_<?php echo $this->_sections['foo']['index']+1; ?>
+" value="" />	                    
+                                	</td>
+								</tr>
+								<?php endfor; endif; ?>
+								
+								
+							</table>
+							</div>
+                            
+                            
+                            
 
 						<table cellpadding="0" cellspacing="0" width="100%" class="sort">
                                     		<tr>
@@ -438,7 +557,7 @@ manage/pages/add_addition_field" method="post" enctype="multipart/form-data">
                     <table cellpadding="0" cellspacing="0" width="100%" class="sortable">	
 							<div id="example" class="modal hide fade in" >
             					<div class="modal-header">
-              						<a class="close" data-dismiss="modal">×</a>
+              						<a class="close" data-dismiss="modal">��</a>
               						<h3>Aggiungi campo</h3>
             					</div>
             					

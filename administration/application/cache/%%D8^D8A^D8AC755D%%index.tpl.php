@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.19, created on 2013-11-06 18:12:22
+<?php /* Smarty version 2.6.19, created on 2013-11-29 06:00:11
          compiled from manage/pages/index.tpl */ ?>
 <?php echo '
 <style type="text/css">
@@ -100,6 +100,7 @@ if ($this->_foreach['listofsubpages']['total'] > 0):
     foreach ($_from as $this->_tpl_vars['spk'] => $this->_tpl_vars['subpage']):
         $this->_foreach['listofsubpages']['iteration']++;
 ?>
+                                    	<?php $this->assign('subpages2', $this->_tpl_vars['sub_page_list2'][$this->_tpl_vars['spk']]); ?>
                                     	<tr <?php if ($this->_tpl_vars['subpage']->mother_page_id == '0'): ?> <?php else: ?> class="blue_background" <?php endif; ?>>
                                             <td><input type="checkbox" /></td>
                                             <td>
@@ -142,6 +143,56 @@ manage/pages/delete/<?php echo $this->_tpl_vars['subpage']->page_id; ?>
 " onclick='return confirm("Are you sure you want to delete?")'>Delete</a>
                                             </td>
                                         </tr>
+                                        
+                                        	<?php $_from = $this->_tpl_vars['subpages2']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['listofsubpages2'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['listofsubpages2']['total'] > 0):
+    foreach ($_from as $this->_tpl_vars['subpage2']):
+        $this->_foreach['listofsubpages2']['iteration']++;
+?>
+                                        		<tr <?php if ($this->_tpl_vars['subpage2']->mother_page_id == '0'): ?> <?php else: ?> class="blue_background" <?php endif; ?>>
+		                                            <td><input type="checkbox" /></td>
+		                                            <td>
+		                                            	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&iota;__ &nbsp;
+		                                                <img src="<?php echo $this->_tpl_vars['baseurl']; ?>
+assets/images/flags/png/<?php echo $this->_tpl_vars['lang_code']; ?>
+.png" style="border:0px; padding-top:3px;">
+		                                                <a href="<?php echo $this->_tpl_vars['baseurl']; ?>
+manage/pages/edit/<?php echo $this->_tpl_vars['subpage2']->page_id; ?>
+"><?php echo $this->_tpl_vars['subpage2']->page_title; ?>
+</a>
+		                                            </td>
+		                                            <td><?php echo $this->_tpl_vars['subpage2']->status; ?>
+</td>
+		                                            <td><?php echo $this->_tpl_vars['subpage2']->date_created; ?>
+</td>
+		                                            <td><input type="text" name="page_order_<?php echo $this->_tpl_vars['subpage2']->page_id; ?>
+" id="page_order_<?php echo $this->_tpl_vars['subpage2']->page_id; ?>
+" value="<?php echo $this->_tpl_vars['subpage2']->page_order; ?>
+" style="width:30px;"></td>
+		                                            <td>
+		                                                <?php if ($this->_tpl_vars['subpage2']->is_homepage == '1'): ?>
+		                                                    <img src="<?php echo $this->_tpl_vars['baseurl']; ?>
+assets/images/star_active.png" style="border:0px;">
+		                                                <?php else: ?>
+		                                                    <a href="<?php echo $this->_tpl_vars['baseurl']; ?>
+manage/pages/homepage/<?php echo $this->_tpl_vars['subpage2']->page_id; ?>
+"><img src="<?php echo $this->_tpl_vars['baseurl']; ?>
+assets/images/star_inactive.png" style="border:0px;"></a>    
+		                                                <?php endif; ?>
+		                                            </td>
+		                                            <td><?php echo $this->_tpl_vars['subpage2']->author; ?>
+</td>
+		                                            <td>
+		                                                <a class="btn btn-small" href="<?php echo $this->_tpl_vars['baseurl']; ?>
+manage/pages/edit/<?php echo $this->_tpl_vars['subpage2']->page_id; ?>
+">edit</a>
+		                                                <a class="btn btn-danger btn-small" href="<?php echo $this->_tpl_vars['baseurl']; ?>
+manage/pages/delete/<?php echo $this->_tpl_vars['subpage2']->page_id; ?>
+" onclick='return confirm("Are you sure you want to delete?")'>Delete</a>
+		                                            </td>
+		                                        </tr>
+                                        	<?php endforeach; endif; unset($_from); ?>
+                                        
                                     <?php endforeach; endif; unset($_from); ?>
 								<?php endforeach; endif; unset($_from); ?>
 								<tr>

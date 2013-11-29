@@ -542,6 +542,30 @@ public $data;
 			$this->obj->template->assign($value, 'true');
 		}
 	}
+
+	function validate_package_details(){
+		$this->data['packaging_title']	= $this->obj->input->post('packaging_title');
+		$this->data['packaging_code']	= $this->obj->input->post('packaging_code');
+		$this->data['packaging_description']	= $this->obj->input->post('packaging_description');
+
+		foreach($this->data as $key=>$value){
+			$this->obj->template->assign($key, $value);
+		}
+
+		if ($this->data['packaging_title'] == '')
+		{ 		
+			array_push($this->error,'packaging_title_blank');
+		}
+
+		if ($this->data['packaging_code'] == '')
+		{ 		
+			array_push($this->error,'packaging_code_blank');
+		}
+		
+		foreach($this->error as $key=>$value){
+			$this->obj->template->assign($value, 'true');
+		}
+	}
 	
 	function validate_match_details()
 	{
@@ -681,7 +705,7 @@ public $data;
 	{ 
   		$regex = $strict? 
       	'/^([.0-9a-z_-]+)@(([0-9a-z-]+\.)+[0-9a-z]{2,4})$/i' : 
-       	'/^([*+!.&#$¦\'\\%\/0-9a-z^_`{}=?~:-]+)@(([0-9a-z-]+\.)+[0-9a-z]{2,4})$/i' 
+       	'/^([*+!.&#$ï¿½\'\\%\/0-9a-z^_`{}=?~:-]+)@(([0-9a-z-]+\.)+[0-9a-z]{2,4})$/i' 
   		; 
   		if (preg_match($regex, trim($data), $matches)) { 
     		return array($matches[1], $matches[2]); 

@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.19, created on 2013-11-06 19:07:28
+<?php /* Smarty version 2.6.19, created on 2013-11-29 05:42:33
          compiled from manage/pages/create.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'manage/pages/create.tpl', 133, false),array('modifier', 'count', 'manage/pages/create.tpl', 258, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'manage/pages/create.tpl', 133, false),array('modifier', 'count', 'manage/pages/create.tpl', 279, false),)), $this); ?>
 <link rel="stylesheet" href="<?php echo $this->_tpl_vars['baseurl']; ?>
 assets/js/jQuery-File-Upload/css/jquery.fileupload-ui.css">
 <?php echo '
@@ -257,6 +257,36 @@ assets/videos/<?php echo $this->_tpl_vars['video_details']->video_image_name_it;
                                                             <br><code>&lt;?php echo photo_3; &gt;</code>
                                                         </div>
                                                     </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+
+                                        <table cellpadding="0" cellspacing="0" width="100%" class="sort">
+                                            <tr>
+                                                <td width="200"><label>Assign to Menus:  <br><img src="<?php echo $this->_tpl_vars['baseurl']; ?>
+assets/images/flags/png/<?php echo $this->_tpl_vars['lang_code']; ?>
+.png" style="border:0px; padding-top:3px;"></label></td>
+                                                <td>                                                    
+                                                    <table cellpadding="0" cellspacing="0" width="100%" class="sortable">
+                                                        <tbody>
+                                                            <?php $_from = $this->_tpl_vars['list_of_menus']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['listofpages'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['listofpages']['total'] > 0):
+    foreach ($_from as $this->_tpl_vars['pk'] => $this->_tpl_vars['menu']):
+        $this->_foreach['listofpages']['iteration']++;
+?>
+                                                                <tr>
+                                                                    <td width="3%">
+                                                                        <input type="checkbox" name="menu_ids[]" id="page_included_<?php echo $this->_tpl_vars['menu']->menu_id; ?>
+" value="<?php echo $this->_tpl_vars['menu']->menu_id; ?>
+" />
+                                                                    </td>
+                                                                    <td><?php echo $this->_tpl_vars['menu']->menu_name; ?>
+</td>
+                                                                </tr>
+                                                            <?php endforeach; endif; unset($_from); ?>
+                                                        </tbody>                                                        
+                                                    </table>
                                                 </td>
                                             </tr>
                                         </table>

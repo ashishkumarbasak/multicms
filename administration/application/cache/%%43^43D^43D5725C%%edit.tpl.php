@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.19, created on 2013-11-13 17:56:19
+<?php /* Smarty version 2.6.19, created on 2013-11-29 17:20:54
          compiled from manage/pages/edit.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'manage/pages/edit.tpl', 133, false),array('modifier', 'in_array', 'manage/pages/edit.tpl', 229, false),array('modifier', 'count', 'manage/pages/edit.tpl', 282, false),)), $this); ?>

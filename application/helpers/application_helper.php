@@ -235,4 +235,34 @@ function show_event_widget($count=NULL){
 		$i=0;
 	}
 }
+
+
+function list_subpages_upto3level($page_id=NULL){
+	if($page_id!=NULL){
+		$CI =& get_instance();
+		$CI->load->model('page_model');
+		$page_content = $CI->page_model->get_page_content($page_id);
+		$mother_page_url="";
+		if($page_content->page_url!=NULL)
+		$mother_page_url = $page_content->page_url;
+		
+		$subpagelist = $CI->page_model->get_sub_pages($page_id);
+		if($subpagelist!=NULL){
+			echo "<ul>";
+			foreach ($subpagelist as $key => $value) {
+				echo "<li><a href='".base_url() . CURRENT_LANGUAGE. "/" .$mother_page_url."/".$value->page_url. "'>".$value->page_title."</a></li>";
+				$subpagelist2 = $CI->page_model->get_sub_pages($value->page_id);
+				if($subpagelist2!=NULL){
+					echo "<ul>";
+					foreach ($subpagelist2 as $key2 => $value2) {
+						echo "<li><a href='".base_url() . CURRENT_LANGUAGE. "/" .$mother_page_url ."/". $value->page_url."/".$value2->page_url. "'>".$value2->page_title."</a></li>";
+					}
+					echo "</ul>";
+				}
+				
+			}
+			echo "</ul>";
+		}
+	}
+}
 ?>

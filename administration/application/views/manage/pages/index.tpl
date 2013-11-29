@@ -70,6 +70,7 @@
 									</td>
 								</tr>
                                     {foreach from=$subpages item=subpage name=listofsubpages key=spk}
+                                    	{assign var="subpages2" value=$sub_page_list2[$spk]}
                                     	<tr {if $subpage->mother_page_id eq "0"} {else} class="blue_background" {/if}>
                                             <td><input type="checkbox" /></td>
                                             <td>
@@ -93,6 +94,33 @@
                                                 <a class="btn btn-danger btn-small" href="{$baseurl}manage/pages/delete/{$subpage->page_id}" onclick='return confirm("Are you sure you want to delete?")'>Delete</a>
                                             </td>
                                         </tr>
+                                        
+                                        	{foreach from=$subpages2 item=subpage2 name=listofsubpages2 key2=spk2}
+                                        		<tr {if $subpage2->mother_page_id eq "0"} {else} class="blue_background" {/if}>
+		                                            <td><input type="checkbox" /></td>
+		                                            <td>
+		                                            	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&iota;__ &nbsp;
+		                                                <img src="{$baseurl}assets/images/flags/png/{$lang_code}.png" style="border:0px; padding-top:3px;">
+		                                                <a href="{$baseurl}manage/pages/edit/{$subpage2->page_id}">{$subpage2->page_title}</a>
+		                                            </td>
+		                                            <td>{$subpage2->status}</td>
+		                                            <td>{$subpage2->date_created}</td>
+		                                            <td><input type="text" name="page_order_{$subpage2->page_id}" id="page_order_{$subpage2->page_id}" value="{$subpage2->page_order}" style="width:30px;"></td>
+		                                            <td>
+		                                                {if $subpage2->is_homepage eq "1"}
+		                                                    <img src="{$baseurl}assets/images/star_active.png" style="border:0px;">
+		                                                {else}
+		                                                    <a href="{$baseurl}manage/pages/homepage/{$subpage2->page_id}"><img src="{$baseurl}assets/images/star_inactive.png" style="border:0px;"></a>    
+		                                                {/if}
+		                                            </td>
+		                                            <td>{$subpage2->author}</td>
+		                                            <td>
+		                                                <a class="btn btn-small" href="{$baseurl}manage/pages/edit/{$subpage2->page_id}">edit</a>
+		                                                <a class="btn btn-danger btn-small" href="{$baseurl}manage/pages/delete/{$subpage2->page_id}" onclick='return confirm("Are you sure you want to delete?")'>Delete</a>
+		                                            </td>
+		                                        </tr>
+                                        	{/foreach}
+                                        
                                     {/foreach}
 								{/foreach}
 								<tr>

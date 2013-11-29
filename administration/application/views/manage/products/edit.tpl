@@ -20,6 +20,7 @@
                           <li class="active"><a href="#home" data-toggle="tab">Informazioni</a></li>
                           <li><a href="#profile" data-toggle="tab">Additional Fields</a></li>
                           <li><a href="#seo" data-toggle="tab">Seo</a></li>
+                          <li><a href="#tab_packaging" data-toggle="tab">Packaging</a></li>
                           <li><a href="#show_in_pages" data-toggle="tab">Show In Pages</a></li>
                           <li><a href="{$baseurl}manage/products/edit/{$page_id}/slideshow">Slideshow</a></li>
 						</ul>
@@ -231,7 +232,7 @@
                                                     	<input type="hidden" name="additional_field_id_{$afk}" id="additional_field_id" value="{$additional_field->field_id}">
                                                     </td>
                                                     <td>
-                                                    	<a class="close" href="javascript:void(0);" onclick="delete_additional_field('{$additional_field->field_id}');">×</a>
+                                                    	<a class="close" href="javascript:void(0);" onclick="delete_additional_field('{$additional_field->field_id}');">��</a>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -278,7 +279,7 @@
                          </table>
 					</div>
                     
-                    <div class="tab-pane" id="show_in_pages"> 
+                    		<div class="tab-pane" id="show_in_pages"> 
                             	<table cellpadding="0" cellspacing="0" width="100%" class="sortable">
                                     <tr>
                                         <td width="200"><label>Included In:</label></td>
@@ -313,6 +314,61 @@
                                     </tr>
                                 </table>
                             </div>
+                            
+                            
+                            <div class="tab-pane" id="tab_packaging"> 
+                            <table cellpadding="0" cellspacing="0" width="100%" class="sortable">	
+										{literal}
+											<script type="text/javascript">
+												function show_pack_code(select_id , textbox_id){
+													var v = $('#'+select_id).val();
+													$('#'+textbox_id).val(v.split('#')[1]);
+												}
+											</script>
+										{/literal}
+								{assign var="p_p_p" value=$product_packagings|@count}
+								{if $product_packagings!=NULL}
+									{foreach from=$product_packagings item=included_package name=listofproductpackagings key=ppk}
+										<tr>
+											<td width="200">
+												<label>Packaging {$ppk+1}:<br><img src="{$baseurl}assets/images/flags/png/{$lang_code}.png" style="border:0px; padding-top:3px;"></label>
+											</td>
+											<td>
+												<select name="packagings[]" id="packagings_{$ppk}"  style="width:400px;" onchange="show_pack_code('packagings_{$ppk}', 'packaging_code_{$ppk}');">
+													<option value="">Select Package</option>
+													{foreach from=$packagings_list item=packagings name=listofpackagings key=ppk}
+														<option value="{$packagings->packaging_id}#{$packagings->pack_code}" {if in_array($packagings->packaging_id, $packaging_ids)} selected="selected" {/if}>{$packagings->pack_title}</option>
+													{/foreach}
+			                                   	</select><br><br>
+			                                	<input name="packaging_code_{$ppk}" type="text" class="text small" id="packaging_code_{$ppk}" value="{$included_package->pack_code}" />	                    
+		                                	</td>
+										</tr>	
+									{/foreach}
+								{/if}
+								
+								{section name=foo start=$p_p_p loop=5 step=1}
+								<tr>
+									<td width="200">
+										<label>Packaging {$smarty.section.foo.index+1}:<br><img src="{$baseurl}assets/images/flags/png/{$lang_code}.png" style="border:0px; padding-top:3px;"></label>
+									</td>
+									<td>
+										<select name="packagings[]" id="packagings_{$smarty.section.foo.index+1}"  style="width:400px;" onchange="show_pack_code('packagings_{$smarty.section.foo.index+1}', 'packaging_code_{$smarty.section.foo.index+1}');">
+											<option value="">Select Package</option>
+											{foreach from=$packagings_list item=packagings name=listofpackagings key=ppk}
+												<option value="{$packagings->packaging_id}#{$packagings->pack_code}">{$packagings->pack_title}</option>
+											{/foreach}
+	                                   	</select><br><br>
+	                                	<input name="packaging_code_{$smarty.section.foo.index+1}" type="text" class="text small" id="packaging_code_{$smarty.section.foo.index+1}" value="" />	                    
+                                	</td>
+								</tr>
+								{/section}
+								
+								
+							</table>
+							</div>
+                            
+                            
+                            
 
 						<table cellpadding="0" cellspacing="0" width="100%" class="sort">
                                     		<tr>
@@ -335,7 +391,7 @@
                     <table cellpadding="0" cellspacing="0" width="100%" class="sortable">	
 							<div id="example" class="modal hide fade in" >
             					<div class="modal-header">
-              						<a class="close" data-dismiss="modal">×</a>
+              						<a class="close" data-dismiss="modal">��</a>
               						<h3>Aggiungi campo</h3>
             					</div>
             					

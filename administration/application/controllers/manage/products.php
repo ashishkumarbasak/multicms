@@ -7,7 +7,8 @@ class Products extends CI_Controller{
         // Your own constructor code
 		$this->load->library(array('myvalidation','fileuploader','pagination'));
 		$this->load->model('manage/page_model');
-		$this->load->model('manage/language_model');			
+		$this->load->model('manage/language_model');
+		$this->load->model('manage/packaging_model');			
 		$this->userauthentication->check_sessionexpire();
 		$this->language_id = $this->userauthentication->get_language();
 		$this->template->assign('lang_id',$this->language_id);
@@ -206,7 +207,7 @@ class Products extends CI_Controller{
 			$this->phpsession->save('m_ref_page_id',$m_ref_page_id);
 			redirect('manage/products/create/?lang='.$lang_code,'refresh');
 		}
-		
+		//print_r($_POST);
 		if($this->input->post('Salva')){
 			$submitok=$this->validation();			
 			if($submitok){
@@ -233,6 +234,19 @@ class Products extends CI_Controller{
 						$this->page_model->update_additional_field_value($additional_field_value,$additiona_field_id);
 					}
 				}
+				$product_packagings = $this->input->post('packagings');
+				if(is_array($product_packagings) && !empty($product_packagings)){
+					$this->packaging_model->clean_product_packagings($product_id, $this->language_id);
+					foreach($product_packagings as $p_pack_key=>$p_pack){
+						if($p_pack!=NULL){
+							$packaging_id = explode("#",$p_pack);
+							$packaging_id = $packaging_id[0];
+							$this->packaging_model->add_package_to_product($packaging_id, $product_id, $this->language_id);
+						}		
+					}
+				}
+				
+				
 				if($m_ref_page_id!=NULL){
 					$this->phpsession->save('m_ref_page_id',$m_ref_page_id);
 					$this->template->assign('m_ref_page_id',$m_ref_page_id);
@@ -279,7 +293,19 @@ class Products extends CI_Controller{
 		$product_id = $this->page_model->get_product_id($page_id);
 		$included_in_page_ids = $this->page_model->get_product_included_in_page($product_id);
 		$this->template->assign('included_in_page_ids',$included_in_page_ids);
-				
+		
+		$packagings_list = $this->packaging_model->get_all_packagings($limit=NULL, $offset=NULL,$this->language_id);
+		$this->template->assign('packagings_list',$packagings_list);
+		
+		$product_packagings = $this->packaging_model->get_product_packagings($product_id, $this->language_id);
+		$this->template->assign('product_packagings',$product_packagings);
+		$packaging_ids = array();
+		if($product_packagings!=NULL)
+		foreach($product_packagings as $k=>$v){
+			array_push($packaging_ids, $v->packaging_id);
+		}
+		$this->template->assign('packaging_ids',$packaging_ids);
+		
 		$this->template->assign('list_of_templates',$list_of_templates);
 		$this->template->assign('page_id',$page_id);			
 		$this->template->assign('page','manage/products/edit.tpl');	
@@ -352,17 +378,21 @@ class Products extends CI_Controller{
 			{
 				$productID = mysql_real_escape_string($data[0]);
 				$categoryID = mysql_real_escape_string($data[1]);
-				$product_name_italian = mysql_real_escape_string($data[2]);
-				$product_description_italian = mysql_real_escape_string($data[3]);
-				$product_keyword_italian = mysql_real_escape_string($data[4]);
+				$productType = mysql_real_escape_string($data[2]);
+				$product_name_italian = mysql_real_escape_string($data[3]);
+				$product_description_italian = mysql_real_escape_string($data[4]);
+				$product_keyword_italian = mysql_real_escape_string($data[5]);
+				$product_image_italian = mysql_real_escape_string($data[6]);
 				
-				$product_name_english = mysql_real_escape_string($data[5]);
-				$product_description_english = mysql_real_escape_string($data[6]);
-				$product_keyword_english = mysql_real_escape_string($data[7]);
+				$product_name_english = mysql_real_escape_string($data[7]);
+				$product_description_english = mysql_real_escape_string($data[8]);
+				$product_keyword_english = mysql_real_escape_string($data[9]);
+				$product_image_english = mysql_real_escape_string($data[10]);
 				
-				$product_name_french = mysql_real_escape_string($data[8]);
-				$product_description_french = mysql_real_escape_string($data[9]);
-				$product_keyword_french = mysql_real_escape_string($data[10]);
+				$product_name_french = mysql_real_escape_string($data[11]);
+				$product_description_french = mysql_real_escape_string($data[12]);
+				$product_keyword_french = mysql_real_escape_string($data[13]);
+				$product_image_french = mysql_real_escape_string($data[14]);
 				
 				
 				if($row>1) {		 			  
@@ -377,7 +407,7 @@ class Products extends CI_Controller{
 					$this->myvalidation->data['page_url'] = str_replace(" ", "-", $product_name_italian);
 					
 					
-					$this->myvalidation->data['main_photo'] = "";
+					$this->myvalidation->data['main_photo'] = $product_image_italian;
 					$this->myvalidation->data['description_1'] = $product_description_italian;
 					$this->myvalidation->data['photo_1'] = "";
 					$this->myvalidation->data['description_2'] = "";
@@ -385,7 +415,7 @@ class Products extends CI_Controller{
 					$this->myvalidation->data['m_ref_page_id'] = 0;
 					
 					$page_id = $this->page_model->save_content($this->myvalidation->data);
-					$product_id = $this->page_model->save_product($page_id, $productID, $categoryID, $product_keyword_italian);
+					$product_id = $this->page_model->save_product($page_id, $productID, $categoryID, $product_keyword_italian, $productType);
 					$this->myvalidation->data['m_ref_page_id'] = $page_id;
 					$this->page_model->update_m_ref_page_id($page_id);
 					
@@ -393,15 +423,17 @@ class Products extends CI_Controller{
 					$this->myvalidation->data['language_id'] = $this->language_model->get_language_id('en');
 					$this->myvalidation->data['page_url'] = str_replace(" ", "-", $product_name_english);
 					$this->myvalidation->data['description_1'] = $product_description_english;
+					$this->myvalidation->data['main_photo'] = $product_image_english;
 					$page_id = $this->page_model->save_content($this->myvalidation->data);
-					$product_id = $this->page_model->save_product($page_id, $productID, $categoryID, $product_keyword_english);
+					$product_id = $this->page_model->save_product($page_id, $productID, $categoryID, $product_keyword_english, $productType);
 					
 					$this->myvalidation->data['page_title'] = $product_name_french;
 					$this->myvalidation->data['language_id'] = $this->language_model->get_language_id('fr');
 					$this->myvalidation->data['page_url'] = str_replace(" ", "-", $product_name_french);
 					$this->myvalidation->data['description_1'] = $product_description_french;
+					$this->myvalidation->data['main_photo'] = $product_image_french;
 					$page_id = $this->page_model->save_content($this->myvalidation->data);
-					$product_id = $this->page_model->save_product($page_id, $productID, $categoryID, $product_keyword_french);
+					$product_id = $this->page_model->save_product($page_id, $productID, $categoryID, $product_keyword_french, $productType);
 					
 				}	
 				$row++;		

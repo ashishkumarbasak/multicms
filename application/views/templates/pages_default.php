@@ -52,7 +52,7 @@
 	
 	
 
-        
+        <?php echo list_subpages_upto3level($page_id); ?>
 
         
 		

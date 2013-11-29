@@ -1,26 +1,22 @@
-<?php /* Smarty version 2.6.19, created on 2013-11-28 20:32:33
-         compiled from manage/products/import.tpl */ ?>
-<link rel="stylesheet" href="<?php echo $this->_tpl_vars['baseurl']; ?>
-assets/js/jQuery-File-Upload/css/jquery.fileupload-ui.css">
-<?php echo '
+<link rel="stylesheet" href="{$baseurl}assets/js/jQuery-File-Upload/css/jquery.fileupload-ui.css">
+{literal}
 <style type="text/css">
 	#add_additional_field_ul li:hover{ background-color:#CCCCCC; cursor:move;}
 </style>
-'; ?>
-
+{/literal}
 <div id="hld">
 	<!-- wrapper begins -->
 	<div class="wrapper">		
 		<div class="block">
 			<div class="block_content">
-				<h1>Import Product</h1>
-                		<?php if (isset ( $this->_tpl_vars['product_create_successfully'] )): ?>
+				<h1>Import Packagings</h1>
+                		{if isset($package_create_successfully)}
                         	<div class="message info">
                             <p>
-                            	Product Imported Successfully.
+                            	Packaging Imported Successfully.
                             </p>
                             </div>
-                        <?php endif; ?>
+                        {/if}
 
                         <form action="" method="post" enctype="multipart/form-data">
                             <div class="tab-content">
@@ -48,12 +44,11 @@ assets/js/jQuery-File-Upload/css/jquery.fileupload-ui.css">
 
 
                     
-<?php echo '
+{literal}
 <style type="text/css">
 	.blue_background{ background:#ecf9ff; border:solid #bbdbe0 1px;}
 </style>
-'; ?>
-						
+{/literal}						
 					
                     
 			</div>		<!-- .block_content ends -->

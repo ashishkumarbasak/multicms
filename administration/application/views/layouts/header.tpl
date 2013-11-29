@@ -38,11 +38,12 @@
 						<ul>
 							<li><a href="{$baseurl}manage/products/?lang={$lang_code}">Elenco Prodotti</a></li>
 							<li><a href="{$baseurl}manage/products/create2/?lang={$lang_code}">Aggiungi Prodotti</a></li>
-
+							<li><a href="{$baseurl}manage/packagings/?lang={$lang_code}">Elenco Packaging</a></li>
+							<li><a href="{$baseurl}manage/packagings/create2/?lang={$lang_code}">Aggiungi Packaging</a></li>
 						</ul>
 					</li>
-                    
-                    <li><a href="{$baseurl}manage/news/?lang={$lang_code}">News</a>
+					
+					<li><a href="{$baseurl}manage/news/?lang={$lang_code}">News</a>
 						<ul>
 							<li><a href="{$baseurl}manage/news/?lang={$lang_code}">Elenco News</a></li>
 							<li><a href="{$baseurl}manage/news/create2/?lang={$lang_code}">Aggiungi News</a></li>

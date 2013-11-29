@@ -144,7 +144,7 @@ class Page_model extends CI_Model{
 	
 	
 	
-	function save_product($page_id=NULL, $productID=NULL, $categoryID=NULL, $keyword = NULL){
+	function save_product($page_id=NULL, $productID=NULL, $categoryID=NULL, $keyword = NULL, $productType=NULL){
 		if($page_id!=NULL){
 			$this->db->set('page_id',$page_id);
 			if($productID!=NULL)
@@ -153,6 +153,8 @@ class Page_model extends CI_Model{
 				$this->db->set('categoryID',$categoryID);
 			if($keyword!=NULL)
 				$this->db->set('keyword',$keyword);
+			if($productType!=NULL)
+				$this->db->set('product_type',$productType);
 			
 			$this->db->insert('products');
 			
@@ -301,7 +303,7 @@ class Page_model extends CI_Model{
 	function get_mother_pages($language_id=NULL){
 			$this->db->select('*');
 			$this->db->from('pages');
-			$this->db->where('mother_page_id',0);
+			//$this->db->where('mother_page_id',0);
 			if($language_id!=NULL)
 			$this->db->where('language_id',$language_id);
 			
