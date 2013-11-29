@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 26, 2013 at 11:00 AM
+-- Generation Time: Nov 29, 2013 at 08:09 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.10
 
@@ -10711,7 +10711,7 @@ CREATE TABLE `trv_languages` (
   `flag` varchar(255) DEFAULT NULL,
   `is_default` set('0','1') DEFAULT '0',
   PRIMARY KEY (`language_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `trv_languages`
@@ -10719,7 +10719,8 @@ CREATE TABLE `trv_languages` (
 
 INSERT INTO `trv_languages` (`language_id`, `language_name`, `lang_short_code`, `flag`, `is_default`) VALUES
 (1, 'Italian', 'it', 'it', '1'),
-(5, 'english', 'en', 'en', '0');
+(5, 'english', 'en', 'en', '0'),
+(6, 'french', 'fr', 'fr', '0');
 
 -- --------------------------------------------------------
 
@@ -11504,6 +11505,22 @@ INSERT INTO `trv_offers_themes` (`offerstheme_id`, `offer_id`, `lastminutetheme_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `trv_packagings`
+--
+
+CREATE TABLE `trv_packagings` (
+  `packaging_id` int(11) NOT NULL AUTO_INCREMENT,
+  `pack_title` varchar(255) NOT NULL,
+  `pack_code` varchar(255) NOT NULL,
+  `pack_description` text,
+  `language_id` int(11) NOT NULL,
+  `m_ref_packaging_id` int(11) NOT NULL,
+  PRIMARY KEY (`packaging_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `trv_pages`
 --
 
@@ -11529,7 +11546,7 @@ CREATE TABLE `trv_pages` (
   `language_id` int(11) DEFAULT NULL,
   `m_ref_page_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`page_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=139 ;
 
 --
 -- Dumping data for table `trv_pages`
@@ -11538,12 +11555,9 @@ CREATE TABLE `trv_pages` (
 INSERT INTO `trv_pages` (`page_id`, `page_template`, `mother_page_id`, `is_homepage`, `page_title`, `page_seotitle`, `page_seokeywords`, `page_seodescription`, `page_url`, `photo`, `description_1`, `photo_1`, `description_2`, `photo_2`, `date_created`, `status`, `author`, `page_order`, `language_id`, `m_ref_page_id`) VALUES
 (1, 'pages_default_product_list.php', 0, '0', 'Linea Ospedaliera', '', '', '', 'linea-ospedaliera', '', 'Description 1 [Italian]', '', 'Description 2 [Italian]', '', '2013-10-09 16:10:26', 'published', 'admin', 2, 1, 1),
 (6, 'pages_default_homepage.php', 0, '1', 'Home', '', '', '', 'home', '', '', '', '', '', '2013-10-11 07:10:02', 'published', 'admin', 1, 1, 5),
-(8, 'products.php', -1, '0', 'TESTO KL', '', '', '', 'testo-kl', '', '6508', '', '2', '', '2013-11-06 18:11:28', 'published', 'admin', NULL, 1, 0),
-(10, 'products.php', -1, '0', 'TRUNK ER', '', '', '', 'trunk-er', '', '6840', '', '2', '', '2013-11-07 06:11:47', 'published', 'admin', NULL, 1, 0),
 (11, 'pages_default_homepage.php', 0, '1', 'Home', '', '', '', 'home', '', 'dadasasd', '', 'sdadsa', '', '2013-11-07 09:11:03', 'published', 'admin', 1, 5, 5),
 (12, 'pages_default_product_list.php', 0, '0', 'Irrigatori Meccanici', '', '', '', 'irrigatori-meccanici', '', '', '', '', '', '2013-11-07 10:11:27', 'published', 'admin', 3, 1, 12),
 (13, 'pages_default_product_list.php', 12, '0', 'ACTEON GROUP-SATELEC', '', '', '', 'acteon-group-satelec', '', '', '', '', '', '2013-11-07 10:11:38', 'published', 'admin', 0, 1, 13),
-(14, 'products.php', -1, '0', 'SUNT IK', '', '', '', 'sunt-ik', '', '6404', '', '1', '', '2013-11-07 10:11:43', 'published', 'admin', NULL, 1, 0),
 (15, 'pages_default.php', 6, '0', 'Chi siamo', '', '', '', 'chi-siamo', '', '', '', '', '', '2013-11-07 10:11:08', 'published', 'admin', 1, 1, 15),
 (16, 'pages_default_contatto.php', 6, '0', 'Contatto', '', '', '', 'contatto', '', '', '', '', '', '2013-11-07 11:11:10', 'published', 'admin', 2, 1, 16),
 (17, 'pages_default_product_list.php', 0, '0', 'Hospital Collection', '', '', '', 'hospital-collection', '', '', '', '', '', '2013-11-07 11:11:26', 'published', 'admin', 2, 5, 17),
@@ -11551,11 +11565,48 @@ INSERT INTO `trv_pages` (`page_id`, `page_template`, `mother_page_id`, `is_homep
 (19, 'pages_default.php', 11, '0', 'about us', '', '', '', 'about-us', '', '', '', '', '', '2013-11-08 07:11:08', 'published', 'admin', NULL, 5, 15),
 (20, 'pages_default.php', 0, '0', 'hello page', '', '', '', 'hello-page', '', 'dsadsddsa', '', '', '', '2013-11-10 14:11:03', 'published', 'admin', NULL, 1, 20),
 (21, 'pages_default.php', 0, '0', 'Test page by me', '', '', '', 'test-page-by-me', '', '', '', '', '', '2013-11-10 14:11:37', 'published', 'admin', NULL, 1, 21),
-(23, 'products.php', -1, '0', 'Test Product by me', '', '', '', 'test-product-by-me', '', '', '', '', '', '2013-11-10 18:11:39', 'published', 'admin', NULL, 1, 23),
-(24, 'products.php', -1, '0', 'Test product by me english', '', '', '', 'test-product-by-me-english', '', '', '', '', '', '2013-11-10 18:11:14', 'published', 'admin', NULL, 5, 23),
 (25, 'pages_default.php', 0, '0', 'public', '', '', '', 'public', '', '', '', '', '', '2013-11-11 05:11:54', 'published', 'admin', NULL, 1, 25),
 (26, 'pages_default.php', 0, '0', 'Test Page for menu', '', '', '', 'test-page-for-menu', '', '', '', '', '', '2013-11-13 12:11:45', 'published', 'admin', NULL, 1, 26),
-(27, 'pages_default.php', 0, '0', 'another test page for menu test', '', '', '', 'another-test-page-for-menu-test', '', '', '', '', '', '2013-11-13 12:11:48', 'published', 'admin', NULL, 1, 27);
+(27, 'pages_default.php', 0, '0', 'another test page for menu test', '', '', '', 'another-test-page-for-menu-test', '', '', '', '', '', '2013-11-13 12:11:48', 'published', 'admin', NULL, 1, 27),
+(100, 'pages_default.php', 0, '0', 'Mother Page - Level 1', '', '', '', 'mother-page-level-1', '', '', '', '', '', '2013-11-28 23:11:19', 'published', 'admin', NULL, 1, 100),
+(101, 'pages_default.php', 100, '0', 'Child Page - Level 2', '', '', '', 'child-page-level-2', '', '', '', '', '', '2013-11-28 23:11:52', 'published', 'admin', NULL, 1, 101),
+(102, 'pages_default.php', 101, '0', 'Child Page - Level 3', '', '', '', 'child-page-level-3', '', '', '', '', '', '2013-11-28 23:11:49', 'published', 'admin', NULL, 1, 102),
+(103, 'products.php', -1, '0', 'Test product italian', '', '', '', 'test-product-italian', 'x.pjg', 'test product italian description', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 1, 103),
+(104, 'products.php', -1, '0', 'test product english', '', '', '', 'test-product-english', 'y.gif', 'test description english', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 5, 103),
+(105, 'products.php', -1, '0', 'test product french', '', '', '', 'test-product-french', 'z.png', 'test product description french', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 6, 103),
+(106, 'products.php', -1, '0', 'Test product italian', '', '', '', 'test-product-italian', 'x.pjg', 'test product italian description', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 1, 106),
+(107, 'products.php', -1, '0', 'test product english', '', '', '', 'test-product-english', 'y.gif', 'test description english', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 5, 106),
+(108, 'products.php', -1, '0', 'test product french', '', '', '', 'test-product-french', 'z.png', 'test product description french', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 6, 106),
+(109, 'products.php', -1, '0', 'Test product italian', '', '', '', 'test-product-italian', 'x.pjg', 'test product italian description', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 1, 109),
+(110, 'products.php', -1, '0', 'test product english', '', '', '', 'test-product-english', 'y.gif', 'test description english', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 5, 109),
+(111, 'products.php', -1, '0', 'test product french', '', '', '', 'test-product-french', 'z.png', 'test product description french', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 6, 109),
+(112, 'products.php', -1, '0', 'Test product italian', '', '', '', 'test-product-italian', 'x.pjg', 'test product italian description', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 1, 112),
+(113, 'products.php', -1, '0', 'test product english', '', '', '', 'test-product-english', 'y.gif', 'test description english', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 5, 112),
+(114, 'products.php', -1, '0', 'test product french', '', '', '', 'test-product-french', 'z.png', 'test product description french', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 6, 112),
+(115, 'products.php', -1, '0', 'Test product italian', '', '', '', 'test-product-italian', 'x.pjg', 'test product italian description', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 1, 115),
+(116, 'products.php', -1, '0', 'test product english', '', '', '', 'test-product-english', 'y.gif', 'test description english', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 5, 115),
+(117, 'products.php', -1, '0', 'test product french', '', '', '', 'test-product-french', 'z.png', 'test product description french', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 6, 115),
+(118, 'products.php', -1, '0', 'Test product italian', '', '', '', 'test-product-italian', 'x.pjg', 'test product italian description', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 1, 118),
+(119, 'products.php', -1, '0', 'test product english', '', '', '', 'test-product-english', 'y.gif', 'test description english', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 5, 118),
+(120, 'products.php', -1, '0', 'test product french', '', '', '', 'test-product-french', 'z.png', 'test product description french', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 6, 118),
+(121, 'products.php', -1, '0', 'Test product italian', '', '', '', 'test-product-italian', 'x.pjg', 'test product italian description', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 1, 121),
+(122, 'products.php', -1, '0', 'test product english', '', '', '', 'test-product-english', 'y.gif', 'test description english', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 5, 121),
+(123, 'products.php', -1, '0', 'test product french', '', '', '', 'test-product-french', 'z.png', 'test product description french', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 6, 121),
+(124, 'products.php', -1, '0', 'Test product italian', '', '', '', 'test-product-italian', 'x.pjg', 'test product italian description', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 1, 124),
+(125, 'products.php', -1, '0', 'test product english', '', '', '', 'test-product-english', 'y.gif', 'test description english', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 5, 124),
+(126, 'products.php', -1, '0', 'test product french', '', '', '', 'test-product-french', 'z.png', 'test product description french', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 6, 124),
+(127, 'products.php', -1, '0', 'Test product italian', '', '', '', 'test-product-italian', 'x.pjg', 'test product italian description', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 1, 127),
+(128, 'products.php', -1, '0', 'test product english', '', '', '', 'test-product-english', 'y.gif', 'test description english', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 5, 127),
+(129, 'products.php', -1, '0', 'test product french', '', '', '', 'test-product-french', 'z.png', 'test product description french', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 6, 127),
+(130, 'products.php', -1, '0', 'Test product italian', '', '', '', 'test-product-italian', 'x.pjg', 'test product italian description', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 1, 130),
+(131, 'products.php', -1, '0', 'test product english', '', '', '', 'test-product-english', 'y.gif', 'test description english', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 5, 130),
+(132, 'products.php', -1, '0', 'test product french', '', '', '', 'test-product-french', 'z.png', 'test product description french', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 6, 130),
+(133, 'products.php', -1, '0', 'Test product italian', '', '', '', 'test-product-italian', 'x.pjg', 'test product italian description', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 1, 133),
+(134, 'products.php', -1, '0', 'test product english', '', '', '', 'test-product-english', 'y.gif', 'test description english', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 5, 133),
+(135, 'products.php', -1, '0', 'test product french', '', '', '', 'test-product-french', 'z.png', 'test product description french', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 6, 133),
+(136, 'products.php', -1, '0', 'Test product italian', '', '', '', 'test-product-italian', 'x.pjg', 'test product italian description', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 1, 136),
+(137, 'products.php', -1, '0', 'test product english', '', '', '', 'test-product-english', 'y.gif', 'test description english', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 5, 136),
+(138, 'products.php', -1, '0', 'test product french', '', '', '', 'test-product-french', 'z.png', 'test product description french', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 6, 136);
 
 -- --------------------------------------------------------
 
@@ -11581,21 +11632,54 @@ CREATE TABLE `trv_page_extended_fields` (
 CREATE TABLE `trv_products` (
   `product_id` int(11) NOT NULL AUTO_INCREMENT,
   `page_id` int(11) NOT NULL,
+  `productID` int(11) DEFAULT NULL,
+  `categoryID` int(11) DEFAULT NULL,
+  `keyword` text,
+  `product_type` int(11) DEFAULT NULL,
   PRIMARY KEY (`product_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=37 ;
 
 --
 -- Dumping data for table `trv_products`
 --
 
-INSERT INTO `trv_products` (`product_id`, `page_id`) VALUES
-(1, 7),
-(2, 8),
-(3, 9),
-(4, 10),
-(5, 14),
-(7, 23),
-(8, 24);
+INSERT INTO `trv_products` (`product_id`, `page_id`, `productID`, `categoryID`, `keyword`, `product_type`) VALUES
+(1, 103, 1, 1, 'search keyword italian', 1),
+(2, 104, 1, 1, 'search keywords english', 1),
+(3, 105, 1, 1, 'search keyword french', 1),
+(4, 106, 2, 2, 'search keyword italian', 2),
+(5, 107, 2, 2, 'search keywords english', 2),
+(6, 108, 2, 2, 'search keyword french', 2),
+(7, 109, 3, 3, 'search keyword italian', 3),
+(8, 110, 3, 3, 'search keywords english', 3),
+(9, 111, 3, 3, 'search keyword french', 3),
+(10, 112, 4, 4, 'search keyword italian', 1),
+(11, 113, 4, 4, 'search keywords english', 1),
+(12, 114, 4, 4, 'search keyword french', 1),
+(13, 115, 5, 5, 'search keyword italian', 2),
+(14, 116, 5, 5, 'search keywords english', 2),
+(15, 117, 5, 5, 'search keyword french', 2),
+(16, 118, 6, 6, 'search keyword italian', 3),
+(17, 119, 6, 6, 'search keywords english', 3),
+(18, 120, 6, 6, 'search keyword french', 3),
+(19, 121, 7, 7, 'search keyword italian', 1),
+(20, 122, 7, 7, 'search keywords english', 1),
+(21, 123, 7, 7, 'search keyword french', 1),
+(22, 124, 8, 8, 'search keyword italian', 2),
+(23, 125, 8, 8, 'search keywords english', 2),
+(24, 126, 8, 8, 'search keyword french', 2),
+(25, 127, 9, 9, 'search keyword italian', 3),
+(26, 128, 9, 9, 'search keywords english', 3),
+(27, 129, 9, 9, 'search keyword french', 3),
+(28, 130, 10, 10, 'search keyword italian', 1),
+(29, 131, 10, 10, 'search keywords english', 1),
+(30, 132, 10, 10, 'search keyword french', 1),
+(31, 133, 11, 11, 'search keyword italian', 2),
+(32, 134, 11, 11, 'search keywords english', 2),
+(33, 135, 11, 11, 'search keyword french', 2),
+(34, 136, 12, 12, 'search keyword italian', 3),
+(35, 137, 12, 12, 'search keywords english', 3),
+(36, 138, 12, 12, 'search keyword french', 3);
 
 -- --------------------------------------------------------
 
@@ -11608,15 +11692,19 @@ CREATE TABLE `trv_products_in_page` (
   `page_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `trv_products_in_page`
+-- Table structure for table `trv_product_packages`
 --
 
-INSERT INTO `trv_products_in_page` (`product_id`, `page_id`) VALUES
-(5, 13),
-(4, 13),
-(2, 13),
-(2, 11);
+CREATE TABLE `trv_product_packages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `packaging_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
