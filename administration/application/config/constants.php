@@ -37,11 +37,11 @@ define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 define('BASEURL',((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http")."://".$_SERVER['HTTP_HOST']);
-define('BILLS_ATTACHMENT_UPLOAD_PATH',$_SERVER['DOCUMENT_ROOT']."/multicms/assets/bills/");
-define('CATEGORY_ATTACHMENT_UPLOAD_PATH',$_SERVER['DOCUMENT_ROOT']."/multicms/assets/category_images/");
-define('DOCUMENT_ATTACHMENT_UPLOAD_PATH',$_SERVER['DOCUMENT_ROOT']."/multicms/assets/documents/");
-define('VIDEO_ATTACHMENT_UPLOAD_PATH',$_SERVER['DOCUMENT_ROOT']."/multicms/assets/videos/");
-define('IMPORT_FILE_UPLOAD_PATH',$_SERVER['DOCUMENT_ROOT']."/multicms/assets/import/");
+define('BILLS_ATTACHMENT_UPLOAD_PATH',$_SERVER['DOCUMENT_ROOT']."/assets/bills/");
+define('CATEGORY_ATTACHMENT_UPLOAD_PATH',$_SERVER['DOCUMENT_ROOT']."/assets/category_images/");
+define('DOCUMENT_ATTACHMENT_UPLOAD_PATH',$_SERVER['DOCUMENT_ROOT']."/assets/documents/");
+define('VIDEO_ATTACHMENT_UPLOAD_PATH',$_SERVER['DOCUMENT_ROOT']."/assets/videos/");
+define('IMPORT_FILE_UPLOAD_PATH',$_SERVER['DOCUMENT_ROOT']."/assets/import/");
 
 
 /* End of file constants.php */

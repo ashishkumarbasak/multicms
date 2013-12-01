@@ -20,9 +20,9 @@
                         <li><a href="{$baseurl}manage/products/edit/{$page_id}#profile">Additional Fields</a></li>
                         <li><a href="{$baseurl}manage/products/edit/{$page_id}#seo">Seo</a></li>
                         <li><a href="{$baseurl}manage/products/edit/{$page_id}#show_in_pages">Show In Pages</a></li>
-                       	<li  class="active"><a href="javascript:void(0);">Slideshow</a></li>
+                       	<li><a href="{$baseurl}manage/products/edit/{$page_id}/slideshow">Slideshow</a></li>
                        	<li><a href="{$baseurl}manage/products/edit/{$page_id}/videos">Videos</a></li>
-                       	<li><a href="{$baseurl}manage/products/edit/{$page_id}/files">Files</a></li>
+                       	<li class="active"><a href="javascript:void(0);">Files</a></li>
                    	</ul>   
                 {elseif $from_page eq "news"}
                 	<h1>Edit News</h1>
@@ -31,9 +31,9 @@
                         <li><a href="{$baseurl}manage/news/edit/{$page_id}#profile">Additional Fields</a></li>
                         <li><a href="{$baseurl}manage/news/edit/{$page_id}#seo">Seo</a></li>
                         <li><a href="{$baseurl}manage/news/edit/{$page_id}#show_in_pages">Show In Pages</a></li>
-                       	<li  class="active"><a href="javascript:void(0);">Slideshow</a></li>
+                       	<li><a href="{$baseurl}manage/news/edit/{$page_id}/slideshow">Slideshow</a></li>
                        	<li><a href="{$baseurl}manage/news/edit/{$page_id}/videos">Videos</a></li>
-                       	<li><a href="{$baseurl}manage/news/edit/{$page_id}/files">Files</a></li>
+                       	<li class="active"><a href="javascript:void(0);">Files</a></li>
                    	</ul>   
                 {else}
                 	<h1>Edit Page</h1>
@@ -41,9 +41,9 @@
                     	<li><a href="{$baseurl}manage/pages/edit/{$page_id}#home" >Informazioni</a></li>
                        	<li><a href="{$baseurl}manage/pages/edit/{$page_id}#profile" >Additional Fields</a></li>
                         <li><a href="{$baseurl}manage/pages/edit/23/{$page_id}#seo" >Seo</a></li>
-                       	<li  class="active"><a href="javascript:void(0);">Slideshow</a></li>
+                       	<li><a href="{$baseurl}manage/pages/edit/{$page_id}/slideshow">Slideshow</a></li>
                        	<li><a href="{$baseurl}manage/pages/edit/{$page_id}/videos">Videos</a></li>
-                       	<li><a href="{$baseurl}manage/pages/edit/{$page_id}/files">Files</a></li>
+                       	<li class="active"><a href="javascript:void(0);">Files</a></li>
                    	</ul>   
                 {/if}
                 		

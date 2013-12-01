@@ -19,7 +19,7 @@ $(function () {
     $('#fileupload').fileupload({
         // Uncomment the following to send cross-domain cookies:
         //xhrFields: {withCredentials: true},
-        url: baseurl.replace("administration/","") + 'assets/slideshow/'
+        url: baseurl.replace("administration/","") + 'assets/page_files/'
     });
 
     // Enable iframe cross-domain access via redirect option:

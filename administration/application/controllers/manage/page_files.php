@@ -1,5 +1,5 @@
 <?php
-class Slideshow extends CI_Controller {
+class Page_files extends CI_Controller {
 	
 	public $per_page = 10;
 	public function __construct(){
@@ -66,7 +66,7 @@ class Slideshow extends CI_Controller {
 	function create($page_id=NULL){
 		$this->template->assign('section','SlideShow');
 		$this->template->assign('operation','Create');
-		$this->template->assign('javascript2','yes');
+		$this->template->assign('javascript4','yes');
 		$this->template->assign('page_id',$page_id);
 		$this->template->assign('from_page',$this->uri->segment(2));
 		@session_start();
@@ -104,7 +104,7 @@ class Slideshow extends CI_Controller {
 			}
 		}
 		
-		$this->template->assign('page','manage/slideshow/create.tpl');	
+		$this->template->assign('page','manage/page_files/create.tpl');	
 		$this->template->display('layouts/layout.tpl');
 	}
 	

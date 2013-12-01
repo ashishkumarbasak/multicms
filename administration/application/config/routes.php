@@ -44,6 +44,12 @@ $route['404_override'] = '';
 $route['manage/pages/edit/(:num)/slideshow'] = 'manage/slideshow/create/$1';
 $route['manage/products/edit/(:num)/slideshow'] = 'manage/slideshow/create/$1';
 $route['manage/news/edit/(:num)/slideshow'] = 'manage/slideshow/create/$1';
+$route['manage/pages/edit/(:num)/videos'] = 'manage/page_videos/create/$1';
+$route['manage/products/edit/(:num)/videos'] = 'manage/page_videos/create/$1';
+$route['manage/news/edit/(:num)/videos'] = 'manage/page_videos/create/$1';
+$route['manage/pages/edit/(:num)/files'] = 'manage/page_files/create/$1';
+$route['manage/products/edit/(:num)/files'] = 'manage/page_files/create/$1';
+$route['manage/news/edit/(:num)/files'] = 'manage/page_files/create/$1';
 
 $route['manage/account'] = 'manage/account/index';
 $route['manage/members/page'] = 'manage/members/index';

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.19, created on 2013-11-26 17:02:57
+<?php /* Smarty version 2.6.19, created on 2013-12-01 19:47:30
          compiled from layouts/javascripts.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'layouts/javascripts.tpl', 136, false),)), $this); ?>
@@ -376,6 +376,22 @@ assets/js/langpicker.js"></script>
 <?php if ($this->_tpl_vars['javascript2'] == 'yes'): ?>
 	<?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "layouts/javascripts2.tpl", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
+<?php endif; ?>
+
+<?php if ($this->_tpl_vars['javascript3'] == 'yes'): ?>
+	<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "layouts/javascripts3.tpl", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
+<?php endif; ?>
+
+<?php if ($this->_tpl_vars['javascript4'] == 'yes'): ?>
+	<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "layouts/javascripts4.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>

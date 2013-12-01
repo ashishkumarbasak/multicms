@@ -1,4 +1,6 @@
-{literal}                       
+<?php /* Smarty version 2.6.19, created on 2013-12-01 19:56:43
+         compiled from layouts/javascripts3.tpl */ ?>
+<?php echo '                       
 <script id="template-upload" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
     <li class="template-upload fade">
@@ -50,7 +52,7 @@
         </div>
         <div class="image-name" style="width: 400px;">
             <p class="name">
-                <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
+                <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?\'data-gallery\':\'\'%}>{%=file.name%}</a>
                 <span class="size">( {%=o.formatFileSize(file.size)%} )</span>
             </p>
             {% if (file.error) { %}
@@ -59,7 +61,7 @@
             <textarea name="image_descriptions[]" id="image_descriptions[]" style="width: 90%; margin-top: 7px; font-sie:12px;"></textarea>
         </div>
         <div class="image-action">
-            <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+            <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields=\'{"withCredentials":true}\'{% } %}>
                 <i class="icon-trash icon-white"></i>
                 <span>Delete</span>
             </button>
@@ -70,13 +72,15 @@
     </li>
 {% } %}
 </script>  
-{/literal}                      
+'; ?>
+                      
 
 
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
-<script src="{$baseurl}assets/js/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="<?php echo $this->_tpl_vars['baseurl']; ?>
+assets/js/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>
 <!-- The Templates plugin is included to render the upload/download listings -->
 <script src="http://blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
 <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
@@ -86,24 +90,33 @@
 <!-- blueimp Gallery script -->
 <script src="http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
 <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-<script src="{$baseurl}assets/js/jQuery-File-Upload/js/jquery.iframe-transport.js"></script>
+<script src="<?php echo $this->_tpl_vars['baseurl']; ?>
+assets/js/jQuery-File-Upload/js/jquery.iframe-transport.js"></script>
 <!-- The basic File Upload plugin -->
-<script src="{$baseurl}assets/js/jQuery-File-Upload/js/jquery.fileupload.js"></script>
+<script src="<?php echo $this->_tpl_vars['baseurl']; ?>
+assets/js/jQuery-File-Upload/js/jquery.fileupload.js"></script>
 
 <!-- The File Upload processing plugin -->
-<script src="{$baseurl}assets/js/jQuery-File-Upload/js/jquery.fileupload-process.js"></script>
+<script src="<?php echo $this->_tpl_vars['baseurl']; ?>
+assets/js/jQuery-File-Upload/js/jquery.fileupload-process.js"></script>
 <!-- The File Upload image preview & resize plugin -->
-<script src="{$baseurl}assets/js/jQuery-File-Upload/js/jquery.fileupload-image.js"></script>
+<script src="<?php echo $this->_tpl_vars['baseurl']; ?>
+assets/js/jQuery-File-Upload/js/jquery.fileupload-image.js"></script>
 <!-- The File Upload audio preview plugin -->
-<script src="{$baseurl}assets/js/jQuery-File-Upload/js/jquery.fileupload-audio.js"></script>
+<script src="<?php echo $this->_tpl_vars['baseurl']; ?>
+assets/js/jQuery-File-Upload/js/jquery.fileupload-audio.js"></script>
 <!-- The File Upload video preview plugin -->
-<script src="{$baseurl}assets/js/jQuery-File-Upload/js/jquery.fileupload-video.js"></script>
+<script src="<?php echo $this->_tpl_vars['baseurl']; ?>
+assets/js/jQuery-File-Upload/js/jquery.fileupload-video.js"></script>
 <!-- The File Upload validation plugin -->
-<script src="{$baseurl}assets/js/jQuery-File-Upload/js/jquery.fileupload-validate.js"></script>
+<script src="<?php echo $this->_tpl_vars['baseurl']; ?>
+assets/js/jQuery-File-Upload/js/jquery.fileupload-validate.js"></script>
 <!-- The File Upload user interface plugin -->
-<script src="{$baseurl}assets/js/jQuery-File-Upload/js/jquery.fileupload-ui.js"></script>
+<script src="<?php echo $this->_tpl_vars['baseurl']; ?>
+assets/js/jQuery-File-Upload/js/jquery.fileupload-ui.js"></script>
 <!-- The main application script -->
-<script src="{$baseurl}assets/js/jQuery-File-Upload/js/main.js"></script>
+<script src="<?php echo $this->_tpl_vars['baseurl']; ?>
+assets/js/jQuery-File-Upload/js/main3.js"></script>
 <!-- The XDomainRequest Transport is included for cross-domain file deletion for IE8+ -->
 <!--[if gte IE 8]>
 <script src="js/cors/jquery.xdr-transport.js"></script>
@@ -113,22 +126,27 @@
 
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
-{literal}                        
+<?php echo '                        
 <script>
 $(function() {
 	$("#upload-file-lists" ).sortable({
-    axis: 'y',
+    axis: \'y\',
     stop: function (event, ui) {
-			var data = $(this).sortable('serialize');
+			var data = $(this).sortable(\'serialize\');
 			// POST to server using $.post or $.ajax
 			$.ajax({
 				data: data,
-				type: 'POST',
-				url: '{/literal}{$baseurl}{literal}manage/pages/edit/{/literal}{$page_id}{literal}/slideshow/saveorder'
+				type: \'POST\',
+				url: \''; ?>
+<?php echo $this->_tpl_vars['baseurl']; ?>
+<?php echo 'manage/pages/edit/'; ?>
+<?php echo $this->_tpl_vars['page_id']; ?>
+<?php echo '/page_videos/saveorder\'
 			});
 			
 		}
 	});
 });
 </script> 
-{/literal}  
+'; ?>
+  

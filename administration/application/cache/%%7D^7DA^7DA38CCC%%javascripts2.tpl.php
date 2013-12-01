@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.19, created on 2013-11-29 17:20:59
+<?php /* Smarty version 2.6.19, created on 2013-12-01 19:32:40
          compiled from layouts/javascripts2.tpl */ ?>
 <?php echo '                       
 <script id="template-upload" type="text/x-tmpl">
@@ -50,16 +50,15 @@
                 {% } %}
             </span>
         </div>
-        <div class="image-name">
+        <div class="image-name" style="width: 400px;">
             <p class="name">
                 <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?\'data-gallery\':\'\'%}>{%=file.name%}</a>
+                <span class="size">( {%=o.formatFileSize(file.size)%} )</span>
             </p>
             {% if (file.error) { %}
                 <div><span class="label label-important">Error</span> {%=file.error%}</div>
             {% } %}
-        </div>
-        <div class="image-size">
-            <span class="size">{%=o.formatFileSize(file.size)%}</span>
+            <textarea name="image_descriptions[]" id="image_descriptions[]" style="width: 90%; margin-top: 7px; font-sie:12px;"></textarea>
         </div>
         <div class="image-action">
             <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields=\'{"withCredentials":true}\'{% } %}>

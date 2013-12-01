@@ -659,5 +659,15 @@ class Page_model extends CI_Model{
 			$this->db->update('pages');
 		}
 	}
+	
+	function save_slideshow_description($description=NULL, $image=NULL, $page_id=NULL){
+		if($image!=NULL && $page_id!=NULL){
+			$this->db->set('image_name', $description);
+			$this->db->set('description', $image);
+			$this->db->set('page_id', $page_id);
+			
+			$this->db->insert('page_slideshows');
+		}
+	}
 }
 ?>

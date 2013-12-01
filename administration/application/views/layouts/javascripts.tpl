@@ -323,3 +323,11 @@ $(document).ready(function(){
 {if $javascript2 eq "yes"}
 	{include file="layouts/javascripts2.tpl"}
 {/if}
+
+{if $javascript3 eq "yes"}
+	{include file="layouts/javascripts3.tpl"}
+{/if}
+
+{if $javascript4 eq "yes"}
+	{include file="layouts/javascripts4.tpl"}
+{/if}

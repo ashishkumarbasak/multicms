@@ -103,7 +103,7 @@
 <!-- The File Upload user interface plugin -->
 <script src="{$baseurl}assets/js/jQuery-File-Upload/js/jquery.fileupload-ui.js"></script>
 <!-- The main application script -->
-<script src="{$baseurl}assets/js/jQuery-File-Upload/js/main.js"></script>
+<script src="{$baseurl}assets/js/jQuery-File-Upload/js/main4.js"></script>
 <!-- The XDomainRequest Transport is included for cross-domain file deletion for IE8+ -->
 <!--[if gte IE 8]>
 <script src="js/cors/jquery.xdr-transport.js"></script>
@@ -124,7 +124,7 @@ $(function() {
 			$.ajax({
 				data: data,
 				type: 'POST',
-				url: '{/literal}{$baseurl}{literal}manage/pages/edit/{/literal}{$page_id}{literal}/slideshow/saveorder'
+				url: '{/literal}{$baseurl}{literal}manage/pages/edit/{/literal}{$page_id}{literal}/page_files/saveorder'
 			});
 			
 		}

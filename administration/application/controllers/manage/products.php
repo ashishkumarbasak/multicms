@@ -159,7 +159,7 @@ class Products extends CI_Controller{
 		$additional_fields = $this->page_model->get_additional_fields($page_id);
 		$this->template->assign('additional_fields',$additional_fields);			
 		
-		$template_dir = $_SERVER['DOCUMENT_ROOT']."/multicms/application/views/templates/products";
+		$template_dir = $_SERVER['DOCUMENT_ROOT']."/application/views/templates/products";
 		$list_of_templates = scandir($template_dir);
 		
 		$all_pages = $this->page_model->get_mother_pages($this->language_id);
@@ -268,7 +268,7 @@ class Products extends CI_Controller{
 		$additional_fields = $this->page_model->get_additional_fields($page_id);
 		$this->template->assign('additional_fields',$additional_fields);			
 		
-		$template_dir = $_SERVER['DOCUMENT_ROOT']."/multicms/application/views/templates/products";
+		$template_dir = $_SERVER['DOCUMENT_ROOT']."/application/views/templates/products";
 		$list_of_templates = scandir($template_dir);
 		
 		$all_pages = $this->page_model->get_mother_pages($this->language_id);

@@ -1,5 +1,5 @@
-<?php /* Smarty version 2.6.19, created on 2013-12-01 20:00:44
-         compiled from manage/slideshow/create.tpl */ ?>
+<?php /* Smarty version 2.6.19, created on 2013-12-01 20:02:16
+         compiled from manage/page_files/create.tpl */ ?>
 <link rel="stylesheet" href="<?php echo $this->_tpl_vars['baseurl']; ?>
 assets/js/jQuery-File-Upload/css/jquery.fileupload-ui.css">
 <?php echo '
@@ -32,13 +32,13 @@ manage/products/edit/<?php echo $this->_tpl_vars['page_id']; ?>
                         <li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
 manage/products/edit/<?php echo $this->_tpl_vars['page_id']; ?>
 #show_in_pages">Show In Pages</a></li>
-                       	<li  class="active"><a href="javascript:void(0);">Slideshow</a></li>
+                       	<li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
+manage/products/edit/<?php echo $this->_tpl_vars['page_id']; ?>
+/slideshow">Slideshow</a></li>
                        	<li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
 manage/products/edit/<?php echo $this->_tpl_vars['page_id']; ?>
 /videos">Videos</a></li>
-                       	<li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
-manage/products/edit/<?php echo $this->_tpl_vars['page_id']; ?>
-/files">Files</a></li>
+                       	<li class="active"><a href="javascript:void(0);">Files</a></li>
                    	</ul>   
                 <?php elseif ($this->_tpl_vars['from_page'] == 'news'): ?>
                 	<h1>Edit News</h1>
@@ -55,13 +55,13 @@ manage/news/edit/<?php echo $this->_tpl_vars['page_id']; ?>
                         <li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
 manage/news/edit/<?php echo $this->_tpl_vars['page_id']; ?>
 #show_in_pages">Show In Pages</a></li>
-                       	<li  class="active"><a href="javascript:void(0);">Slideshow</a></li>
+                       	<li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
+manage/news/edit/<?php echo $this->_tpl_vars['page_id']; ?>
+/slideshow">Slideshow</a></li>
                        	<li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
 manage/news/edit/<?php echo $this->_tpl_vars['page_id']; ?>
 /videos">Videos</a></li>
-                       	<li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
-manage/news/edit/<?php echo $this->_tpl_vars['page_id']; ?>
-/files">Files</a></li>
+                       	<li class="active"><a href="javascript:void(0);">Files</a></li>
                    	</ul>   
                 <?php else: ?>
                 	<h1>Edit Page</h1>
@@ -75,13 +75,13 @@ manage/pages/edit/<?php echo $this->_tpl_vars['page_id']; ?>
                         <li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
 manage/pages/edit/23/<?php echo $this->_tpl_vars['page_id']; ?>
 #seo" >Seo</a></li>
-                       	<li  class="active"><a href="javascript:void(0);">Slideshow</a></li>
+                       	<li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
+manage/pages/edit/<?php echo $this->_tpl_vars['page_id']; ?>
+/slideshow">Slideshow</a></li>
                        	<li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
 manage/pages/edit/<?php echo $this->_tpl_vars['page_id']; ?>
 /videos">Videos</a></li>
-                       	<li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
-manage/pages/edit/<?php echo $this->_tpl_vars['page_id']; ?>
-/files">Files</a></li>
+                       	<li class="active"><a href="javascript:void(0);">Files</a></li>
                    	</ul>   
                 <?php endif; ?>
                 		
