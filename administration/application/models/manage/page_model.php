@@ -776,5 +776,90 @@ class Page_model extends CI_Model{
 			$this->db->update('page_files');
 		}
 	}
+	
+	function get_total_ricette(){
+		$this->db->select('*');
+		$this->db->from('ricette');
+		$this->db->join('pages','ricette.page_id=pages.page_id','left');
+		$this->db->order_by('pages.date_created','DESC');
+		$query =$this->db->get();
+		if($query->num_rows()>0)
+			return $query->num_rows();
+		else
+			return 0;
+	}
+	
+	function get_all_ricette($limit=NULL, $offset=NULL){
+		$this->db->select('*');
+		$this->db->from('ricette');
+		$this->db->join('pages','ricette.page_id=pages.page_id','left');
+		$this->db->order_by('pages.date_created','DESC');
+		if($limit!=NULL)
+			$this->db->limit($limit, $offset);
+		
+		$query =$this->db->get();
+
+		if($query->num_rows() > 0)
+			return $query->result();
+		else
+			return NULL;
+	}
+	function delete_ricette_from_page($news_id=NULL,$page_id=NULL){
+		if($news_id!=NULL && $page_id!=NULL){
+			$this->db->where('ricette_id',$news_id);
+			$this->db->where('page_id',$page_id);
+			
+			$this->db->delete('ricette_in_page');
+		}
+	}
+	function delete_ricette($news_id=NULL,$page_id=NULL){
+		if($news_id!=NULL && $page_id!=NULL){
+			$this->db->where('page_id',$page_id);
+			$this->db->where('ricette_id',$news_id);
+			$this->db->delete('ricette');
+		}
+	}
+	function get_ricette_included_in_page($news_id=NULL){
+		if($news_id!=NULL){
+			$this->db->select('*');
+			$this->db->from('ricette_in_page');
+			$this->db->where('ricette_id',$news_id);
+			$query =$this->db->get();
+			$page_ids = array();
+			if($query->num_rows() > 0){
+				$result = $query->result();
+				foreach($result as $key=>$value){
+					array_push($page_ids,$value->page_id);
+				}	
+			}
+			
+			return $page_ids;			
+		}
+	}
+	function get_ricette_id($page_id=NULL){
+		if($page_id!=NULL){
+			$this->db->select('*');
+			$this->db->from('ricette');
+			$this->db->where('page_id',$page_id);
+			
+			$query =$this->db->get();
+
+			if($query->num_rows() > 0){
+				$result = $query->result();
+				return $result[0]->ricette_id;
+			}
+			else
+				return NULL;
+		}else
+			return NULL;
+	}
+	function save_ricette($page_id=NULL){
+		if($page_id!=NULL){
+			$this->db->set('page_id',$page_id);
+			$this->db->insert('ricette');
+			
+			return $this->db->insert_id();
+		}
+	}
 }
 ?>
