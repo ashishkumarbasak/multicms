@@ -164,7 +164,7 @@ class Pages extends CI_Controller{
 		$additional_fields = $this->page_model->get_additional_fields($page_id);
 		$this->template->assign('additional_fields',$additional_fields);			
 		
-		$template_dir = $_SERVER['DOCUMENT_ROOT']."/application/views/templates";
+		$template_dir = $_SERVER['DOCUMENT_ROOT']."/".$this->config->item('project_folder_name')."/application/views/templates";
 		$list_of_templates = scandir($template_dir);
 		$files = array();
 		foreach($list_of_templates as $file){
@@ -254,7 +254,7 @@ class Pages extends CI_Controller{
 		$additional_fields = $this->page_model->get_additional_fields($page_id);
 		$this->template->assign('additional_fields',$additional_fields);			
 		
-		$template_dir = $_SERVER['DOCUMENT_ROOT']."/application/views/templates";
+		$template_dir = $_SERVER['DOCUMENT_ROOT']."/".$this->config->item('project_folder_name')."/application/views/templates";
 		$list_of_templates = scandir($template_dir);
 		$files = array();
 		foreach($list_of_templates as $file){

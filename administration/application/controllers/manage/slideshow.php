@@ -100,7 +100,11 @@ class Slideshow extends CI_Controller {
 				if(array_key_exists($key, $image_descriptions)){
 					$description = $image_descriptions[$key];				
 				}
-				$this->page_model->save_slideshow_description($description, $image, $page_id);
+				if($this->page_model->is_exists_slideshow_image($image, $page_id)){
+					$this->page_model->update_slideshow_description($image, $description, $page_id);	
+				}else{
+					$this->page_model->save_slideshow_description($image, $description, $page_id);	
+				}
 			}
 		}
 		

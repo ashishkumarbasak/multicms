@@ -56,14 +56,14 @@
             {% if (file.error) { %}
                 <div><span class="label label-important">Error</span> {%=file.error%}</div>
             {% } %}
-            <textarea name="image_descriptions[]" id="image_descriptions[]" style="width: 90%; margin-top: 7px; font-sie:12px;"></textarea>
+            <textarea name="image_descriptions[]" id="image_descriptions_{%= i %}" style="width: 90%; margin-top: 7px; font-sie:12px;">{%=file.description%}</textarea>
         </div>
         <div class="image-action">
             <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
                 <i class="icon-trash icon-white"></i>
                 <span>Delete</span>
             </button>
-			<input type="hidden" name="uploaded_files[]" id="uploaded_files[]" value="{%=file.name%}">
+			<input type="hidden" name="uploaded_files[]" id="uploaded_files_{%= i %}" value="{%=file.name%}">
             <input type="checkbox" name="delete" value="1" class="toggle">
         </div>
 		<div style="clear:both;"></div>
@@ -72,7 +72,9 @@
 </script>  
 {/literal}                      
 
+<script type="text/javascript">
 
+</script>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->

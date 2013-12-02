@@ -23,6 +23,8 @@
                           <li><a href="#tab_packaging" data-toggle="tab">Packaging</a></li>
                           <li><a href="#show_in_pages" data-toggle="tab">Show In Pages</a></li>
                           <li><a href="{$baseurl}manage/products/edit/{$page_id}/slideshow">Slideshow</a></li>
+                          <li><a href="{$baseurl}manage/products/edit/{$page_id}/videos">Videos</a></li>
+  						  <li><a href="{$baseurl}manage/products/edit/{$page_id}/files">Files</a></li>
 						</ul>
 
 <div class="tab-content">

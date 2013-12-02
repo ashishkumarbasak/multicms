@@ -20,7 +20,9 @@
   <li class="active"><a href="#home" data-toggle="tab">Informazioni</a></li>
   <li><a href="#profile" data-toggle="tab">Additional Fields</a></li>
   <li><a href="#seo" data-toggle="tab">Seo</a></li>
-    <li><a href="{$baseurl}manage/pages/edit/{$page_id}/slideshow">Slideshow</a></li>
+  <li><a href="{$baseurl}manage/pages/edit/{$page_id}/slideshow">Slideshow</a></li>
+  <li><a href="{$baseurl}manage/pages/edit/{$page_id}/videos">Videos</a></li>
+  <li><a href="{$baseurl}manage/pages/edit/{$page_id}/files">Files</a></li>
 </ul>
 
 <div class="tab-content">
@@ -273,7 +275,7 @@
                                                     	<input type="hidden" name="additional_field_id_{$afk}" id="additional_field_id" value="{$additional_field->field_id}">
                                                     </td>
                                                     <td>
-                                                    	<a class="close" href="javascript:void(0);" onclick="delete_additional_field('{$additional_field->field_id}');">×</a>
+                                                    	<a class="close" href="javascript:void(0);" onclick="delete_additional_field('{$additional_field->field_id}');">��</a>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -339,7 +341,7 @@
                     <table cellpadding="0" cellspacing="0" width="100%" class="sortable">	
 							<div id="example" class="modal hide fade in" >
             					<div class="modal-header">
-              						<a class="close" data-dismiss="modal">×</a>
+              						<a class="close" data-dismiss="modal">��</a>
               						<h3>Aggiungi campo</h3>
             					</div>
             					

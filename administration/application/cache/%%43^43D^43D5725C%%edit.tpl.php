@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.19, created on 2013-11-29 17:20:54
+<?php /* Smarty version 2.6.19, created on 2013-12-02 13:40:00
          compiled from manage/pages/edit.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'manage/pages/edit.tpl', 133, false),array('modifier', 'in_array', 'manage/pages/edit.tpl', 229, false),array('modifier', 'count', 'manage/pages/edit.tpl', 282, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'manage/pages/edit.tpl', 135, false),array('modifier', 'in_array', 'manage/pages/edit.tpl', 231, false),array('modifier', 'count', 'manage/pages/edit.tpl', 284, false),)), $this); ?>
 <link rel="stylesheet" href="<?php echo $this->_tpl_vars['baseurl']; ?>
 assets/js/jQuery-File-Upload/css/jquery.fileupload-ui.css">
 <?php echo '
@@ -26,9 +26,15 @@ assets/js/jQuery-File-Upload/css/jquery.fileupload-ui.css">
   <li class="active"><a href="#home" data-toggle="tab">Informazioni</a></li>
   <li><a href="#profile" data-toggle="tab">Additional Fields</a></li>
   <li><a href="#seo" data-toggle="tab">Seo</a></li>
-    <li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
+  <li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
 manage/pages/edit/<?php echo $this->_tpl_vars['page_id']; ?>
 /slideshow">Slideshow</a></li>
+  <li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
+manage/pages/edit/<?php echo $this->_tpl_vars['page_id']; ?>
+/videos">Videos</a></li>
+  <li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
+manage/pages/edit/<?php echo $this->_tpl_vars['page_id']; ?>
+/files">Files</a></li>
 </ul>
 
 <div class="tab-content">
@@ -361,7 +367,7 @@ unset($_smarty_tpl_vars);
                                                     </td>
                                                     <td>
                                                     	<a class="close" href="javascript:void(0);" onclick="delete_additional_field('<?php echo $this->_tpl_vars['additional_field']->field_id; ?>
-');">×</a>
+');">��</a>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -442,7 +448,7 @@ manage/pages/add_addition_field" method="post" enctype="multipart/form-data">
                     <table cellpadding="0" cellspacing="0" width="100%" class="sortable">	
 							<div id="example" class="modal hide fade in" >
             					<div class="modal-header">
-              						<a class="close" data-dismiss="modal">×</a>
+              						<a class="close" data-dismiss="modal">��</a>
               						<h3>Aggiungi campo</h3>
             					</div>
             					

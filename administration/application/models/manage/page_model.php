@@ -669,5 +669,112 @@ class Page_model extends CI_Model{
 			$this->db->insert('page_slideshows');
 		}
 	}
+	
+	function update_slideshow_description($description=NULL, $image=NULL, $page_id=NULL){
+		if($image!=NULL && $page_id!=NULL){
+			$this->db->set('description', $image);
+			$this->db->where('image_name', $description);
+			$this->db->where('page_id', $page_id);
+			
+			$this->db->update('page_slideshows');
+		}
+	}
+	
+	function is_exists_slideshow_image($image=NULL, $page_id=NULL){
+		if($image!=NULL && $page_id!=NULL){
+			$this->db->select('*');
+			$this->db->from('page_slideshows');
+			$this->db->where('image_name',$image);
+			$this->db->where('page_id',$page_id);
+			
+			$query =$this->db->get();
+
+			if($query->num_rows() > 0){
+				return TRUE;
+			}
+			else
+				return FALSE;
+			
+		}else
+			return FALSE;
+	}
+	
+	function save_video_description($description=NULL, $image=NULL, $page_id=NULL){
+		if($image!=NULL && $page_id!=NULL){
+			$this->db->set('video_name', $description);
+			$this->db->set('description', $image);
+			$this->db->set('page_id', $page_id);
+			
+			$this->db->insert('page_videos');
+		}
+	}
+	
+	function is_exists_video_file($image=NULL, $page_id=NULL){
+		if($image!=NULL && $page_id!=NULL){
+			$this->db->select('*');
+			$this->db->from('page_videos');
+			$this->db->where('video_name',$image);
+			$this->db->where('page_id',$page_id);
+			
+			$query =$this->db->get();
+
+			if($query->num_rows() > 0){
+				return TRUE;
+			}
+			else
+				return FALSE;
+			
+		}else
+			return FALSE;
+	}
+	
+	function update_video_description($description=NULL, $image=NULL, $page_id=NULL){
+		if($image!=NULL && $page_id!=NULL){
+			$this->db->set('description', $image);
+			$this->db->where('video_name', $description);
+			$this->db->where('page_id', $page_id);
+			
+			$this->db->insert('page_videos');
+		}
+	}
+	
+	function save_file_description($description=NULL, $image=NULL, $page_id=NULL){
+		if($image!=NULL && $page_id!=NULL){
+			$this->db->set('file_name', $description);
+			$this->db->set('description', $image);
+			$this->db->set('page_id', $page_id);
+			
+			$this->db->insert('page_files');
+		}
+	}
+
+	function is_exists_page_file($image=NULL, $page_id=NULL){
+		if($image!=NULL && $page_id!=NULL){
+			$this->db->select('*');
+			$this->db->from('page_files');
+			$this->db->where('file_name',$image);
+			$this->db->where('page_id',$page_id);
+			
+			$query =$this->db->get();
+
+			if($query->num_rows() > 0){
+				return TRUE;
+			}
+			else
+				return FALSE;
+			
+		}else
+			return FALSE;
+	}
+	
+	function update_file_description($description=NULL, $image=NULL, $page_id=NULL){
+		if($image!=NULL && $page_id!=NULL){
+			$this->db->set('description', $image);
+			$this->db->where('file_name', $description);
+			$this->db->where('page_id', $page_id);
+			
+			$this->db->update('page_files');
+		}
+	}
 }
 ?>

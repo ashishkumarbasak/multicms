@@ -292,6 +292,18 @@ class UploadHandler
                     }
                 }
             }
+			$con = mysql_connect('localhost','CC1544_PSUZ','Mtth12suz');
+			mysql_select_db("premiosuzzara_it_mysql");
+			$query = "select * from trv_page_slideshows where image_name like '%".$file_name."%' and page_id='".$_SESSION['page_id']."'";
+			$result = mysql_query($query);
+			if (!$result) {
+			    $file->description = "";
+			}elseif(mysql_num_rows($result) == 0) {
+			    $file->description = "";
+			}else{
+				$row = mysql_fetch_assoc($result);			
+				$file->description = $row["description"];	
+			}
             $this->set_additional_file_properties($file);
             return $file;
         }
@@ -303,11 +315,31 @@ class UploadHandler
         if (!is_dir($upload_dir)) {
             return array();
         }
+        $slideshow_images = $this->getDirectoryList($upload_dir);
         return array_values(array_filter(array_map(
             array($this, $iteration_method),
-            scandir($upload_dir)
+            $slideshow_images
         )));
     }
+	
+	protected function getDirectoryList($directory){
+	    // create an array to hold directory list
+	    $results = array();
+	    // create a handler for the directory
+	    $handler = opendir($directory);
+	    // open directory and walk through the filenames
+	    while ($file = readdir($handler)) {
+	      // if file isn't this directory or its parent, add it to the results
+	      if ($file != "." && $file != "..") {
+	        $results[] = $file;
+	      }
+	    }
+	    // tidy up: close the handler
+	    closedir($handler);
+	    // done!
+		sort($results , SORT_NUMERIC);
+	    return $results;
+	}
 
     protected function count_file_objects() {
         return count($this->get_file_objects('is_valid_file_object'));
