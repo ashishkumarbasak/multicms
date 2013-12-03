@@ -46,6 +46,7 @@
 		
 		<div class="clearfix-big"></div>
 		<div class="clearfix-big"></div>
+		<?php echo render_page_files($page_id); ?>
 
 	</div>
 	<!-- End 960 Container -->

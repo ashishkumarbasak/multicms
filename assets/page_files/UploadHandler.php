@@ -85,7 +85,7 @@ class UploadHandler
             // is enabled, set to 0 to disable chunked reading of files:
             'readfile_chunk_size' => 10 * 1024 * 1024, // 10 MiB
             // Defines which files can be displayed inline when downloaded:
-            'inline_file_types' => '/\.(gif|jpe?g|png)$/i',
+            'inline_file_types' => '/\.(gif|jpe?g|png|pdf|doc)$/i',
             // Defines which files (based on their names) are accepted for upload:
             'accept_file_types' => '/.+$/i',
             // The php.ini settings upload_max_filesize and post_max_size
@@ -94,7 +94,7 @@ class UploadHandler
             'min_file_size' => 1,
             // The maximum number of files for the upload directory:
             'max_number_of_files' => null,
-            'random_file_name' => true,
+            'random_file_name' => false,
             // Image resolution restrictions:
             'max_width' => null,
             'max_height' => null,
@@ -292,8 +292,8 @@ class UploadHandler
                     }
                 }
             }
-			$con = mysql_connect('localhost','CC1544_PSUZ','Mtth12suz');
-			mysql_select_db("premiosuzzara_it_mysql");
+			$con = mysql_connect('localhost','root','root');
+			mysql_select_db("multicms");
 			$query = "select * from trv_page_files where file_name like '%".$file_name."%' and page_id='".$_SESSION['page_id']."'";
 			$result = mysql_query($query);
 			if (!$result) {
@@ -581,7 +581,7 @@ class UploadHandler
         $name= time() . "";
         for ($i=0; $i<$len; $i++) $name .= $alphanum[rand(0,strlen($alphanum)-1)];
         // Add missing file extension for known image types:
-        if (strpos($name, '.') === false && preg_match('/^image\/(gif|jpe?g|png)/', $type, $matches)) {
+        if (strpos($name, '.') === false && preg_match('/^image\/(gif|jpe?g|png|doc|pdf)/', $type, $matches)) {
             $name .= '.'.$matches[1];
         }
         return strtolower($name);

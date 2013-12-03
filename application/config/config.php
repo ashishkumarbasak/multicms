@@ -28,6 +28,7 @@ $config['base_url'] .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER
 | variable so that it is blank.
 |
 */
+$config['project_folder_name'] = '';
 $config['index_page'] = '';
 
 /*

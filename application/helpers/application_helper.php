@@ -85,8 +85,10 @@ function is_followed_this_profile($hotel_id,$user_id){
 
 function render_slideshow($page_id=NULL, $with_thumb = true){
 	if($page_id!=NULL){
-		$dir = $_SERVER['DOCUMENT_ROOT']."/itlink/assets/slideshow/".$page_id."/";
-		$thumb_dir = $_SERVER['DOCUMENT_ROOT']."/itlink/assets/slideshow/".$page_id."/";
+		$CI =& get_instance();
+		$CI->load->model('page_model');
+		$dir = $_SERVER['DOCUMENT_ROOT']."/".$CI->config->item('project_folder_name')."/assets/slideshow/".$page_id."/";
+		$thumb_dir = $_SERVER['DOCUMENT_ROOT']."/".$CI->config->item('project_folder_name')."/assets/slideshow/".$page_id."/";
 		$slideshow_images = getDirectoryList($dir);
 		//print_r($slideshow_images);
 		//$slideshow_images = sort($slideshow_images, SORT_NATURAL | SORT_FLAG_CASE);
@@ -100,7 +102,13 @@ function render_slideshow($page_id=NULL, $with_thumb = true){
 		if(!empty($slideshow_images)){
 			$slideshow_images_ul .= '';
 			foreach($slideshow_images as $key => $slideshow_image){
-				if($slideshow_image!="thumbnail") $slideshow_images_ul .= '<div class="four-small-gallery columns alpha"><a rel="imagebox[gallery]" href="'.base_url().'assets/slideshow/'.$page_id.'/'.$slideshow_image.'"><img src="'.base_url().'assets/slideshow/'.$page_id.'/'.$slideshow_image.'" /></a></div>';
+				if($slideshow_image!="thumbnail"){
+					$image_description = $CI->page_model->get_slideshow_image_description($slideshow_image, $page_id);
+					$slideshow_images_ul .= '<div class="four-small-gallery columns alpha"><a rel="imagebox[gallery]" href="'.base_url().'assets/slideshow/'.$page_id.'/'.$slideshow_image.'"><img src="'.base_url().'assets/slideshow/'.$page_id.'/'.$slideshow_image.'" /></a></div>';
+					if($image_description!=NULL){
+						$slideshow_images_ul .= '<div class="description">'.$image_description.'</div>';
+					}
+				} 
 			}
 			$slideshow_images_ul .= '';
 			
@@ -121,20 +129,99 @@ function render_slideshow($page_id=NULL, $with_thumb = true){
 	}
 }
 
+function render_page_files($page_id=NULL, $with_thumb = true){
+	if($page_id!=NULL){
+		$CI =& get_instance();
+		$CI->load->model('page_model');
+		$dir = $_SERVER['DOCUMENT_ROOT']."/".$CI->config->item('project_folder_name')."/assets/page_files/".$page_id."/";
+		$thumb_dir = $_SERVER['DOCUMENT_ROOT']."/".$CI->config->item('project_folder_name')."/assets/page_files/".$page_id."/";
+		$slideshow_images = getDirectoryList($dir);
+		//print_r($slideshow_images);
+		//$slideshow_images = sort($slideshow_images, SORT_NATURAL | SORT_FLAG_CASE);
+		//print_r($slideshow_images);
+		//print_r($slideshow_images = asort($slideshow_images));
+		$thumb_images = getDirectoryList($thumb_dir);
+		//$thumb_images = asort($thumb_images);
+		$slideshow_html = '';
+		$slideshow_images_ul = '';
+		$thumb_images_ul = '';
+		if(!empty($slideshow_images)){
+			$slideshow_images_ul .= '';
+			foreach($slideshow_images as $key => $slideshow_image){
+				if($slideshow_image!="thumbnail") {
+					$image_description = $CI->page_model->get_page_files_description($slideshow_image, $page_id);
+					$slideshow_images_ul .= '<div class="four-small-gallery columns alpha"><a href="'.base_url().'assets/page_files/'.$page_id.'/'.$slideshow_image.'">'.$slideshow_image.'</a></div>';
+					if($image_description!=NULL){
+						$slideshow_images_ul .= '<div class="description">'.$image_description.'</div>';
+					}	
+				}
+			}
+			$slideshow_images_ul .= '';
+			
+			$slideshow_html .= ''.$slideshow_images_ul.'';
+			return $slideshow_html;
+		}else{
+			return "";
+		}
+	}else{
+		return "";
+	}
+}
+
+function render_page_videos($page_id=NULL, $with_thumb = true){
+	if($page_id!=NULL){
+		$CI =& get_instance();
+		$CI->load->model('page_model');
+		$dir = $_SERVER['DOCUMENT_ROOT']."/".$CI->config->item('project_folder_name')."/assets/page_videos/".$page_id."/";
+		$thumb_dir = $_SERVER['DOCUMENT_ROOT']."/".$CI->config->item('project_folder_name')."/assets/page_videos/".$page_id."/";
+		$slideshow_images = getDirectoryList($dir);
+		//print_r($slideshow_images);
+		//$slideshow_images = sort($slideshow_images, SORT_NATURAL | SORT_FLAG_CASE);
+		//print_r($slideshow_images);
+		//print_r($slideshow_images = asort($slideshow_images));
+		$thumb_images = getDirectoryList($thumb_dir);
+		//$thumb_images = asort($thumb_images);
+		$slideshow_html = '';
+		$slideshow_images_ul = '';
+		$thumb_images_ul = '';
+		if(!empty($slideshow_images)){
+			$slideshow_images_ul .= '';
+			foreach($slideshow_images as $key => $slideshow_image){
+				if($slideshow_image!="thumbnail") {
+					$image_description = $CI->page_model->get_page_video_description($slideshow_image, $page_id);
+					$slideshow_images_ul .= '<div class="four-small-gallery columns alpha"><a href="'.base_url().'assets/page_videos/'.$page_id.'/'.$slideshow_image.'">'.$slideshow_image.'</a></div>';
+					if($image_description!=NULL){
+						$slideshow_images_ul .= '<div class="description">'.$image_description.'</div>';
+					}	
+				}
+			}
+			$slideshow_images_ul .= '';
+			
+			$slideshow_html .= ''.$slideshow_images_ul.'';
+			
+			return $slideshow_html;
+		}else{
+			return "";
+		}
+	}else{
+		return "";
+	}
+}
+
 function getDirectoryList($directory){
     // create an array to hold directory list
     $results = array();
     // create a handler for the directory
-    $handler = opendir($directory);
+    $handler = @opendir($directory);
     // open directory and walk through the filenames
-    while ($file = readdir($handler)) {
+    while ($file = @readdir($handler)) {
       // if file isn't this directory or its parent, add it to the results
       if ($file != "." && $file != "..") {
         $results[] = $file;
       }
     }
     // tidy up: close the handler
-    closedir($handler);
+    @closedir($handler);
     // done!
 	sort($results , SORT_STRING);
     return $results;

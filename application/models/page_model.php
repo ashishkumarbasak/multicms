@@ -191,6 +191,66 @@ class Page_model extends CI_Model{
 			return NULL;		
 	}
 	
+	function get_slideshow_image_description($image_name=NULL, $page_id=NULL){
+		if($image_name!=NULL && $page_id!=NULL){
+			$this->db->select('*');
+			$this->db->from('page_slideshows');
+			$this->db->where('image_name',$image_name);
+			$this->db->where('page_id',$page_id);
+			$query =$this->db->get();
+
+			if($query->num_rows() > 0){
+				$result =  $query->result();
+				return $result[0]->description;
+			}
+			else
+				return NULL;
+			
+		}else{
+			return NULL;
+		}
+	}
+	
+	function get_page_video_description($image_name=NULL, $page_id=NULL){
+		if($image_name!=NULL && $page_id!=NULL){
+			$this->db->select('*');
+			$this->db->from('page_videos');
+			$this->db->where('video_name',$image_name);
+			$this->db->where('page_id',$page_id);
+			$query =$this->db->get();
+
+			if($query->num_rows() > 0){
+				$result =  $query->result();
+				return $result[0]->description;
+			}
+			else
+				return NULL;
+			
+		}else{
+			return NULL;
+		}
+	}
+	
+	function get_page_files_description($image_name=NULL, $page_id=NULL){
+		if($image_name!=NULL && $page_id!=NULL){
+			$this->db->select('*');
+			$this->db->from('page_files');
+			$this->db->where('file_name',$image_name);
+			$this->db->where('page_id',$page_id);
+			$query =$this->db->get();
+
+			if($query->num_rows() > 0){
+				$result =  $query->result();
+				return $result[0]->description;
+			}
+			else
+				return NULL;
+			
+		}else{
+			return NULL;
+		}
+	}
+	
 
 }
 ?>

@@ -94,7 +94,7 @@ class UploadHandler
             'min_file_size' => 1,
             // The maximum number of files for the upload directory:
             'max_number_of_files' => null,
-            'random_file_name' => true,
+            'random_file_name' => false,
             // Image resolution restrictions:
             'max_width' => null,
             'max_height' => null,
@@ -292,8 +292,8 @@ class UploadHandler
                     }
                 }
             }
-			$con = mysql_connect('localhost','CC1544_PSUZ','Mtth12suz');
-			mysql_select_db("premiosuzzara_it_mysql");
+			$con = mysql_connect('localhost','root','root');
+			mysql_select_db("multicms");
 			$query = "select * from trv_page_slideshows where image_name like '%".$file_name."%' and page_id='".$_SESSION['page_id']."'";
 			$result = mysql_query($query);
 			if (!$result) {
