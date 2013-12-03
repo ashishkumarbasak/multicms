@@ -150,7 +150,7 @@ function render_page_files($page_id=NULL, $with_thumb = true){
 			foreach($slideshow_images as $key => $slideshow_image){
 				if($slideshow_image!="thumbnail") {
 					$image_description = $CI->page_model->get_page_files_description($slideshow_image, $page_id);
-					$slideshow_images_ul .= '<div class="four-small-gallery columns alpha"><a href="'.base_url().'assets/page_files/'.$page_id.'/'.$slideshow_image.'">'.$slideshow_image.'</a></div>';
+					$slideshow_images_ul .= '<div class="four-small-gallery columns alpha"><a href="'.base_url().'download/files/page_files/'.$page_id.'/'.$slideshow_image.'">'.$slideshow_image.'</a></div>';
 					if($image_description!=NULL){
 						$slideshow_images_ul .= '<div class="description">'.$image_description.'</div>';
 					}	

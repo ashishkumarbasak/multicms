@@ -14,7 +14,8 @@ class Download extends CI_Controller {
 		$this->load->model('category_model','Category');
 		$this->load->model('video_model','Video');
 		$this->load->model('document_model','Document');
-		$this->load->model('language_model');		
+		$this->load->model('language_model');	
+		$this->load->helper('download');	
 		$this->language_id = $this->language_model->get_language_id(CURRENT_LANGUAGE);
 	}
 	
@@ -81,6 +82,18 @@ class Download extends CI_Controller {
 		$this->template->set('page_css',array());
 		$this->template->render();
 
+	}
+
+	function files($type=NULL, $page_id=NULL, $name=NULL){
+		if($type!=NULL && $page_id!=NULL && $name!=NULL){
+			$dir = $_SERVER['DOCUMENT_ROOT'];
+			if($this->config->item('project_folder_name')!='' || $this->config->item('project_folder_name')!=NULL)
+			$dir = $dir."/".$this->config->item('project_folder_name');
+			$dir = $dir."/assets/".$type."/".$page_id."/";
+			$data = file_get_contents($dir.urldecode($name)); // Read the file's contents
+			$name = urldecode($name);
+			force_download($name, $data);
+		}
 	}
 }
 

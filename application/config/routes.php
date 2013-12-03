@@ -48,6 +48,7 @@ $route['(:any)/dashboard'] = "dashboard";
 $route['(:any)/documents'] = "dashboard";
 $route['(:any)/download'] = "download";
 $route['(:any)/download/page'] = "download/index/1";
+$route['download/files/(:any)/(:num)/(:any)'] = "download/files/$1/$2/$3";
 $route['(:any)/download/category/(:any)/page'] = "download/index";
 $route['(:any)/download/category/(:any)/page/(:num)'] = "download/index";
 
