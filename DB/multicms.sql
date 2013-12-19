@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 29, 2013 at 08:09 PM
+-- Generation Time: Dec 19, 2013 at 04:39 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.10
 
@@ -10718,9 +10718,7 @@ CREATE TABLE `trv_languages` (
 --
 
 INSERT INTO `trv_languages` (`language_id`, `language_name`, `lang_short_code`, `flag`, `is_default`) VALUES
-(1, 'Italian', 'it', 'it', '1'),
-(5, 'english', 'en', 'en', '0'),
-(6, 'french', 'fr', 'fr', '0');
+(1, 'Italian', 'it', 'it', '1');
 
 -- --------------------------------------------------------
 
@@ -10816,7 +10814,14 @@ CREATE TABLE `trv_news` (
   `news_id` int(11) NOT NULL AUTO_INCREMENT,
   `page_id` int(11) NOT NULL,
   PRIMARY KEY (`news_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `trv_news`
+--
+
+INSERT INTO `trv_news` (`news_id`, `page_id`) VALUES
+(1, 139);
 
 -- --------------------------------------------------------
 
@@ -11546,7 +11551,7 @@ CREATE TABLE `trv_pages` (
   `language_id` int(11) DEFAULT NULL,
   `m_ref_page_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`page_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=139 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=140 ;
 
 --
 -- Dumping data for table `trv_pages`
@@ -11554,7 +11559,7 @@ CREATE TABLE `trv_pages` (
 
 INSERT INTO `trv_pages` (`page_id`, `page_template`, `mother_page_id`, `is_homepage`, `page_title`, `page_seotitle`, `page_seokeywords`, `page_seodescription`, `page_url`, `photo`, `description_1`, `photo_1`, `description_2`, `photo_2`, `date_created`, `status`, `author`, `page_order`, `language_id`, `m_ref_page_id`) VALUES
 (1, 'pages_default_product_list.php', 0, '0', 'Linea Ospedaliera', '', '', '', 'linea-ospedaliera', '', 'Description 1 [Italian]', '', 'Description 2 [Italian]', '', '2013-10-09 16:10:26', 'published', 'admin', 2, 1, 1),
-(6, 'pages_default_homepage.php', 0, '1', 'Home', '', '', '', 'home', '', '', '', '', '', '2013-10-11 07:10:02', 'published', 'admin', 1, 1, 5),
+(6, 'pages_default_homepage.php', 0, '0', 'Home', '', '', '', 'home', '', '', '', '', '', '2013-10-11 07:10:02', 'published', 'admin', 1, 1, 5),
 (11, 'pages_default_homepage.php', 0, '1', 'Home', '', '', '', 'home', '', 'dadasasd', '', 'sdadsa', '', '2013-11-07 09:11:03', 'published', 'admin', 1, 5, 5),
 (12, 'pages_default_product_list.php', 0, '0', 'Irrigatori Meccanici', '', '', '', 'irrigatori-meccanici', '', '', '', '', '', '2013-11-07 10:11:27', 'published', 'admin', 3, 1, 12),
 (13, 'pages_default_product_list.php', 12, '0', 'ACTEON GROUP-SATELEC', '', '', '', 'acteon-group-satelec', '', '', '', '', '', '2013-11-07 10:11:38', 'published', 'admin', 0, 1, 13),
@@ -11563,7 +11568,7 @@ INSERT INTO `trv_pages` (`page_id`, `page_template`, `mother_page_id`, `is_homep
 (17, 'pages_default_product_list.php', 0, '0', 'Hospital Collection', '', '', '', 'hospital-collection', '', '', '', '', '', '2013-11-07 11:11:26', 'published', 'admin', 2, 5, 17),
 (18, 'pages_default_product_list.php', 0, '0', 'Irrigatori Meccanici', '', '', '', 'irrigatori-meccanici', '', '', '', '', '', '2013-11-07 11:11:31', 'published', 'admin', 3, 5, 18),
 (19, 'pages_default.php', 11, '0', 'about us', '', '', '', 'about-us', '', '', '', '', '', '2013-11-08 07:11:08', 'published', 'admin', NULL, 5, 15),
-(20, 'pages_default.php', 0, '0', 'hello page', '', '', '', 'hello-page', '', 'dsadsddsa', '', '', '', '2013-11-10 14:11:03', 'published', 'admin', NULL, 1, 20),
+(20, 'pages_default.php', 0, '1', 'hello page', '', '', '', 'hello-page', '', 'dsadsddsa', '', '', '', '2013-11-10 14:11:03', 'published', 'admin', NULL, 1, 20),
 (21, 'pages_default.php', 0, '0', 'Test page by me', '', '', '', 'test-page-by-me', '', '', '', '', '', '2013-11-10 14:11:37', 'published', 'admin', NULL, 1, 21),
 (25, 'pages_default.php', 0, '0', 'public', '', '', '', 'public', '', '', '', '', '', '2013-11-11 05:11:54', 'published', 'admin', NULL, 1, 25),
 (26, 'pages_default.php', 0, '0', 'Test Page for menu', '', '', '', 'test-page-for-menu', '', '', '', '', '', '2013-11-13 12:11:45', 'published', 'admin', NULL, 1, 26),
@@ -11606,7 +11611,8 @@ INSERT INTO `trv_pages` (`page_id`, `page_template`, `mother_page_id`, `is_homep
 (135, 'products.php', -1, '0', 'test product french', '', '', '', 'test-product-french', 'z.png', 'test product description french', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 6, 133),
 (136, 'products.php', -1, '0', 'Test product italian', '', '', '', 'test-product-italian', 'x.pjg', 'test product italian description', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 1, 136),
 (137, 'products.php', -1, '0', 'test product english', '', '', '', 'test-product-english', 'y.gif', 'test description english', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 5, 136),
-(138, 'products.php', -1, '0', 'test product french', '', '', '', 'test-product-french', 'z.png', 'test product description french', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 6, 136);
+(138, 'products.php', -1, '0', 'test product french', '', '', '', 'test-product-french', 'z.png', 'test product description french', '', '', '', '2013-11-29 13:11:48', 'published', 'admin', NULL, 6, 136),
+(139, 'news.php', -2, '0', 'test news', '', '', '', 'test-news', '', '', '', '', '', '2013-12-10 03:12:09', 'published', 'admin', NULL, 1, 139);
 
 -- --------------------------------------------------------
 
@@ -11622,6 +11628,71 @@ CREATE TABLE `trv_page_extended_fields` (
   `ref_page_id` int(11) NOT NULL DEFAULT '-1',
   PRIMARY KEY (`field_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `trv_page_files`
+--
+
+CREATE TABLE `trv_page_files` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `file_name` varchar(255) DEFAULT NULL,
+  `description` longtext,
+  `page_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `trv_page_files`
+--
+
+INSERT INTO `trv_page_files` (`id`, `file_name`, `description`, `page_id`) VALUES
+(1, '13860737695tpea', 'Test description file', 20),
+(2, 'Recomendation Letter - 2nd.pdf', 'Test file', 20);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `trv_page_slideshows`
+--
+
+CREATE TABLE `trv_page_slideshows` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `image_name` varchar(255) DEFAULT NULL,
+  `description` longtext,
+  `page_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `trv_page_slideshows`
+--
+
+INSERT INTO `trv_page_slideshows` (`id`, `image_name`, `description`, `page_id`) VALUES
+(1, '13860735397onj5.jpeg', 'Test description 1', 20),
+(2, '1386073539y89ma.jpeg', 'Test description 2', 20);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `trv_page_videos`
+--
+
+CREATE TABLE `trv_page_videos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `video_name` varchar(255) DEFAULT NULL,
+  `description` longtext,
+  `page_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `trv_page_videos`
+--
+
+INSERT INTO `trv_page_videos` (`id`, `video_name`, `description`, `page_id`) VALUES
+(1, 'abcdefghijklmnopqrst.mp4', 'Test description video', 20);
 
 -- --------------------------------------------------------
 
