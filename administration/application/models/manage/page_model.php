@@ -183,7 +183,6 @@ class Page_model extends CI_Model{
 		if($page_id!=NULL){
 			$this->db->set('page_template',$data['page_template']);
 			$this->db->set('mother_page_id',$data['mother_page']);
-			$this->db->set('is_homepage',$data['is_home_page']);
 			$this->db->set('page_title',$data['page_title']);
 			$this->db->set('page_seotitle',$data['page_seotitle']);
 			$this->db->set('page_seokeywords',$data['page_seokeywords']);
