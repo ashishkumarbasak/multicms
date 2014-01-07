@@ -161,7 +161,9 @@ class News extends CI_Controller{
 		$template_dir = $_SERVER['DOCUMENT_ROOT']."/".$this->config->item('project_folder_name')."/application/views/templates/news";
 		$list_of_templates = scandir($template_dir);
 		
-		$all_pages = $this->page_model->get_mother_pages($this->language_id);
+		$all_pages = $this->page_model->get_all_pages(NULL,NULL,$this->language_id);
+		$subpages2 = array();
+		$page_ids2 = array();
 		$subpages = array();
 		$page_ids = array();
 		if($all_pages!=NULL)
@@ -171,10 +173,17 @@ class News extends CI_Controller{
 			array_push($page_ids,$value->page_id);
 			if($s_pages!=NULL)
 			foreach($s_pages as $k=>$v){
+				$s_pages2 = $this->page_model->get_subpages($v->page_id);
+				array_push($subpages2, $s_pages2);
 				array_push($page_ids,$v->page_id);
+				if($s_pages2!=NULL)
+					foreach($s_pages2 as $k2=>$v2){
+						array_push($page_ids,$v2->page_id);
+					}
 			}
 		}
-		$this->template->assign('sub_page_list',$subpages);		
+		$this->template->assign('sub_page_list',$subpages);
+		$this->template->assign('sub_page_list2',$subpages2);		
 		$this->template->assign('pagelist',$all_pages);	
 		
 		$this->template->assign('list_of_templates',$list_of_templates);
@@ -257,7 +266,9 @@ class News extends CI_Controller{
 		$template_dir = $_SERVER['DOCUMENT_ROOT']."/".$this->config->item('project_folder_name')."/application/views/templates/news";
 		$list_of_templates = scandir($template_dir);
 		
-		$all_pages = $this->page_model->get_mother_pages($this->language_id);
+		$all_pages = $this->page_model->get_all_pages(NULL,NULL,$this->language_id);
+		$subpages2 = array();
+		$page_ids2 = array();
 		$subpages = array();
 		$page_ids = array();
 		if($all_pages!=NULL)
@@ -267,10 +278,17 @@ class News extends CI_Controller{
 			array_push($page_ids,$value->page_id);
 			if($s_pages!=NULL)
 			foreach($s_pages as $k=>$v){
+				$s_pages2 = $this->page_model->get_subpages($v->page_id);
+				array_push($subpages2, $s_pages2);
 				array_push($page_ids,$v->page_id);
+				if($s_pages2!=NULL)
+					foreach($s_pages2 as $k2=>$v2){
+						array_push($page_ids,$v2->page_id);
+					}
 			}
 		}
-		$this->template->assign('sub_page_list',$subpages);		
+		$this->template->assign('sub_page_list',$subpages);
+		$this->template->assign('sub_page_list2',$subpages2);		
 		$this->template->assign('pagelist',$all_pages);
 		
 		$page_details = $this->page_model->get_page_details($page_id);

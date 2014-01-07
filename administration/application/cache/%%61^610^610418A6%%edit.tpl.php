@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.19, created on 2013-09-24 16:28:11
+<?php /* Smarty version 2.6.19, created on 2014-01-07 09:06:05
          compiled from manage/news/edit.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'manage/news/edit.tpl', 111, false),array('modifier', 'count', 'manage/news/edit.tpl', 240, false),array('modifier', 'in_array', 'manage/news/edit.tpl', 294, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'manage/news/edit.tpl', 114, false),array('modifier', 'count', 'manage/news/edit.tpl', 243, false),array('modifier', 'in_array', 'manage/news/edit.tpl', 301, false),)), $this); ?>
 <link rel="stylesheet" href="<?php echo $this->_tpl_vars['baseurl']; ?>
 assets/js/jQuery-File-Upload/css/jquery.fileupload-ui.css">
 <?php echo '
@@ -28,6 +28,15 @@ assets/js/jQuery-File-Upload/css/jquery.fileupload-ui.css">
                           <li><a href="#profile" data-toggle="tab">Additional Fields</a></li>
                           <li><a href="#seo" data-toggle="tab">Seo</a></li>
                           <li><a href="#show_in_pages" data-toggle="tab">Show In Pages</a></li>
+                          <li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
+manage/news/edit/<?php echo $this->_tpl_vars['page_id']; ?>
+/slideshow">Slideshow</a></li>
+                          <li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
+manage/news/edit/<?php echo $this->_tpl_vars['page_id']; ?>
+/videos">Videos</a></li>
+  						  <li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
+manage/news/edit/<?php echo $this->_tpl_vars['page_id']; ?>
+/files">Files</a></li>
 						</ul>
 
 <div class="tab-content">
@@ -301,7 +310,7 @@ unset($_smarty_tpl_vars);
                                                     </td>
                                                     <td>
                                                     	<a class="close" href="javascript:void(0);" onclick="delete_additional_field('<?php echo $this->_tpl_vars['additional_field']->field_id; ?>
-');">×</a>
+');">��</a>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -370,41 +379,94 @@ assets/images/flags/png/<?php echo $this->_tpl_vars['lang_code']; ?>
 													<tbody>
                                                     	<code>&lt;?php echo list_news; &gt;</code>
                                                         <br>
-                                                        <?php $_from = $this->_tpl_vars['pagelist']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['listofpages'] = array('total' => count($_from), 'iteration' => 0);
+                                                        
+                                                        <table cellpadding="0" cellspacing="0" width="100%" class="sortable">
+						
+														<tbody>
+															<?php $_from = $this->_tpl_vars['pagelist']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['listofpages'] = array('total' => count($_from), 'iteration' => 0);
 if ($this->_foreach['listofpages']['total'] > 0):
     foreach ($_from as $this->_tpl_vars['pk'] => $this->_tpl_vars['page']):
         $this->_foreach['listofpages']['iteration']++;
 ?>
-                                                            <?php $this->assign('subpages', $this->_tpl_vars['sub_page_list'][$this->_tpl_vars['pk']]); ?>
-                                                        <tr <?php if ($this->_tpl_vars['page']->mother_page_id == '0'): ?> <?php else: ?> class="blue_background" <?php endif; ?>>
-                                                            <td width="3%">
-                                                            	<input type="checkbox" name="page_included_<?php echo $this->_tpl_vars['page']->page_id; ?>
+							                                	<?php $this->assign('subpages', $this->_tpl_vars['sub_page_list'][$this->_tpl_vars['pk']]); ?>
+																<tr <?php if ($this->_tpl_vars['page']->mother_page_id == '0'): ?> <?php else: ?> class="blue_background" <?php endif; ?>>
+																	<td style="width: 5px;">
+																		<input type="checkbox" name="page_included_<?php echo $this->_tpl_vars['page']->page_id; ?>
 " id="page_included_<?php echo $this->_tpl_vars['page']->page_id; ?>
 " <?php if (((is_array($_tmp=$this->_tpl_vars['page']->page_id)) ? $this->_run_mod_handler('in_array', true, $_tmp, $this->_tpl_vars['included_in_page_ids']) : in_array($_tmp, $this->_tpl_vars['included_in_page_ids']))): ?> checked="checked" <?php endif; ?> />
-                                                                <input type="hidden" name="page_ids[]" value="<?php echo $this->_tpl_vars['page']->page_id; ?>
+																		<input type="hidden" name="page_ids[]" value="<?php echo $this->_tpl_vars['page']->page_id; ?>
 " />
-                                                            </td>
-                                                            <td><?php echo $this->_tpl_vars['page']->page_title; ?>
-</td>
-                                                        </tr>
-                                                            <?php $_from = $this->_tpl_vars['subpages']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['listofsubpages'] = array('total' => count($_from), 'iteration' => 0);
+																	</td>
+																	<td>
+								                                    	<img src="<?php echo $this->_tpl_vars['baseurl']; ?>
+assets/images/flags/png/<?php echo $this->_tpl_vars['lang_code']; ?>
+.png" style="border:0px; padding-top:3px;">
+								                                        <a href="<?php echo $this->_tpl_vars['baseurl']; ?>
+manage/pages/edit/<?php echo $this->_tpl_vars['page']->page_id; ?>
+"><?php echo $this->_tpl_vars['page']->page_title; ?>
+</a>
+								                                    </td>
+																</tr>
+								                                    <?php $_from = $this->_tpl_vars['subpages']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['listofsubpages'] = array('total' => count($_from), 'iteration' => 0);
 if ($this->_foreach['listofsubpages']['total'] > 0):
     foreach ($_from as $this->_tpl_vars['spk'] => $this->_tpl_vars['subpage']):
         $this->_foreach['listofsubpages']['iteration']++;
 ?>
-                                                                <tr <?php if ($this->_tpl_vars['subpage']->mother_page_id == '0'): ?> <?php else: ?> class="blue_background" <?php endif; ?>>
-                                                                    <td>
-                                                                    	<input type="checkbox" name="page_included_<?php echo $this->_tpl_vars['subpage']->page_id; ?>
+								                                    	<?php $this->assign('subpages2', $this->_tpl_vars['sub_page_list2'][$this->_tpl_vars['spk']]); ?>
+								                                    	<tr <?php if ($this->_tpl_vars['subpage']->mother_page_id == '0'): ?> <?php else: ?> class="blue_background" <?php endif; ?>>
+								                                            <td style="width: 5px;">
+								                                            	<input type="checkbox" name="page_included_<?php echo $this->_tpl_vars['subpage']->page_id; ?>
 " id="page_included_<?php echo $this->_tpl_vars['subpage']->page_id; ?>
 " <?php if (((is_array($_tmp=$this->_tpl_vars['subpage']->page_id)) ? $this->_run_mod_handler('in_array', true, $_tmp, $this->_tpl_vars['included_in_page_ids']) : in_array($_tmp, $this->_tpl_vars['included_in_page_ids']))): ?> checked="checked" <?php endif; ?> />
-                                                                        <input type="hidden" name="page_ids[]" value="<?php echo $this->_tpl_vars['subpage']->page_id; ?>
+																				<input type="hidden" name="page_ids[]" value="<?php echo $this->_tpl_vars['subpage']->page_id; ?>
 " />
-                                                                    </td>
-                                                                    <td>&iota;__ &nbsp;<?php echo $this->_tpl_vars['subpage']->page_title; ?>
-</td>
-                                                                </tr>
-                                                            <?php endforeach; endif; unset($_from); ?>
-                                                        <?php endforeach; endif; unset($_from); ?>
+								                                            </td>
+								                                            <td>
+								                                            	&iota;__ &nbsp;
+								                                                <img src="<?php echo $this->_tpl_vars['baseurl']; ?>
+assets/images/flags/png/<?php echo $this->_tpl_vars['lang_code']; ?>
+.png" style="border:0px; padding-top:3px;">
+								                                                <a href="<?php echo $this->_tpl_vars['baseurl']; ?>
+manage/pages/edit/<?php echo $this->_tpl_vars['subpage']->page_id; ?>
+"><?php echo $this->_tpl_vars['subpage']->page_title; ?>
+</a>
+								                                            </td>
+								                                        </tr>
+								                                        
+								                                        	<?php $_from = $this->_tpl_vars['subpages2']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['listofsubpages2'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['listofsubpages2']['total'] > 0):
+    foreach ($_from as $this->_tpl_vars['subpage2']):
+        $this->_foreach['listofsubpages2']['iteration']++;
+?>
+								                                        		<tr <?php if ($this->_tpl_vars['subpage2']->mother_page_id == '0'): ?> <?php else: ?> class="blue_background" <?php endif; ?>>
+										                                            <td style="width: 5px;">
+										                                            	<input type="checkbox" name="page_included_<?php echo $this->_tpl_vars['subpage2']->page_id; ?>
+" id="page_included_<?php echo $this->_tpl_vars['subpage2']->page_id; ?>
+" <?php if (((is_array($_tmp=$this->_tpl_vars['subpage2']->page_id)) ? $this->_run_mod_handler('in_array', true, $_tmp, $this->_tpl_vars['included_in_page_ids']) : in_array($_tmp, $this->_tpl_vars['included_in_page_ids']))): ?> checked="checked" <?php endif; ?> />
+																						<input type="hidden" name="page_ids[]" value="<?php echo $this->_tpl_vars['subpage2']->page_id; ?>
+" />
+										                                            </td>
+										                                            <td>
+										                                            	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&iota;__ &nbsp;
+										                                                <img src="<?php echo $this->_tpl_vars['baseurl']; ?>
+assets/images/flags/png/<?php echo $this->_tpl_vars['lang_code']; ?>
+.png" style="border:0px; padding-top:3px;">
+										                                                <a href="<?php echo $this->_tpl_vars['baseurl']; ?>
+manage/pages/edit/<?php echo $this->_tpl_vars['subpage2']->page_id; ?>
+"><?php echo $this->_tpl_vars['subpage2']->page_title; ?>
+</a>
+										                                            </td>
+										                                        </tr>
+								                                        	<?php endforeach; endif; unset($_from); ?>
+								                                        
+								                                    <?php endforeach; endif; unset($_from); ?>
+																<?php endforeach; endif; unset($_from); ?>																			
+															</tbody>
+								
+														</table>
+                                                        
+                                                        
+                                                        
                                                     </tbody>
                                                     
                                                 </table>
@@ -436,7 +498,7 @@ manage/pages/add_addition_field" method="post" enctype="multipart/form-data">
                     <table cellpadding="0" cellspacing="0" width="100%" class="sortable">	
 							<div id="example" class="modal hide fade in" >
             					<div class="modal-header">
-              						<a class="close" data-dismiss="modal">×</a>
+              						<a class="close" data-dismiss="modal">��</a>
               						<h3>Aggiungi campo</h3>
             					</div>
             					

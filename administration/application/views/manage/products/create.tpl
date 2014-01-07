@@ -226,7 +226,7 @@
                                                         <input type="hidden" name="additional_field_id_{$afk}" id="additional_field_id" value="{$additional_field->field_id}">
                                                     </td>
                                                     <td>
-                                                        <a class="close" href="javascript:void(0);" onclick="delete_additional_field('{$additional_field->field_id}');">×</a>
+                                                        <a class="close" href="javascript:void(0);" onclick="delete_additional_field('{$additional_field->field_id}');">x</a>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -282,25 +282,59 @@
 													<tbody>
                                                     	<code>&lt;?php echo list_products; &gt;</code>
                                                         <br>
-                                                        {foreach from=$pagelist item=page name=listofpages key=pk}
-                                                            {assign var="subpages" value=$sub_page_list[$pk]}
-                                                        <tr {if $page->mother_page_id eq "0"} {else} class="blue_background" {/if}>
-                                                            <td width="3%">
-                                                            	<input type="checkbox" name="page_included_{$page->page_id}" id="page_included_{$page->page_id}" {if isset($included_in_page_ids) && $page->page_id|in_array:$included_in_page_ids } checked="checked" {/if}  />
-                                                                <input type="hidden" name="page_ids[]" value="{$page->page_id}" />
-                                                            </td>
-                                                            <td>{$page->page_title}</td>
-                                                        </tr>
-                                                            {foreach from=$subpages item=subpage name=listofsubpages key=spk}
-                                                                <tr {if $subpage->mother_page_id eq "0"} {else} class="blue_background" {/if}>
-                                                                    <td>
-                                                                    	<input type="checkbox" name="page_included_{$subpage->page_id}" id="page_included_{$subpage->page_id}" {if isset($included_in_page_ids) && $subpage->page_id|in_array:$included_in_page_ids } checked="checked" {/if}  />
-                                                                        <input type="hidden" name="page_ids[]" value="{$subpage->page_id}" />
-                                                                    </td>
-                                                                    <td>&iota;__ &nbsp;{$subpage->page_title}</td>
-                                                                </tr>
-                                                            {/foreach}
-                                                        {/foreach}
+                                                        
+                                                        <table cellpadding="0" cellspacing="0" width="100%" class="sortable">
+						
+															<tbody>
+																{foreach from=$pagelist item=page name=listofpages key=pk}
+								                                	{assign var="subpages" value=$sub_page_list[$pk]}
+																<tr {if $page->mother_page_id eq "0"} {else} class="blue_background" {/if}>
+																	<td style="width: 5px;">
+																		<input type="checkbox" name="page_included_{$page->page_id}" id="page_included_{$page->page_id}" {if isset($included_in_page_ids) && $page->page_id|in_array:$included_in_page_ids} checked="checked" {/if} />
+																		<input type="hidden" name="page_ids[]" value="{$page->page_id}" />
+																	</td>
+																	<td>
+								                                    	<img src="{$baseurl}assets/images/flags/png/{$lang_code}.png" style="border:0px; padding-top:3px;">
+								                                        <a href="{$baseurl}manage/pages/edit/{$page->page_id}">{$page->page_title}</a>
+								                                    </td>
+																</tr>
+								                                    {foreach from=$subpages item=subpage name=listofsubpages key=spk}
+								                                    	{assign var="subpages2" value=$sub_page_list2[$spk]}
+								                                    	<tr {if $subpage->mother_page_id eq "0"} {else} class="blue_background" {/if}>
+								                                            <td style="width: 5px;">
+								                                            	<input type="checkbox" name="page_included_{$subpage->page_id}" id="page_included_{$subpage->page_id}" {if isset($included_in_page_ids) && $subpage->page_id|in_array:$included_in_page_ids} checked="checked" {/if} />
+																				<input type="hidden" name="page_ids[]" value="{$subpage->page_id}" />
+								                                            </td>
+								                                            <td>
+								                                            	&iota;__ &nbsp;
+								                                                <img src="{$baseurl}assets/images/flags/png/{$lang_code}.png" style="border:0px; padding-top:3px;">
+								                                                <a href="{$baseurl}manage/pages/edit/{$subpage->page_id}">{$subpage->page_title}</a>
+								                                            </td>
+								                                        </tr>
+								                                        
+								                                        	{foreach from=$subpages2 item=subpage2 name=listofsubpages2 key2=spk2}
+								                                        		<tr {if $subpage2->mother_page_id eq "0"} {else} class="blue_background" {/if}>
+										                                            <td style="width: 5px;">
+										                                            	<input type="checkbox" name="page_included_{$subpage2->page_id}" id="page_included_{$subpage2->page_id}" {if isset($included_in_page_ids) && $subpage2->page_id|in_array:$included_in_page_ids} checked="checked" {/if} />
+																						<input type="hidden" name="page_ids[]" value="{$subpage2->page_id}" />
+										                                            </td>
+										                                            <td>
+										                                            	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&iota;__ &nbsp;
+										                                                <img src="{$baseurl}assets/images/flags/png/{$lang_code}.png" style="border:0px; padding-top:3px;">
+										                                                <a href="{$baseurl}manage/pages/edit/{$subpage2->page_id}">{$subpage2->page_title}</a>
+										                                            </td>
+										                                        </tr>
+								                                        	{/foreach}
+								                                        
+								                                    {/foreach}
+																{/foreach}																			
+															</tbody>
+								
+														</table>
+                                                        
+                                                        
+                                                        
+                                                        
                                                     </tbody>
                                                     
                                                 </table>
@@ -347,7 +381,7 @@
                         	<td>
                     			<div id="example" class="modal hide fade in">
                                     <div class="modal-header">
-                                        <a class="close" data-dismiss="modal">×</a>
+                                        <a class="close" data-dismiss="modal">��</a>
                                         <h3>Aggiungi campo</h3>
                                     </div>
                                     <div id="ajax_loader" style="text-align:center; display:none;"> 
