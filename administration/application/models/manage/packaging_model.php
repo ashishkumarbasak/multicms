@@ -219,11 +219,12 @@ class Packaging_model extends CI_Model{
 		}
 	}
 
-	function add_package_to_product($packaging_id=NULL, $product_id=NULL, $language_id=NULL){
+	function add_package_to_product($packaging_id=NULL, $product_id=NULL, $language_id=NULL, $packaging_code_value=NULL){
 		if($packaging_id!=NULL && $product_id!=NULL && $language_id!=NULL){
 			$this->db->set('product_id',$product_id);
 			$this->db->set('packaging_id',$packaging_id);
 			$this->db->set('language_id',$language_id);
+			$this->db->set('package_code_value',$packaging_code_value);
 			$this->db->insert('product_packages');
 		}
 	}

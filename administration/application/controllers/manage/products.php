@@ -246,11 +246,14 @@ class Products extends CI_Controller{
 				$product_packagings = $this->input->post('packagings');
 				if(is_array($product_packagings) && !empty($product_packagings)){
 					$this->packaging_model->clean_product_packagings($product_id, $this->language_id);
+					$i=1;
 					foreach($product_packagings as $p_pack_key=>$p_pack){
 						if($p_pack!=NULL){
 							$packaging_id = explode("#",$p_pack);
 							$packaging_id = $packaging_id[0];
-							$this->packaging_model->add_package_to_product($packaging_id, $product_id, $this->language_id);
+							$packaging_code_value = $this->input->post('packaging_code_'.$i);
+							$this->packaging_model->add_package_to_product($packaging_id, $product_id, $this->language_id, $packaging_code_value);
+							$i++;
 						}		
 					}
 				}

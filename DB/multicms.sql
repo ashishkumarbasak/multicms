@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 19, 2013 at 04:39 PM
+-- Generation Time: Jan 08, 2014 at 05:32 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.10
 
@@ -10711,7 +10711,7 @@ CREATE TABLE `trv_languages` (
   `flag` varchar(255) DEFAULT NULL,
   `is_default` set('0','1') DEFAULT '0',
   PRIMARY KEY (`language_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `trv_languages`
@@ -11521,7 +11521,14 @@ CREATE TABLE `trv_packagings` (
   `language_id` int(11) NOT NULL,
   `m_ref_packaging_id` int(11) NOT NULL,
   PRIMARY KEY (`packaging_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `trv_packagings`
+--
+
+INSERT INTO `trv_packagings` (`packaging_id`, `pack_title`, `pack_code`, `pack_description`, `language_id`, `m_ref_packaging_id`) VALUES
+(1, 'Weight', 'W-1', 'Weight of product', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -11774,8 +11781,17 @@ CREATE TABLE `trv_product_packages` (
   `product_id` int(11) NOT NULL,
   `packaging_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
+  `package_code_value` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `trv_product_packages`
+--
+
+INSERT INTO `trv_product_packages` (`id`, `product_id`, `packaging_id`, `language_id`, `package_code_value`) VALUES
+(1, 1, 1, 1, '200Gm'),
+(2, 1, 1, 1, '300Gm');
 
 -- --------------------------------------------------------
 

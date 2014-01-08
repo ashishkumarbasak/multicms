@@ -376,13 +376,13 @@
 												<label>Packaging {$ppk+1}:<br><img src="{$baseurl}assets/images/flags/png/{$lang_code}.png" style="border:0px; padding-top:3px;"></label>
 											</td>
 											<td>
-												<select name="packagings[]" id="packagings_{$ppk}"  style="width:400px;" onchange="show_pack_code('packagings_{$ppk}', 'packaging_code_{$ppk}');">
+												<select name="packagings[]" id="packagings_{$ppk}"  style="width:400px;"> <!-- onchange="show_pack_code('packagings_{$ppk}', 'packaging_code_{$ppk}');" //-->
 													<option value="">Select Package</option>
 													{foreach from=$packagings_list item=packagings name=listofpackagings key=ppk}
 														<option value="{$packagings->packaging_id}#{$packagings->pack_code}" {if in_array($packagings->packaging_id, $packaging_ids)} selected="selected" {/if}>{$packagings->pack_title}</option>
 													{/foreach}
 			                                   	</select><br><br>
-			                                	<input name="packaging_code_{$ppk}" type="text" class="text small" id="packaging_code_{$ppk}" value="{$included_package->pack_code}" />	                    
+			                                	<input name="packaging_code_{$ppk}" type="text" class="text small" id="packaging_code_{$ppk}" value="{$included_package->package_code_value}" />	                    
 		                                	</td>
 										</tr>	
 									{/foreach}
@@ -394,7 +394,7 @@
 										<label>Packaging {$smarty.section.foo.index+1}:<br><img src="{$baseurl}assets/images/flags/png/{$lang_code}.png" style="border:0px; padding-top:3px;"></label>
 									</td>
 									<td>
-										<select name="packagings[]" id="packagings_{$smarty.section.foo.index+1}"  style="width:400px;" onchange="show_pack_code('packagings_{$smarty.section.foo.index+1}', 'packaging_code_{$smarty.section.foo.index+1}');">
+										<select name="packagings[]" id="packagings_{$smarty.section.foo.index+1}"  style="width:400px;"> <!-- onchange="show_pack_code('packagings_{$smarty.section.foo.index+1}', 'packaging_code_{$smarty.section.foo.index+1}');" //-->
 											<option value="">Select Package</option>
 											{foreach from=$packagings_list item=packagings name=listofpackagings key=ppk}
 												<option value="{$packagings->packaging_id}#{$packagings->pack_code}">{$packagings->pack_title}</option>
