@@ -42,6 +42,7 @@ define('CATEGORY_ATTACHMENT_UPLOAD_PATH',$_SERVER['DOCUMENT_ROOT']."/assets/cate
 define('DOCUMENT_ATTACHMENT_UPLOAD_PATH',$_SERVER['DOCUMENT_ROOT']."/assets/documents/");
 define('VIDEO_ATTACHMENT_UPLOAD_PATH',$_SERVER['DOCUMENT_ROOT']."/assets/videos/");
 define('IMPORT_FILE_UPLOAD_PATH',$_SERVER['DOCUMENT_ROOT']."/assets/import/");
+define('USER_ATTACHMENT_UPLOAD_PATH',$_SERVER['DOCUMENT_ROOT']."/assets/user_documents/");
 
 
 /* End of file constants.php */

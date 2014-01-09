@@ -74,6 +74,12 @@
 									<td><input type="text" class="text small" name="email" id="email" value="{if isset($email_address)}{$email_address}{/if}"  /></td>
 									<td><a href="#" class="tooltip-test" title="Tooltip"><i class="icon-info-sign"></i></a></td>
 								</tr>
+
+								<tr>
+									<td><label>Username:</label></td>
+									<td><input type="text" class="text small" name="username" id="username" value="{if isset($username)}{$username}{/if}"  /></td>
+									<td><a href="#" class="tooltip-test" title="Tooltip"><i class="icon-info-sign"></i></a></td>
+								</tr>
 																
 								<tr>
 									<td><label>Password</label></td>

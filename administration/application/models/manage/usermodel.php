@@ -102,33 +102,6 @@ class Usermodel extends CI_Model {
 			
 			$this->db->where('user_id',$user_id);
 			$this->db->delete('userspayment_profiles');
-			
-			$this->db->where('user_id',$user_id);
-			$this->db->delete('invoicing_profile');
-			
-			$this->db->where('user_id',$user_id);
-			$this->db->delete('usersettings');	
-			
-			$this->db->where('ref_user_id',$user_id);
-			$this->db->delete('twitterconnects');
-			
-			$this->db->where('profile_id',$user_id);
-			$this->db->delete('profile_themes');
-			
-			$this->db->where('profile_id',$user_id);
-			$this->db->delete('profile_services');
-			
-			$this->db->where('profile_id',$user_id);
-			$this->db->delete('profile_attachments');
-			
-			$this->db->where('user_id',$user_id);
-			$this->db->delete('offers');
-			
-			$this->db->where('ref_user_id',$user_id);
-			$this->db->delete('facebookconnects');
-			
-			$this->db->where('user_id',$user_id);
-			$this->db->delete('booking_request');
 		}		
 	}
 	

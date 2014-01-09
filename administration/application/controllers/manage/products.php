@@ -244,6 +244,7 @@ class Products extends CI_Controller{
 					}
 				}
 				$product_packagings = $this->input->post('packagings');
+				//print_r($_POST);
 				if(is_array($product_packagings) && !empty($product_packagings)){
 					$this->packaging_model->clean_product_packagings($product_id, $this->language_id);
 					$i=1;

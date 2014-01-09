@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.19, created on 2013-08-29 19:33:21
+<?php /* Smarty version 2.6.19, created on 2014-01-09 15:48:47
          compiled from manage/documents2/create.tpl */ ?>
 <link rel="stylesheet" href="<?php echo $this->_tpl_vars['baseurl']; ?>
 assets/js/jQuery-File-Upload/css/jquery.fileupload-ui.css">

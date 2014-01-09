@@ -65,6 +65,9 @@
                                     <td>
                                     	<input type="hidden" name="user_previlege" id="user_previlege" value="1">
                                         <input class="btn" type="submit" value="Submit" name="cretae_document">
+                                        {if isset($user_id) && $user_id!=NULL}
+                                            <input class="btn" type="button" value="Return to User Edit" name="cretae_document" onclick='window.location="{$baseurl}manage/clients/edit/{$user_id}";'>
+                                        {/if}
                                     </td>
                                     <td></td>
 								</tr>

@@ -1,7 +1,7 @@
 <?php
 class Members extends CI_Controller {
 	
-	public $per_page = 1;
+	public $per_page = 10;
 
 	public function __construct(){
             parent::__construct();
@@ -91,7 +91,7 @@ class Members extends CI_Controller {
 				$this->UserProfile->create_user_profile($this->myvalidation->data,$user_id);
 				$this->UserProfile->create_usershotel_profile($this->myvalidation->data,$user_id);
 				$this->UserProfile->create_userspayment_profile($this->myvalidation->data,$user_id);
-				$this->UserProfile->create_user_invoicing_profile($this->myvalidation->data,$user_id);
+				//$this->UserProfile->create_user_invoicing_profile($this->myvalidation->data,$user_id);
 				$this->UserSetting->create_user_setting($this->myvalidation->data,$user_id);
 				
 				//$toemail=$this->myvalidation->data['email_address'];				

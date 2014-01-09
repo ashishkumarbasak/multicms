@@ -2,7 +2,7 @@
 class Documents2 extends CI_Controller {
 	
 	public $per_page = 10;
-	public $language_id;
+
 	public function __construct(){
             parent::__construct();
             // Your own constructor code
@@ -88,7 +88,7 @@ class Documents2 extends CI_Controller {
 			}
 		}
 		
-		$all_categories = $this->category_model->get_all_categories(NULL,NULL);
+		$all_categories = $this->category_model->get_all_categories(NULL,NULL,$this->language_id);
 		$this->template->assign('categorylist',$all_categories);
 		$this->template->assign('page','manage/documents2/create.tpl');	
 		$this->template->display('layouts/layout.tpl');
@@ -135,7 +135,7 @@ class Documents2 extends CI_Controller {
 				}
 			}
 			
-			$all_categories = $this->category_model->get_all_categories(NULL,NULL);
+			$all_categories = $this->category_model->get_all_categories(NULL,NULL,$this->language_id);
 			$this->template->assign('categorylist',$all_categories);
 			
 			$document_details = $this->document_model2->get_document_details($document_id);

@@ -198,17 +198,15 @@ class Userprofile_model extends CI_Model{
 		$column1 = "hotel_description_it";
 		$column2 = "hotel_activities_it";
 		$column3 = "important_information_it";
-		$column4 = "hotel_type_it";
 		
-		$this->db->select('*,'.$column1.' as hotel_description, '.$column2.' as hotel_activities, '.$column3.' as important_information, '.$column4.' as hotel_type');
+		
+		$this->db->select('*,'.$column1.' as hotel_description, '.$column2.' as hotel_activities, '.$column3.' as important_information');
 		$this->db->from('users');
 		$this->db->join('userprofiles','userprofiles.user_id=users.user_id','left');
 		$this->db->join('usersettings','userprofiles.user_id=usersettings.user_id','left');
 		$this->db->join('usershotel_profiles','userprofiles.user_id=usershotel_profiles.user_id','left');
-		$this->db->join('cities','usershotel_profiles.hotel_city=cities.city_id','left');
-		$this->db->join('hotel_types','usershotel_profiles.hotel_type=hotel_types.hotel_type_id','left');
 		$this->db->join('userspayment_profiles','userprofiles.user_id=userspayment_profiles.user_id','left');
-		$this->db->join('invoicing_profile','userprofiles.user_id=invoicing_profile.user_id','left');
+		
 		$this->db->where('users.user_id',$user_id);
 
 		$query = $this->db->get();

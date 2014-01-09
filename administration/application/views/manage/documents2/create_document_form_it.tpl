@@ -40,7 +40,7 @@
                                             {foreach from=$categorylist item=category name=listofcategories key=ck}
                                            	 {if $category->parent_parent_category == NULL}
                                              <option value="{$category->category_id}" {if isset($document_details) && $document_details!=NULL && $document_details->document_category_id==$category->category_id} selected="selected" {/if} >
-                                             	{if $category->parent_category != NULL} <b style="color:#0000FF;">{$category->parent_category} &raquo;</b> {/if}{$category->category_name_it}   
+                                             	{if $category->parent_category != NULL} <b style="color:#0000FF;">{$category->parent_category} &raquo;</b> {/if}{$category->category_name}   
 											</option>
                                             {/if}
                                             {/foreach}

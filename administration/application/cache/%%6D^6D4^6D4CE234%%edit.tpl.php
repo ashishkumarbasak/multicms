@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.19, created on 2014-01-08 17:24:40
+<?php /* Smarty version 2.6.19, created on 2014-01-08 18:12:01
          compiled from manage/products/edit.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'manage/products/edit.tpl', 114, false),array('modifier', 'count', 'manage/products/edit.tpl', 243, false),array('modifier', 'in_array', 'manage/products/edit.tpl', 304, false),)), $this); ?>
@@ -516,7 +516,7 @@ assets/images/flags/png/<?php echo $this->_tpl_vars['lang_code']; ?>
 													<option value="">Select Package</option>
 													<?php $_from = $this->_tpl_vars['packagings_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['listofpackagings'] = array('total' => count($_from), 'iteration' => 0);
 if ($this->_foreach['listofpackagings']['total'] > 0):
-    foreach ($_from as $this->_tpl_vars['ppk'] => $this->_tpl_vars['packagings']):
+    foreach ($_from as $this->_tpl_vars['ppk2'] => $this->_tpl_vars['packagings']):
         $this->_foreach['listofpackagings']['iteration']++;
 ?>
 														<option value="<?php echo $this->_tpl_vars['packagings']->packaging_id; ?>
@@ -525,7 +525,7 @@ if ($this->_foreach['listofpackagings']['total'] > 0):
 </option>
 													<?php endforeach; endif; unset($_from); ?>
 			                                   	</select><br><br>
-			                                	<input name="packaging_code_<?php echo $this->_tpl_vars['ppk']; ?>
+			                                	<input name="packaging_code_<?php echo $this->_tpl_vars['ppk']+1; ?>
 " type="text" class="text small" id="packaging_code_<?php echo $this->_tpl_vars['ppk']; ?>
 " value="<?php echo $this->_tpl_vars['included_package']->package_code_value; ?>
 " />	                    

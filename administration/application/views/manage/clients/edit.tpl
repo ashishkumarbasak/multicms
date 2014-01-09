@@ -74,6 +74,12 @@
 									<td><input type="text" class="text small" name="email" id="email" value="{if isset($user_details)}{$user_details->email}{/if}"  /></td>
 									<td><a href="#" class="tooltip-test" title="Tooltip"><i class="icon-info-sign"></i></a></td>
 								</tr>
+								
+								<tr>
+									<td><label>Username:</label></td>
+									<td><input type="text" class="text small" name="username" id="username" value="{if isset($user_details)}{$user_details->username}{/if}"  /></td>
+									<td><a href="#" class="tooltip-test" title="Tooltip"><i class="icon-info-sign"></i></a></td>
+								</tr>
 																
 								<tr>
 									<td><label>Password</label></td>
@@ -118,15 +124,25 @@
 								<tr>
 									<td><label>Upload Document</label></td>
 									<td>
-										<input class="btn" type="button" value="Add Files" onclick="window.location='{$baseurl}manage/documents/create/user/{$user_details->user_id}';">
+										<input class="btn" type="button" value="Aggiungi Documenti" onclick="window.location='{$baseurl}manage/documents/create/user/{$user_details->user_id}';">
+										
+										<table>
+										
+										
+										
 										<div style="margin-top: 10px;">
 										{if isset($user_files) && $user_files!=NULL && isset($user_details) && $user_details->user_id!=NULL}
 											{foreach from=$user_files item=file name=listoffiles key=fk}
-												<a href="{$baseurl|replace:"administration/":""}assets/user_documents/{$user_details->user_id}/{$file->document_file_name}" target="_blank">
+												<tr>
+												<td><a href="{$baseurl|replace:"administration/":""}assets/user_documents/{$user_details->user_id}/{$file->document_file_name}" target="_blank">
 													{$file->document_name}												
-												</a> [ <a href="{$baseurl}manage/clients/delete_document/{$file->document_id}/{$user_details->user_id}">Delete <a>]<br>
+												</a></td>
+												<td><a href="{$baseurl}manage/clients/delete_document/{$file->document_id}/{$user_details->user_id}" class="btn btn-danger">Cancella <a>
+												</td>
+												</tr>
 											{/foreach}
-										{/if}
+										{/if}										</table>
+
 										</div> 
 									</td>
 									<td><a href="#" class="tooltip-test" title="Tooltip"><i class="icon-info-sign"></i></a></td>
@@ -144,8 +160,7 @@
                                         <input type="hidden" name="user_name_orginal" id="user_name_orginal" value="{$user_details->username}">
                                         <input type="hidden" name="user_email_orginal" id="user_email_orginal" value="{$user_details->email}">
                                         
-                                        <input class="btn" type="submit" value="Save" name="update_my_account">
-                                        <input class="btn btn-danger" type="button" value="Cancel User" onclick="window.location='{$baseurl}manage/members';">
+                                        <input class="btn" type="submit" value="Salva" name="update_my_account">
                                     </td>
 									<td></td>
 								</tr>

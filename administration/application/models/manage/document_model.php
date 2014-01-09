@@ -34,6 +34,23 @@ class Document_model extends CI_Model {
 		return $this->db->insert_id();
 	}
 	
+	function create_new_document_for_clients($data,$user_id){
+		$this->db->set('document_name',$data['document_name']);
+		$this->db->set('document_category_id',$data['document_category_id']);
+		$this->db->set('document_file_name',$data['document_file_name']);
+		$this->db->set('user_id',$user_id);
+			
+		$this->db->insert('client_documents');
+	}
+	
+	function delete_client_file($file_id=NULL, $user_id=NULL){
+		if($file_id!=NULL && $user_id!=NULL){
+			$this->db->where('document_id',$file_id);
+			$this->db->where('user_id',$user_id);
+			$this->db->delete('client_documents');
+		}
+	}
+	
 	function update_document($data,$document_id=NULL){
 		if($document_id!=NULL){
 			$this->db->set('document_name',$data['document_name']);
@@ -85,6 +102,24 @@ class Document_model extends CI_Model {
 		}
 		else
 			return NULL;
+	}
+
+	function get_client_documents($user_id=NULL){
+		if($user_id!=NULL){
+			$this->db->select('*');
+			$this->db->from('client_documents');
+			$this->db->where('user_id',$user_id);
+			$query = $this->db->get();
+			if($query->num_rows() > 0){
+				$result = $query->result();
+				return $result;
+			}
+			else
+				return NULL;
+		}else{
+			return NULL;
+		}
+		
 	}
 }
 ?>

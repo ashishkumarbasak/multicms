@@ -14,6 +14,8 @@ class Clients extends CI_Controller {
 			$this->load->model('manage/usersetting_model','UserSetting');
 			
 			$this->userauthentication->check_sessionexpire();
+			$this->language_id = $this->userauthentication->get_language();
+			$this->template->assign('lang_id',$this->language_id);
 	}
 	   
 	function index(){
@@ -90,7 +92,7 @@ class Clients extends CI_Controller {
 				$this->UserProfile->create_user_profile($this->myvalidation->data,$user_id);
 				$this->UserProfile->create_usershotel_profile($this->myvalidation->data,$user_id);
 				$this->UserProfile->create_userspayment_profile($this->myvalidation->data,$user_id);
-				$this->UserProfile->create_user_invoicing_profile($this->myvalidation->data,$user_id);
+				//$this->UserProfile->create_user_invoicing_profile($this->myvalidation->data,$user_id);
 				$this->UserSetting->create_user_setting($this->myvalidation->data,$user_id);
 				
 				//$toemail=$this->myvalidation->data['email_address'];				

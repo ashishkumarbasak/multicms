@@ -13,16 +13,11 @@ class Authentication
 		$this->obj->load->model('user_model','User');
 		$this->obj->load->model('userprofile_model','UserProfile');
 		$this->obj->load->model('settings_model','SiteSetting');
-		$this->obj->load->model('message_model','Message');
 		$this->obj->load->model('language_model');
 		
-		$this->obj->load->model('comune_model','Comune');
 		$this->obj->load->model('category_model','Category');
 
 		$this->language_id = $this->obj->language_model->get_language_id(CURRENT_LANGUAGE);
-		
-		$comunelist = $this->obj->Comune->load_comune();
-		$this->obj->template->set('comunelist',$comunelist);
 		
 		$subcategories = array();
 		$rootcategorylist = $this->obj->Category->get_categories(NULL,3,true);
@@ -149,8 +144,6 @@ class Authentication
 			$profile_details = $this->obj->UserProfile->get_user_profile($this->userid);
 			if($profile_details!=NULL){
 				$this->obj->template->set('profile_details',$profile_details[0]);
-				$this->obj->load->model('country_model','Country');
-				$this->obj->load->model('geo_model','Geomodel');
 				$this->obj->load->model('category_model','Category');
 				
 				$this->obj->template->set('rootCategories',$this->obj->Category->get_all());
@@ -158,18 +151,6 @@ class Authentication
 					$this->obj->template->set('subCategories',$this->obj->Category->get_all_subcategory($profile_details[0]->category));
 				else
 					$this->obj->template->set('subCategories',$this->obj->Category->get_all_subcategory(1));	
-				
-				$this->obj->template->set('countries',$this->obj->Country->get_all());
-				if($profile_details[0]->hotel_country!=NULL)
-				$this->obj->template->set('states',$this->obj->Geomodel->get_states($profile_details[0]->hotel_country));
-				if($profile_details[0]->hotel_state!=NULL)
-				$this->obj->template->set('cities',$this->obj->Geomodel->get_cities($profile_details[0]->hotel_state));
-				//if($profile_details[0]->hotel_city!=NULL)
-				//$this->obj->template->set('comuni',$this->obj->Geomodel->get_comuni($profile_details[0]->hotel_city));
-				
-				$total_message = $this->obj->Message->get_total_new_message($profile_details[0]->user_id,NULL);
-				$this->obj->template->set('total_message',$total_message);
-				
 				
 				if($profile_details[0]->is_first_login=="1" || $this->obj->phpsession->get('is_first_login')){
 					$this->obj->phpsession->save('is_first_login',"1");

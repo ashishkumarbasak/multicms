@@ -1,7 +1,7 @@
 <?php
 class Documents extends CI_Controller {
 	
-	public $per_page = 1;
+	public $per_page = 10;
 	public $language_id;
 	public function __construct(){
             parent::__construct();
@@ -71,12 +71,18 @@ class Documents extends CI_Controller {
 	function create(){
 		$this->template->assign('section','Document');
 		$this->template->assign('operation','Create');
-
+		$user_id = $this->uri->segment(5);
+		
 		if($this->input->post('cretae_document')){
 			$submitok=$this->validation();			
-			if($submitok){ 
-				$this->upload_document_file();
-				$user_id=$this->document_model->create_new_document($this->myvalidation->data);
+			if($submitok){
+				if($user_id!=NULL){
+					$this->upload_users_file($user_id);
+					$this->document_model->create_new_document_for_clients($this->myvalidation->data,$user_id);
+				}else{
+					$this->upload_document_file();
+					$user_id=$this->document_model->create_new_document($this->myvalidation->data);
+				} 
 				//$toemail=$this->myvalidation->data['email_address'];				
 				//$replace['verify_link']=base_url().'users/verifyemail/'.md5($user_id).'/'.md5($this->myvalidation->data['email_address']);
 				//$this->myemaillibrary->set_email_category('user_signup');
@@ -87,11 +93,30 @@ class Documents extends CI_Controller {
 				$this->template->assign('form_error',$this->myvalidation->error);
 			}
 		}
+		if($user_id!=NULL)
+		$this->template->assign('user_id',$user_id);
 		
-		$all_categories = $this->category_model->get_all_categories(NULL,NULL,$this->language_id);
+		$all_categories = $this->category_model->get_all_categories(NULL,NULL, $this->language_id);
 		$this->template->assign('categorylist',$all_categories);
 		$this->template->assign('page','manage/documents/create.tpl');	
 		$this->template->display('layouts/layout.tpl');
+	}
+
+	function upload_users_file($user_id){
+		if(!empty($_FILES)){
+			$form_field_name="document_file";
+			
+			if($_FILES[$form_field_name]['name']!=NULL){
+				$this->fileuploader->upload_user_file($form_field_name,$user_id);
+				$this->myvalidation->data['document_file_name'] = $this->fileuploader->filedata['file_name'];
+			}
+			else
+				$this->myvalidation->data['document_file_name'] = NULL;										
+		}
+		else
+			{
+				$this->myvalidation->data['document_file_name'] = NULL;
+			}
 	}
 	
 	function upload_document_file(){
@@ -135,7 +160,7 @@ class Documents extends CI_Controller {
 				}
 			}
 			
-			$all_categories = $this->category_model->get_all_categories(NULL,NULL);
+			$all_categories = $this->category_model->get_all_categories(NULL,NULL, $this->language_id);
 			$this->template->assign('categorylist',$all_categories);
 			
 			$document_details = $this->document_model->get_document_details($document_id);

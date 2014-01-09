@@ -378,11 +378,11 @@
 											<td>
 												<select name="packagings[]" id="packagings_{$ppk}"  style="width:400px;"> <!-- onchange="show_pack_code('packagings_{$ppk}', 'packaging_code_{$ppk}');" //-->
 													<option value="">Select Package</option>
-													{foreach from=$packagings_list item=packagings name=listofpackagings key=ppk}
+													{foreach from=$packagings_list item=packagings name=listofpackagings key=ppk2}
 														<option value="{$packagings->packaging_id}#{$packagings->pack_code}" {if in_array($packagings->packaging_id, $packaging_ids)} selected="selected" {/if}>{$packagings->pack_title}</option>
 													{/foreach}
 			                                   	</select><br><br>
-			                                	<input name="packaging_code_{$ppk}" type="text" class="text small" id="packaging_code_{$ppk}" value="{$included_package->package_code_value}" />	                    
+			                                	<input name="packaging_code_{$ppk+1}" type="text" class="text small" id="packaging_code_{$ppk}" value="{$included_package->package_code_value}" />	                    
 		                                	</td>
 										</tr>	
 									{/foreach}

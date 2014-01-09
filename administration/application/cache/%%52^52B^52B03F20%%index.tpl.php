@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.19, created on 2013-11-08 09:11:04
+<?php /* Smarty version 2.6.19, created on 2014-01-09 17:48:22
          compiled from manage/documents/index.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'manage/documents/index.tpl', 34, false),)), $this); ?>
@@ -47,7 +47,7 @@ assets/documents/<?php echo $this->_tpl_vars['document']->document_file_name; ?>
 
                                         </a>
                                     </td>
-                                    <td><?php echo $this->_tpl_vars['document']->category_name_it; ?>
+                                    <td><?php echo $this->_tpl_vars['document']->category_name; ?>
 </td>
                                     <td>
                                     	<a class="btn btn-small" href="<?php echo $this->_tpl_vars['baseurl']; ?>

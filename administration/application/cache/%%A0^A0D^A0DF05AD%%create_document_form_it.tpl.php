@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.19, created on 2013-08-29 19:33:21
+<?php /* Smarty version 2.6.19, created on 2014-01-09 15:51:56
          compiled from manage/documents2/create_document_form_it.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'manage/documents2/create_document_form_it.tpl', 57, false),)), $this); ?>
@@ -55,7 +55,7 @@ if ($this->_foreach['listofcategories']['total'] > 0):
                                              <option value="<?php echo $this->_tpl_vars['category']->category_id; ?>
 " <?php if (isset ( $this->_tpl_vars['document_details'] ) && $this->_tpl_vars['document_details'] != NULL && $this->_tpl_vars['document_details']->document_category_id == $this->_tpl_vars['category']->category_id): ?> selected="selected" <?php endif; ?> >
                                              	<?php if ($this->_tpl_vars['category']->parent_category != NULL): ?> <b style="color:#0000FF;"><?php echo $this->_tpl_vars['category']->parent_category; ?>
- &raquo;</b> <?php endif; ?><?php echo $this->_tpl_vars['category']->category_name_it; ?>
+ &raquo;</b> <?php endif; ?><?php echo $this->_tpl_vars['category']->category_name; ?>
    
 											</option>
                                             <?php endif; ?>

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.19, created on 2013-11-08 09:11:19
+<?php /* Smarty version 2.6.19, created on 2014-01-09 15:38:31
          compiled from manage/documents/create_document_form_it.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'manage/documents/create_document_form_it.tpl', 57, false),)), $this); ?>
@@ -84,6 +84,11 @@ assets/documents/<?php echo $this->_tpl_vars['document_details']->document_file_
                                     <td>
                                     	<input type="hidden" name="user_previlege" id="user_previlege" value="1">
                                         <input class="btn" type="submit" value="Submit" name="cretae_document">
+                                        <?php if (isset ( $this->_tpl_vars['user_id'] ) && $this->_tpl_vars['user_id'] != NULL): ?>
+                                            <input class="btn" type="button" value="Return to User Edit" name="cretae_document" onclick='window.location="<?php echo $this->_tpl_vars['baseurl']; ?>
+manage/clients/edit/<?php echo $this->_tpl_vars['user_id']; ?>
+";'>
+                                        <?php endif; ?>
                                     </td>
                                     <td></td>
 								</tr>

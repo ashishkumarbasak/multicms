@@ -45,10 +45,10 @@ class Dashboard extends CI_Controller {
 		if($category_id==NULL)
 			$category_id = "all";	
 		
-		if($this->uri->segment(5)==NULL)
+		if($this->uri->segment(6)==NULL)
 			$offset = 0;
 		else
-			$offset = $this->per_page*($this->uri->segment(5)-1);
+			$offset = $this->per_page*($this->uri->segment(6)-1);
 
 		$config['base_url'] = base_url()."documents/category/".$category_id."/page";		
 

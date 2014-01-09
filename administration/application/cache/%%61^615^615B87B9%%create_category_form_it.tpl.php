@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.19, created on 2013-11-08 09:11:31
+<?php /* Smarty version 2.6.19, created on 2014-01-09 14:59:12
          compiled from manage/categories/create_category_form_it.tpl */ ?>
 						<?php if (isset ( $this->_tpl_vars['category_created_successfully'] )): ?>
                         	<div class="message info">

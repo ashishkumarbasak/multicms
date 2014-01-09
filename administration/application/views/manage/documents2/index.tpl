@@ -35,7 +35,7 @@
                                         	{$document->document_name}
                                         </a>
                                     </td>
-                                    <td>{$document->category_name_it}</td>
+                                    <td>{$document->category_name}</td>
                                     <td>
                                     	<a class="btn btn-small" href="{$baseurl}manage/documents2/edit/{$document->document_id}">edit</a>
                                         <a class="btn btn-danger btn-small" href="{$baseurl}manage/documents2/delete/{$document->document_id}" onclick='return confirm("Are you sure you want to delete?")' >Delete</a>
