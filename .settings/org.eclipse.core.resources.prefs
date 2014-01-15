@@ -2,6 +2,7 @@ eclipse.preferences.version=1
 encoding//administration/application/libraries/Myvalidation.php=UTF-8
 encoding//administration/application/views/manage/news/create.tpl=UTF-8
 encoding//administration/application/views/manage/news/edit.tpl=UTF-8
+encoding//administration/application/views/manage/pages/create.tpl=UTF-8
 encoding//administration/application/views/manage/pages/edit.tpl=UTF-8
 encoding//administration/application/views/manage/products/create.tpl=UTF-8
 encoding//administration/application/views/manage/products/edit.tpl=UTF-8

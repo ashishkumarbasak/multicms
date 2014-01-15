@@ -69,12 +69,12 @@ class Pages extends CI_Controller{
 		if($all_pages!=NULL)
 		foreach($all_pages as $key=>$value){
 			$s_pages = $this->page_model->get_subpages($value->page_id);
-			array_push($subpages, $s_pages);
+			$subpages[$value->page_id] =  $s_pages;
 			array_push($page_ids,$value->page_id);
 			if($s_pages!=NULL)
 			foreach($s_pages as $k=>$v){
 				$s_pages2 = $this->page_model->get_subpages($v->page_id);
-				array_push($subpages2, $s_pages2);
+				$subpages2[$v->page_id] = $s_pages2;
 				array_push($page_ids,$v->page_id);
 				if($s_pages2!=NULL)
 					foreach($s_pages2 as $k2=>$v2){
@@ -174,12 +174,36 @@ class Pages extends CI_Controller{
 		}
 		$list_of_templates = $files;
 		
-		$list_of_pages = $this->page_model->get_mother_pages($this->language_id);
+		$all_pages = $this->page_model->get_all_pages(NULL,NULL,$this->language_id);
+		$this->template->assign('pagelist',$all_pages);
+		
+		$subpages2 = array();
+		$page_ids2 = array();
+		$subpages = array();
+		$page_ids = array();
+		if($all_pages!=NULL)
+		foreach($all_pages as $key=>$value){
+			$s_pages = $this->page_model->get_subpages($value->page_id);
+			$subpages[$value->page_id] =  $s_pages;
+			array_push($page_ids,$value->page_id);
+			if($s_pages!=NULL)
+			foreach($s_pages as $k=>$v){
+				$s_pages2 = $this->page_model->get_subpages($v->page_id);
+				$subpages2[$v->page_id] = $s_pages2;
+				array_push($page_ids,$v->page_id);
+				if($s_pages2!=NULL)
+					foreach($s_pages2 as $k2=>$v2){
+						array_push($page_ids,$v2->page_id);
+					}
+			}
+		}
+		$this->template->assign('sub_page_list',$subpages);
+		$this->template->assign('sub_page_list2',$subpages2);
 		
 		$menu_list = $this->menu_model->get_all_menus();
 		$this->template->assign('list_of_menus',$menu_list);
 		
-		$this->template->assign('list_of_pages',$list_of_pages);			
+					
 		$this->template->assign('list_of_templates',$list_of_templates);
 		$this->template->assign('page_id',$page_id);			
 		$this->template->assign('page','manage/pages/create.tpl');	
@@ -264,7 +288,33 @@ class Pages extends CI_Controller{
 		}
 		$list_of_templates = $files;
 		
-		$list_of_pages = $this->page_model->get_mother_pages($this->language_id);
+		
+		$all_pages = $this->page_model->get_all_pages(NULL,NULL,$this->language_id);
+		$this->template->assign('pagelist',$all_pages);
+		
+		$subpages2 = array();
+		$page_ids2 = array();
+		$subpages = array();
+		$page_ids = array();
+		if($all_pages!=NULL)
+		foreach($all_pages as $key=>$value){
+			$s_pages = $this->page_model->get_subpages($value->page_id);
+			$subpages[$value->page_id] =  $s_pages;
+			array_push($page_ids,$value->page_id);
+			if($s_pages!=NULL)
+			foreach($s_pages as $k=>$v){
+				$s_pages2 = $this->page_model->get_subpages($v->page_id);
+				$subpages2[$v->page_id] = $s_pages2;
+				array_push($page_ids,$v->page_id);
+				if($s_pages2!=NULL)
+					foreach($s_pages2 as $k2=>$v2){
+						array_push($page_ids,$v2->page_id);
+					}
+			}
+		}
+		$this->template->assign('sub_page_list',$subpages);
+		$this->template->assign('sub_page_list2',$subpages2);
+		
 		
 		$page_details = $this->page_model->get_page_details($page_id);
 		$this->template->assign('page_details',$page_details);
@@ -274,7 +324,7 @@ class Pages extends CI_Controller{
 		$assign_to_menus = $this->menu_model->get_menu_ids($page_id);
 		$this->template->assign('included_in_menu_ids',$assign_to_menus);
 		
-		$this->template->assign('list_of_pages',$list_of_pages);			
+					
 		$this->template->assign('list_of_templates',$list_of_templates);
 		$this->template->assign('page_id',$page_id);			
 		$this->template->assign('page','manage/pages/edit.tpl');	

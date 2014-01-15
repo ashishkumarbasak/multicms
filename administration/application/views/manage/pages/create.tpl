@@ -36,9 +36,27 @@
                                 <td> 
                                     <select name="mother_page" id="e1" style="width:400px;">
                                         <option value="0" {if isset($mother_page) && $mother_page==0} selected="selected" {/if}>none</option>
-                                        {foreach from=$list_of_pages item=mypage name=list_of_page key=pl}
-                                            <option value="{$mypage->page_id}" {if isset($mother_page) && $mother_page==$mypage->page_id} selected="selected" {/if} >{$mypage->page_title}</option>
-                                        {/foreach}
+                                        
+                                        {foreach from=$pagelist item=page name=listofpages key=pk}
+		                                	{assign var="sub_pages_index" value=$page->page_id}
+                                			{assign var="subpages" value=$sub_page_list[$sub_pages_index]}
+												<option value="{$page->page_id}" {if isset($mother_page) && $mother_page==$page->page_id} selected="selected" {/if} >{$page->page_title}</option>
+		                                    {foreach from=$subpages item=subpage name=listofsubpages key=spk}
+		                                    	{assign var="sub_pages_index2" value=$subpage->page_id}
+                                    			{assign var="subpages2" value=$sub_page_list2[$sub_pages_index2]}
+		                                    		<option value="{$subpage->page_id}" {if isset($mother_page) && $mother_page==$subpage->page_id} selected="selected" {/if} > - -{$subpage->page_title}</option>
+		                                        
+		                                        	{foreach from=$subpages2 item=subpage2 name=listofsubpages2 key2=spk2}
+		                                        		<option value="{$subpage2->page_id}" {if isset($mother_page) && $mother_page==$subpage2->page_id} selected="selected" {/if} > - - - -{$subpage2->page_title}</option>
+		                                        	{/foreach}
+		                                        
+		                                    {/foreach}
+										{/foreach}
+                                        
+                                        
+                                        
+                                        
+                                        
                                     </select>
                                 </td>
                             </tr>
@@ -270,7 +288,7 @@
                                                         <input type="hidden" name="additional_field_id_{$afk}" id="additional_field_id" value="{$additional_field->field_id}">
                                                     </td>
                                                     <td>
-                                                        <a class="close" href="javascript:void(0);" onclick="delete_additional_field('{$additional_field->field_id}');">×</a>
+                                                        <a class="close" href="javascript:void(0);" onclick="delete_additional_field('{$additional_field->field_id}');">��</a>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -353,7 +371,7 @@
                         	<td>
                     			<div id="example" class="modal hide fade in">
                                     <div class="modal-header">
-                                        <a class="close" data-dismiss="modal">×</a>
+                                        <a class="close" data-dismiss="modal">��</a>
                                         <h3>Aggiungi campo</h3>
                                     </div>
                                     <div id="ajax_loader" style="text-align:center; display:none;"> 

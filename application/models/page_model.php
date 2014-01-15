@@ -120,11 +120,13 @@ class Page_model extends CI_Model{
 			return NULL;
 	}
 	
-	function get_sub_pages($page_id=NULL){
+	function get_sub_pages($page_id=NULL, $language_id=NULL){
 		if($page_id!=NULL){
 			$this->db->select('*');
 			$this->db->from('pages');
 			$this->db->where('mother_page_id',$page_id);
+			if($language_id!=NULL)
+				$this->db->where('language_id',$language_id);
 			$this->db->order_by('page_order','ASC');
 				
 			$query = $this->db->get();

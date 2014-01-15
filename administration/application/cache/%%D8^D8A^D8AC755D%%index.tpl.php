@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.19, created on 2013-11-29 06:00:11
+<?php /* Smarty version 2.6.19, created on 2014-01-15 18:01:16
          compiled from manage/pages/index.tpl */ ?>
 <?php echo '
 <style type="text/css">
@@ -53,7 +53,8 @@ if ($this->_foreach['listofpages']['total'] > 0):
     foreach ($_from as $this->_tpl_vars['pk'] => $this->_tpl_vars['page']):
         $this->_foreach['listofpages']['iteration']++;
 ?>
-                                	<?php $this->assign('subpages', $this->_tpl_vars['sub_page_list'][$this->_tpl_vars['pk']]); ?>
+									<?php $this->assign('sub_pages_index', $this->_tpl_vars['page']->page_id); ?>
+                                	<?php $this->assign('subpages', $this->_tpl_vars['sub_page_list'][$this->_tpl_vars['sub_pages_index']]); ?>
 								<tr <?php if ($this->_tpl_vars['page']->mother_page_id == '0'): ?> <?php else: ?> class="blue_background" <?php endif; ?>>
 									<td><input type="checkbox" /></td>
 									<td>
@@ -100,7 +101,8 @@ if ($this->_foreach['listofsubpages']['total'] > 0):
     foreach ($_from as $this->_tpl_vars['spk'] => $this->_tpl_vars['subpage']):
         $this->_foreach['listofsubpages']['iteration']++;
 ?>
-                                    	<?php $this->assign('subpages2', $this->_tpl_vars['sub_page_list2'][$this->_tpl_vars['spk']]); ?>
+                                    	<?php $this->assign('sub_pages_index2', $this->_tpl_vars['subpage']->page_id); ?>
+                                    	<?php $this->assign('subpages2', $this->_tpl_vars['sub_page_list2'][$this->_tpl_vars['sub_pages_index2']]); ?>
                                     	<tr <?php if ($this->_tpl_vars['subpage']->mother_page_id == '0'): ?> <?php else: ?> class="blue_background" <?php endif; ?>>
                                             <td><input type="checkbox" /></td>
                                             <td>

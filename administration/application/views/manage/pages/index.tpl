@@ -46,7 +46,8 @@
 							
 							<tbody>
 								{foreach from=$pagelist item=page name=listofpages key=pk}
-                                	{assign var="subpages" value=$sub_page_list[$pk]}
+									{assign var="sub_pages_index" value=$page->page_id}
+                                	{assign var="subpages" value=$sub_page_list[$sub_pages_index]}
 								<tr {if $page->mother_page_id eq "0"} {else} class="blue_background" {/if}>
 									<td><input type="checkbox" /></td>
 									<td>
@@ -70,7 +71,8 @@
 									</td>
 								</tr>
                                     {foreach from=$subpages item=subpage name=listofsubpages key=spk}
-                                    	{assign var="subpages2" value=$sub_page_list2[$spk]}
+                                    	{assign var="sub_pages_index2" value=$subpage->page_id}
+                                    	{assign var="subpages2" value=$sub_page_list2[$sub_pages_index2]}
                                     	<tr {if $subpage->mother_page_id eq "0"} {else} class="blue_background" {/if}>
                                             <td><input type="checkbox" /></td>
                                             <td>

@@ -44,9 +44,9 @@ class Pages extends CI_Controller {
 			$this->template->set('author',$page_content->author);
 			
 			if($page_content->mother_page_id!="0")
-				$subpagelist = $this->page_model->get_sub_pages($page_content->mother_page_id);
+				$subpagelist = $this->page_model->get_sub_pages($page_content->mother_page_id, $this->language_id);
 			else
-				$subpagelist = $this->page_model->get_sub_pages($page_id);
+				$subpagelist = $this->page_model->get_sub_pages($page_id, NULL);
 				
 			if($this->uri->segment(1)!=NULL)
 			$this->template->set('mother_page_url',$this->uri->segment(2));

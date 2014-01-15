@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.19, created on 2013-11-29 05:42:33
+<?php /* Smarty version 2.6.19, created on 2014-01-15 12:58:28
          compiled from manage/pages/create.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'manage/pages/create.tpl', 133, false),array('modifier', 'count', 'manage/pages/create.tpl', 279, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'manage/pages/create.tpl', 149, false),array('modifier', 'count', 'manage/pages/create.tpl', 295, false),)), $this); ?>
 <link rel="stylesheet" href="<?php echo $this->_tpl_vars['baseurl']; ?>
 assets/js/jQuery-File-Upload/css/jquery.fileupload-ui.css">
 <?php echo '
@@ -43,15 +43,43 @@ assets/js/jQuery-File-Upload/css/jquery.fileupload-ui.css">
                                 <td> 
                                     <select name="mother_page" id="e1" style="width:400px;">
                                         <option value="0" <?php if (isset ( $this->_tpl_vars['mother_page'] ) && $this->_tpl_vars['mother_page'] == 0): ?> selected="selected" <?php endif; ?>>none</option>
-                                        <?php $_from = $this->_tpl_vars['list_of_pages']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['list_of_page'] = array('total' => count($_from), 'iteration' => 0);
-if ($this->_foreach['list_of_page']['total'] > 0):
-    foreach ($_from as $this->_tpl_vars['pl'] => $this->_tpl_vars['mypage']):
-        $this->_foreach['list_of_page']['iteration']++;
+                                        
+                                        <?php $_from = $this->_tpl_vars['pagelist']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['listofpages'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['listofpages']['total'] > 0):
+    foreach ($_from as $this->_tpl_vars['pk'] => $this->_tpl_vars['page']):
+        $this->_foreach['listofpages']['iteration']++;
 ?>
-                                            <option value="<?php echo $this->_tpl_vars['mypage']->page_id; ?>
-" <?php if (isset ( $this->_tpl_vars['mother_page'] ) && $this->_tpl_vars['mother_page'] == $this->_tpl_vars['mypage']->page_id): ?> selected="selected" <?php endif; ?> ><?php echo $this->_tpl_vars['mypage']->page_title; ?>
+		                                	<?php $this->assign('subpages', $this->_tpl_vars['sub_page_list'][$this->_tpl_vars['pk']]); ?>
+												<option value="<?php echo $this->_tpl_vars['page']->page_id; ?>
+" <?php if (isset ( $this->_tpl_vars['mother_page'] ) && $this->_tpl_vars['mother_page'] == $this->_tpl_vars['page']->page_id): ?> selected="selected" <?php endif; ?> ><?php echo $this->_tpl_vars['page']->page_title; ?>
 </option>
-                                        <?php endforeach; endif; unset($_from); ?>
+		                                    <?php $_from = $this->_tpl_vars['subpages']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['listofsubpages'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['listofsubpages']['total'] > 0):
+    foreach ($_from as $this->_tpl_vars['spk'] => $this->_tpl_vars['subpage']):
+        $this->_foreach['listofsubpages']['iteration']++;
+?>
+		                                    	<?php $this->assign('subpages2', $this->_tpl_vars['sub_page_list2'][$this->_tpl_vars['spk']]); ?>
+		                                    		<option value="<?php echo $this->_tpl_vars['subpage']->page_id; ?>
+" <?php if (isset ( $this->_tpl_vars['mother_page'] ) && $this->_tpl_vars['mother_page'] == $this->_tpl_vars['subpage']->page_id): ?> selected="selected" <?php endif; ?> > - -<?php echo $this->_tpl_vars['subpage']->page_title; ?>
+</option>
+		                                        
+		                                        	<?php $_from = $this->_tpl_vars['subpages2']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['listofsubpages2'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['listofsubpages2']['total'] > 0):
+    foreach ($_from as $this->_tpl_vars['subpage2']):
+        $this->_foreach['listofsubpages2']['iteration']++;
+?>
+		                                        		<option value="<?php echo $this->_tpl_vars['subpage2']->page_id; ?>
+" <?php if (isset ( $this->_tpl_vars['mother_page'] ) && $this->_tpl_vars['mother_page'] == $this->_tpl_vars['subpage2']->page_id): ?> selected="selected" <?php endif; ?> > - - - -<?php echo $this->_tpl_vars['subpage2']->page_title; ?>
+</option>
+		                                        	<?php endforeach; endif; unset($_from); ?>
+		                                        
+		                                    <?php endforeach; endif; unset($_from); ?>
+										<?php endforeach; endif; unset($_from); ?>
+                                        
+                                        
+                                        
+                                        
+                                        
                                     </select>
                                 </td>
                             </tr>
@@ -352,7 +380,7 @@ unset($_smarty_tpl_vars);
                                                     </td>
                                                     <td>
                                                         <a class="close" href="javascript:void(0);" onclick="delete_additional_field('<?php echo $this->_tpl_vars['additional_field']->field_id; ?>
-');">×</a>
+');">��</a>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -448,7 +476,7 @@ manage/pages/add_addition_field" method="post" enctype="multipart/form-data">
                         	<td>
                     			<div id="example" class="modal hide fade in">
                                     <div class="modal-header">
-                                        <a class="close" data-dismiss="modal">×</a>
+                                        <a class="close" data-dismiss="modal">��</a>
                                         <h3>Aggiungi campo</h3>
                                     </div>
                                     <div id="ajax_loader" style="text-align:center; display:none;"> 

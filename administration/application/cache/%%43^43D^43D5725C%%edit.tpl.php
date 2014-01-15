@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.19, created on 2013-12-02 13:40:00
+<?php /* Smarty version 2.6.19, created on 2014-01-15 18:04:29
          compiled from manage/pages/edit.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'manage/pages/edit.tpl', 135, false),array('modifier', 'in_array', 'manage/pages/edit.tpl', 231, false),array('modifier', 'count', 'manage/pages/edit.tpl', 284, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'manage/pages/edit.tpl', 148, false),array('modifier', 'in_array', 'manage/pages/edit.tpl', 244, false),array('modifier', 'count', 'manage/pages/edit.tpl', 297, false),)), $this); ?>
 <link rel="stylesheet" href="<?php echo $this->_tpl_vars['baseurl']; ?>
 assets/js/jQuery-File-Upload/css/jquery.fileupload-ui.css">
 <?php echo '
@@ -47,18 +47,43 @@ manage/pages/edit/<?php echo $this->_tpl_vars['page_id']; ?>
 								<td width="200">
                                 	<label>Mother page:</label>
 								</td>
-								<td> 
+								<td>
                                 	<select name="mother_page" id="e1" style="width:400px;">
+                                		
         								<option value="0" <?php if (isset ( $this->_tpl_vars['mother_page'] ) && $this->_tpl_vars['mother_page'] == 0): ?> selected="selected" <?php endif; ?>>none</option>
-        								<?php $_from = $this->_tpl_vars['list_of_pages']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['list_of_page'] = array('total' => count($_from), 'iteration' => 0);
-if ($this->_foreach['list_of_page']['total'] > 0):
-    foreach ($_from as $this->_tpl_vars['pl'] => $this->_tpl_vars['mypage']):
-        $this->_foreach['list_of_page']['iteration']++;
+        								<?php $_from = $this->_tpl_vars['pagelist']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['listofpages'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['listofpages']['total'] > 0):
+    foreach ($_from as $this->_tpl_vars['pk'] => $this->_tpl_vars['page']):
+        $this->_foreach['listofpages']['iteration']++;
 ?>
-                                        	<option value="<?php echo $this->_tpl_vars['mypage']->page_id; ?>
-" <?php if (isset ( $this->_tpl_vars['mother_page'] ) && $this->_tpl_vars['mother_page'] == $this->_tpl_vars['mypage']->page_id): ?> selected="selected" <?php elseif (isset ( $this->_tpl_vars['page_details'] ) && $this->_tpl_vars['page_details']->mother_page_id == $this->_tpl_vars['mypage']->page_id): ?> selected="selected" <?php endif; ?> ><?php echo $this->_tpl_vars['mypage']->page_title; ?>
+		                                	<?php $this->assign('sub_pages_index', $this->_tpl_vars['page']->page_id); ?>
+                                			<?php $this->assign('subpages', $this->_tpl_vars['sub_page_list'][$this->_tpl_vars['sub_pages_index']]); ?>
+												<option value="<?php echo $this->_tpl_vars['page']->page_id; ?>
+" <?php if (isset ( $this->_tpl_vars['mother_page'] ) && $this->_tpl_vars['mother_page'] == $this->_tpl_vars['page']->page_id): ?> selected="selected" <?php elseif (isset ( $this->_tpl_vars['page_details'] ) && $this->_tpl_vars['page_details']->mother_page_id == $this->_tpl_vars['page']->page_id): ?> selected="selected" <?php endif; ?> ><?php echo $this->_tpl_vars['page']->page_title; ?>
 </option>
-                                        <?php endforeach; endif; unset($_from); ?>
+		                                    <?php $_from = $this->_tpl_vars['subpages']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['listofsubpages'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['listofsubpages']['total'] > 0):
+    foreach ($_from as $this->_tpl_vars['spk'] => $this->_tpl_vars['subpage']):
+        $this->_foreach['listofsubpages']['iteration']++;
+?>
+		                                    	<?php $this->assign('sub_pages_index2', $this->_tpl_vars['subpage']->page_id); ?>
+                                    			<?php $this->assign('subpages2', $this->_tpl_vars['sub_page_list2'][$this->_tpl_vars['sub_pages_index2']]); ?>
+		                                    		<option value="<?php echo $this->_tpl_vars['subpage']->page_id; ?>
+" <?php if (isset ( $this->_tpl_vars['mother_page'] ) && $this->_tpl_vars['mother_page'] == $this->_tpl_vars['subpage']->page_id): ?> selected="selected" <?php elseif (isset ( $this->_tpl_vars['page_details'] ) && $this->_tpl_vars['page_details']->mother_page_id == $this->_tpl_vars['subpage']->page_id): ?> selected="selected" <?php endif; ?> > - -<?php echo $this->_tpl_vars['subpage']->page_title; ?>
+</option>
+		                                        
+		                                        	<?php $_from = $this->_tpl_vars['subpages2']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['listofsubpages2'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['listofsubpages2']['total'] > 0):
+    foreach ($_from as $this->_tpl_vars['subpage2']):
+        $this->_foreach['listofsubpages2']['iteration']++;
+?>
+		                                        		<option value="<?php echo $this->_tpl_vars['subpage2']->page_id; ?>
+" <?php if (isset ( $this->_tpl_vars['mother_page'] ) && $this->_tpl_vars['mother_page'] == $this->_tpl_vars['subpage2']->page_id): ?> selected="selected" <?php elseif (isset ( $this->_tpl_vars['page_details'] ) && $this->_tpl_vars['page_details']->mother_page_id == $this->_tpl_vars['subpage2']->page_id): ?> selected="selected" <?php endif; ?> > - - - -<?php echo $this->_tpl_vars['subpage2']->page_title; ?>
+</option>
+		                                        	<?php endforeach; endif; unset($_from); ?>
+		                                        
+		                                    <?php endforeach; endif; unset($_from); ?>
+										<?php endforeach; endif; unset($_from); ?>
 									</select>
 								</td>
 							</tr>
