@@ -146,8 +146,8 @@ class Packagings extends CI_Controller{
 					$this->phpsession->save('m_ref_packaging_id',$m_ref_packaging_id);
 					$this->template->assign('m_ref_packaging_id',$m_ref_packaging_id);
 				}					
-				$this->phpsession->save('package_updated_successfully',"yes");
-				$this->template->assign('package_updated_successfully',"yes");
+				$this->phpsession->save('package_update_successfully',"yes");
+				$this->template->assign('package_update_successfully',"yes");
 			} 	
 		}
 		

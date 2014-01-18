@@ -17,14 +17,15 @@
                             </div>
                         {/if}
                        	<ul class="nav nav-tabs">
-                          <li class="active"><a href="#home" data-toggle="tab">Informazioni</a></li>
-                          <li><a href="#profile" data-toggle="tab">Additional Fields</a></li>
-                          <li><a href="#seo" data-toggle="tab">Seo</a></li>
-                          <li><a href="#tab_packaging" data-toggle="tab">Packaging</a></li>
-                          <li><a href="#show_in_pages" data-toggle="tab">Show In Pages</a></li>
-                          <li><a href="{$baseurl}manage/products/edit/{$page_id}/slideshow">Slideshow</a></li>
-                          <li><a href="{$baseurl}manage/products/edit/{$page_id}/videos">Videos</a></li>
-  						  <li><a href="{$baseurl}manage/products/edit/{$page_id}/files">Files</a></li>
+                          <li class="active"><a href="#home" data-toggle="tab" style="font-size: 14px;">Informazioni</a></li>
+                          <li><a href="#profile" data-toggle="tab" style="font-size: 14px;">Additional Fields</a></li>
+                          <li><a href="#seo" data-toggle="tab" style="font-size: 14px;">Seo</a></li>
+                          <li><a href="#tab_packaging" data-toggle="tab" style="font-size: 14px;">Packaging</a></li>
+                          <li><a href="#tab_features" data-toggle="tab" style="font-size: 14px;">Features</a></li>
+                          <li><a href="#show_in_pages" data-toggle="tab" style="font-size: 14px;">Show In Pages</a></li>
+                          <li><a href="{$baseurl}manage/products/edit/{$page_id}/slideshow" style="font-size: 14px;">Slideshow</a></li>
+                          <li><a href="{$baseurl}manage/products/edit/{$page_id}/videos" style="font-size: 14px;">Videos</a></li>
+  						  <li><a href="{$baseurl}manage/products/edit/{$page_id}/files" style="font-size: 14px;">Files</a></li>
 						</ul>
 
 <div class="tab-content">
@@ -429,6 +430,31 @@
 								</tr>
 							</table>
 							</div>
+                            
+                            
+                            
+                            
+                            <div class="tab-pane" id="tab_features"> 
+                            <table cellpadding="0" cellspacing="0" width="100%" class="sortable">
+                            	
+                            	{foreach from=$features_list item=feature name=listofproductfeatures key=fk}
+                            			<tr>
+											<td width="200">
+												<label>{$feature->feature_title}:<br><img src="{$baseurl}assets/images/flags/png/{$lang_code}.png" style="border:0px; padding-top:3px;"></label>
+											</td>
+											<td>
+												<input name="feature_value_{$feature->feature_id}" type="text" class="text small" id="feature_value_{$feature->feature_id}" value="{if array_key_exists($feature->feature_id, $feature_values)} {assign var='x' value=$feature->feature_id}{$feature_values[$x]} {/if}" />	
+												<input type="hidden" name="feature_ids[]" id="feature_ids" value="{$feature->feature_id}">                    
+		                                	</td>
+										</tr>
+                            	{/foreach}	
+								
+							</table>
+							</div>
+                            
+                            
+                            
+                            
                             
                             
                             

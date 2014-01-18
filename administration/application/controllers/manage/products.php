@@ -8,7 +8,8 @@ class Products extends CI_Controller{
 		$this->load->library(array('myvalidation','fileuploader','pagination'));
 		$this->load->model('manage/page_model');
 		$this->load->model('manage/language_model');
-		$this->load->model('manage/packaging_model');			
+		$this->load->model('manage/packaging_model');
+		$this->load->model('manage/feature_model');			
 		$this->userauthentication->check_sessionexpire();
 		$this->language_id = $this->userauthentication->get_language();
 		$this->template->assign('lang_id',$this->language_id);
@@ -259,6 +260,17 @@ class Products extends CI_Controller{
 					}
 				}
 				
+				$feature_ids = $this->input->post('feature_ids');
+				if(is_array($feature_ids) && !empty($feature_ids)){
+					$this->feature_model->clean_product_features($product_id, $this->language_id);
+					foreach($feature_ids as $feature_key=>$feature_id){
+						$feature_value = $this->input->post('feature_value_'.$feature_id);
+						if($feature_value!=NULL){
+							$this->feature_model->add_feature_to_product($feature_id, $product_id, $this->language_id, $feature_value);
+						}
+					}
+				}
+				
 				
 				if($m_ref_page_id!=NULL){
 					$this->phpsession->save('m_ref_page_id',$m_ref_page_id);
@@ -327,6 +339,18 @@ class Products extends CI_Controller{
 			array_push($packaging_ids, $v->packaging_id);
 		}
 		$this->template->assign('packaging_ids',$packaging_ids);
+		
+		$features_list = $this->feature_model->get_all_features($limit=NULL, $offset=NULL,$this->language_id);
+		$this->template->assign('features_list',$features_list);
+		
+		$product_features = $this->feature_model->get_product_features($product_id, $this->language_id);
+		$feature_values = array();
+		if($product_features!=NULL)
+		foreach($product_features as $k=>$v){
+			$feature_values[$v->feature_id] = $v->feature_value;
+		}
+		$this->template->assign('feature_values',$feature_values);
+		
 		
 		$this->template->assign('list_of_templates',$list_of_templates);
 		$this->template->assign('page_id',$page_id);			

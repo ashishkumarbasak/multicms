@@ -567,6 +567,24 @@ public $data;
 		}
 	}
 	
+	function validate_feature_details(){
+		$this->data['feature_title']	= $this->obj->input->post('feature_title');
+		$this->data['feature_description']	= $this->obj->input->post('feature_description');
+
+		foreach($this->data as $key=>$value){
+			$this->obj->template->assign($key, $value);
+		}
+
+		if ($this->data['feature_title'] == '')
+		{ 		
+			array_push($this->error,'feature_title_blank');
+		}
+
+		foreach($this->error as $key=>$value){
+			$this->obj->template->assign($value, 'true');
+		}
+	}
+	
 	function validate_match_details()
 	{
 		$this->data['date']	= $this->obj->input->post('date');

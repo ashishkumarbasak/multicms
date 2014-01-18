@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.19, created on 2013-11-28 20:31:25
+<?php /* Smarty version 2.6.19, created on 2014-01-17 13:55:02
          compiled from layouts/header.tpl */ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -84,6 +84,12 @@ manage/packagings/?lang=<?php echo $this->_tpl_vars['lang_code']; ?>
 							<li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
 manage/packagings/create2/?lang=<?php echo $this->_tpl_vars['lang_code']; ?>
 ">Aggiungi Packaging</a></li>
+							<li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
+manage/features/?lang=<?php echo $this->_tpl_vars['lang_code']; ?>
+">Elenco Features</a></li>
+							<li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
+manage/features/create2/?lang=<?php echo $this->_tpl_vars['lang_code']; ?>
+">Aggiungi Features</a></li>
 						</ul>
 					</li>
 					

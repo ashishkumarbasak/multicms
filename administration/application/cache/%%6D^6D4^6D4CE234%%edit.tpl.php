@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.19, created on 2014-01-08 18:12:01
+<?php /* Smarty version 2.6.19, created on 2014-01-17 18:22:13
          compiled from manage/products/edit.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'manage/products/edit.tpl', 114, false),array('modifier', 'count', 'manage/products/edit.tpl', 243, false),array('modifier', 'in_array', 'manage/products/edit.tpl', 304, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'manage/products/edit.tpl', 115, false),array('modifier', 'count', 'manage/products/edit.tpl', 244, false),array('modifier', 'in_array', 'manage/products/edit.tpl', 305, false),)), $this); ?>
 <link rel="stylesheet" href="<?php echo $this->_tpl_vars['baseurl']; ?>
 assets/js/jQuery-File-Upload/css/jquery.fileupload-ui.css">
 <?php echo '
@@ -23,20 +23,21 @@ assets/js/jQuery-File-Upload/css/jquery.fileupload-ui.css">
                             </div>
                         <?php endif; ?>
                        	<ul class="nav nav-tabs">
-                          <li class="active"><a href="#home" data-toggle="tab">Informazioni</a></li>
-                          <li><a href="#profile" data-toggle="tab">Additional Fields</a></li>
-                          <li><a href="#seo" data-toggle="tab">Seo</a></li>
-                          <li><a href="#tab_packaging" data-toggle="tab">Packaging</a></li>
-                          <li><a href="#show_in_pages" data-toggle="tab">Show In Pages</a></li>
+                          <li class="active"><a href="#home" data-toggle="tab" style="font-size: 14px;">Informazioni</a></li>
+                          <li><a href="#profile" data-toggle="tab" style="font-size: 14px;">Additional Fields</a></li>
+                          <li><a href="#seo" data-toggle="tab" style="font-size: 14px;">Seo</a></li>
+                          <li><a href="#tab_packaging" data-toggle="tab" style="font-size: 14px;">Packaging</a></li>
+                          <li><a href="#tab_features" data-toggle="tab" style="font-size: 14px;">Features</a></li>
+                          <li><a href="#show_in_pages" data-toggle="tab" style="font-size: 14px;">Show In Pages</a></li>
                           <li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
 manage/products/edit/<?php echo $this->_tpl_vars['page_id']; ?>
-/slideshow">Slideshow</a></li>
+/slideshow" style="font-size: 14px;">Slideshow</a></li>
                           <li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
 manage/products/edit/<?php echo $this->_tpl_vars['page_id']; ?>
-/videos">Videos</a></li>
+/videos" style="font-size: 14px;">Videos</a></li>
   						  <li><a href="<?php echo $this->_tpl_vars['baseurl']; ?>
 manage/products/edit/<?php echo $this->_tpl_vars['page_id']; ?>
-/files">Files</a></li>
+/files" style="font-size: 14px;">Files</a></li>
 						</ul>
 
 <div class="tab-content">
@@ -621,6 +622,42 @@ if ($this->_foreach['listofpackagings']['total'] > 0):
 								</tr>
 							</table>
 							</div>
+                            
+                            
+                            
+                            
+                            <div class="tab-pane" id="tab_features"> 
+                            <table cellpadding="0" cellspacing="0" width="100%" class="sortable">
+                            	
+                            	<?php $_from = $this->_tpl_vars['features_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['listofproductfeatures'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['listofproductfeatures']['total'] > 0):
+    foreach ($_from as $this->_tpl_vars['fk'] => $this->_tpl_vars['feature']):
+        $this->_foreach['listofproductfeatures']['iteration']++;
+?>
+                            			<tr>
+											<td width="200">
+												<label><?php echo $this->_tpl_vars['feature']->feature_title; ?>
+:<br><img src="<?php echo $this->_tpl_vars['baseurl']; ?>
+assets/images/flags/png/<?php echo $this->_tpl_vars['lang_code']; ?>
+.png" style="border:0px; padding-top:3px;"></label>
+											</td>
+											<td>
+												<input name="feature_value_<?php echo $this->_tpl_vars['feature']->feature_id; ?>
+" type="text" class="text small" id="feature_value_<?php echo $this->_tpl_vars['feature']->feature_id; ?>
+" value="<?php if (array_key_exists ( $this->_tpl_vars['feature']->feature_id , $this->_tpl_vars['feature_values'] )): ?> <?php $this->assign('x', $this->_tpl_vars['feature']->feature_id); ?><?php echo $this->_tpl_vars['feature_values'][$this->_tpl_vars['x']]; ?>
+ <?php endif; ?>" />	
+												<input type="hidden" name="feature_ids[]" id="feature_ids" value="<?php echo $this->_tpl_vars['feature']->feature_id; ?>
+">                    
+		                                	</td>
+										</tr>
+                            	<?php endforeach; endif; unset($_from); ?>	
+								
+							</table>
+							</div>
+                            
+                            
+                            
+                            
                             
                             
                             

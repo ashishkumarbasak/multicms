@@ -40,6 +40,8 @@
 							<li><a href="{$baseurl}manage/products/create2/?lang={$lang_code}">Aggiungi Prodotti</a></li>
 							<li><a href="{$baseurl}manage/packagings/?lang={$lang_code}">Elenco Packaging</a></li>
 							<li><a href="{$baseurl}manage/packagings/create2/?lang={$lang_code}">Aggiungi Packaging</a></li>
+							<li><a href="{$baseurl}manage/features/?lang={$lang_code}">Elenco Features</a></li>
+							<li><a href="{$baseurl}manage/features/create2/?lang={$lang_code}">Aggiungi Features</a></li>
 						</ul>
 					</li>
 					
