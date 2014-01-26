@@ -3,7 +3,7 @@
 		<?php //echo $this->template->block('navHeadermenu', 'layouts/_navigation_menu.php'); ?>
 				
 		<?php echo $this->template->message(); ?>
-		<?php echo $this->template->yield(); ?>
+		<?php echo $this->template->yieldContent(); ?>
 		
 	    <?php echo $this->template->block('footer', 'layouts/_footer.php'); ?>
 	

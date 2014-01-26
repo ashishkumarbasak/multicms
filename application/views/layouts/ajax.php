@@ -16,5 +16,5 @@ if(isset($page_css) AND $page_css != ''){
 	else 
 		echo '<link rel="stylesheet" type="text/css" href="'.CSSPATH.$page_css.'.css" />';
 }
-echo $this->template->yield(); 
+echo $this->template->yieldContent(); 
 ?>

@@ -293,7 +293,7 @@ class Template {
 			
 		}
 		
-		$output = str_replace('{yield}', $this->yield(true), $output);	
+		$output = str_replace('{yield}', $this->yieldContent(true), $output);	
 		
 		global $OUT;
 		$OUT->set_output($output);
@@ -311,7 +311,7 @@ class Template {
 	 * @access public
 	 * @return void
 	 */
-	public function yield($bypass=false) 
+	public function yieldContent($bypass=false) 
 	{ 
 		$this->_mark('Template_Yield_start');
 		
