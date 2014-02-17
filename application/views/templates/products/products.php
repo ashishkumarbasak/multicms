@@ -40,7 +40,43 @@
 
 		</div>
 		<!-- Slider -->
+		
+		
+		
 		<div class="two-thirds column">
+			
+		
+		<table class="products-table">
+			<tr>
+				<th colspan="2">Product Features</th>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<div style="margin-top: 10px; margin-bottom: 30px;">
+						<ul>
+							<?php echo render_product_feature($page_id); ?>
+						</ul>
+					</div>
+				</td>
+			</tr>
+		</table>
+		
+		
+		<table class="products-table">
+			<tr>
+				<th colspan="2">Product Packagings</th>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<div style="margin-top: 10px; margin-bottom: 30px;">
+						<ul>
+							<?php echo render_product_packages($page_id); ?>
+						</ul>
+					</div>
+				</td>
+			</tr>
+		</table>
+			
 		<table class="products-table">
 
 				<tr>

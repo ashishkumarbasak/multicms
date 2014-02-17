@@ -120,6 +120,26 @@ class Page_model extends CI_Model{
 			return NULL;
 	}
 	
+	function get_motherpage_lists_for_menu($menu_id=NULL, $language_id=NULL){
+		if($menu_id!=NULL){
+			$this->db->select('*');
+			$this->db->from('menu_pages');
+			$this->db->join('pages','menu_pages.page_id=pages.page_id','left');
+			$this->db->where('menu_id',$menu_id);
+			$this->db->where('mother_page_id','0');
+			if($language_id!=NULL)
+			$this->db->where('language_id',$language_id);
+			$this->db->order_by('page_order','ASC');
+			$query = $this->db->get();
+			
+			if($query->num_rows() > 0){
+				return $query->result();
+			}
+			else
+				return NULL;
+		}
+	}
+	
 	function get_sub_pages($page_id=NULL, $language_id=NULL){
 		if($page_id!=NULL){
 			$this->db->select('*');
@@ -251,6 +271,64 @@ class Page_model extends CI_Model{
 		}else{
 			return NULL;
 		}
+	}
+	
+	function get_product_features($product_id=NULL, $language_id=NULL){
+		if($product_id!=NULL){
+			$this->db->select('*');
+			$this->db->from('product_features');
+			$this->db->join('features','product_features.feature_id=features.feature_id','left');
+			$this->db->where('product_id',$product_id);
+			if($language_id!=NULL)
+			$this->db->where('product_features.language_id',$language_id);
+			
+			$query =$this->db->get();
+			if($query->num_rows() > 0){
+				return $result =  $query->result();
+			}
+			else
+				return NULL;
+		}else{
+			return NULL;
+		}
+	}
+	
+	function get_product_packages($product_id=NULL, $language_id=NULL){
+		if($product_id!=NULL){
+			$this->db->select('*');
+			$this->db->from('product_packages');
+			$this->db->join('packagings','product_packages.packaging_id=packagings.packaging_id','left');
+			$this->db->where('product_id',$product_id);
+			if($language_id!=NULL)
+			$this->db->where('product_packages.language_id',$language_id);
+			
+			$query =$this->db->get();
+			if($query->num_rows() > 0){
+				return $result =  $query->result();
+			}
+			else
+				return NULL;
+		}else{
+			return NULL;
+		}
+	}
+	
+	function get_product_id_from_page_id($page_id=NULL){
+		if($page_id!=NULL){
+			$this->db->select('product_id');
+			$this->db->from('products');
+			$this->db->where('page_id',$page_id);
+			
+			$query =$this->db->get();
+			if($query->num_rows() > 0){
+				$result =  $query->result();
+				return $result[0]->product_id;
+			}
+			else
+				return NULL;
+		}
+		else
+			return NULL;
 	}
 	
 

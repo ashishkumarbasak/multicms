@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.19, created on 2014-01-15 12:58:28
+<?php /* Smarty version 2.6.19, created on 2014-02-12 14:21:09
          compiled from manage/pages/create.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'manage/pages/create.tpl', 149, false),array('modifier', 'count', 'manage/pages/create.tpl', 295, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'manage/pages/create.tpl', 151, false),array('modifier', 'count', 'manage/pages/create.tpl', 297, false),)), $this); ?>
 <link rel="stylesheet" href="<?php echo $this->_tpl_vars['baseurl']; ?>
 assets/js/jQuery-File-Upload/css/jquery.fileupload-ui.css">
 <?php echo '
@@ -49,7 +49,8 @@ if ($this->_foreach['listofpages']['total'] > 0):
     foreach ($_from as $this->_tpl_vars['pk'] => $this->_tpl_vars['page']):
         $this->_foreach['listofpages']['iteration']++;
 ?>
-		                                	<?php $this->assign('subpages', $this->_tpl_vars['sub_page_list'][$this->_tpl_vars['pk']]); ?>
+		                                	<?php $this->assign('sub_pages_index', $this->_tpl_vars['page']->page_id); ?>
+                                			<?php $this->assign('subpages', $this->_tpl_vars['sub_page_list'][$this->_tpl_vars['sub_pages_index']]); ?>
 												<option value="<?php echo $this->_tpl_vars['page']->page_id; ?>
 " <?php if (isset ( $this->_tpl_vars['mother_page'] ) && $this->_tpl_vars['mother_page'] == $this->_tpl_vars['page']->page_id): ?> selected="selected" <?php endif; ?> ><?php echo $this->_tpl_vars['page']->page_title; ?>
 </option>
@@ -58,7 +59,8 @@ if ($this->_foreach['listofsubpages']['total'] > 0):
     foreach ($_from as $this->_tpl_vars['spk'] => $this->_tpl_vars['subpage']):
         $this->_foreach['listofsubpages']['iteration']++;
 ?>
-		                                    	<?php $this->assign('subpages2', $this->_tpl_vars['sub_page_list2'][$this->_tpl_vars['spk']]); ?>
+		                                    	<?php $this->assign('sub_pages_index2', $this->_tpl_vars['subpage']->page_id); ?>
+                                    			<?php $this->assign('subpages2', $this->_tpl_vars['sub_page_list2'][$this->_tpl_vars['sub_pages_index2']]); ?>
 		                                    		<option value="<?php echo $this->_tpl_vars['subpage']->page_id; ?>
 " <?php if (isset ( $this->_tpl_vars['mother_page'] ) && $this->_tpl_vars['mother_page'] == $this->_tpl_vars['subpage']->page_id): ?> selected="selected" <?php endif; ?> > - -<?php echo $this->_tpl_vars['subpage']->page_title; ?>
 </option>

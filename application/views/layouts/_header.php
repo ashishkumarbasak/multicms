@@ -36,39 +36,33 @@
 			
 		<!-- Logo -->
 		<div class="four columns">
-			<a href="<?php echo base_url();?><?php echo CURRENT_LANGUAGE."/"; ?>"><img src="<?php echo base_url();?>assets/images/logo.png" alt=""/></a>
+			<a href="<?php echo base_url();?><?php if($this->config->item('project_type')=="multicms") echo CURRENT_LANGUAGE."/"; ?>"><img src="<?php echo base_url();?>assets/images/logo.png" alt=""/></a>
 		</div>
 		
 		<!-- Main Navigation Start -->
 		<div class="twelve columns omega alpha">
 		<div id="navigation-small">
 				<ul id="nav">
-							
-					<li><a href="<?php echo base_url();?><?php echo CURRENT_LANGUAGE."/"; ?>">Home</a></li>
-					<li><a href="<?php echo base_url(); ?><?php echo CURRENT_LANGUAGE."/"; ?>chi-siamo">Chi siamo</a></li>
-					<li><a href="#">Dove siamo</a></li>
-					<li><a href="<?php echo base_url(); ?><?php echo CURRENT_LANGUAGE."/"; ?>contatto">Contatto</a></li>
-					 <?php if($langlist!=NULL) { ?>
+					<?php echo render_menu($menu_id=3, $level=1); ?>
+					 
+					<?php if($langlist!=NULL && $this->config->item('project_type')=="multicms") { ?>
 						<?php foreach($langlist as $key=>$value) { ?>
-                           <li class="language"> <a href="javascript:void(0);" onClick="setlanguage('<?php echo $value->flag; ?>');">    <img src="<?php echo base_url(); ?>administration/assets/images/flags/png/<?php echo $value->flag; ?>.png"></a></li>
-                       
-                        <?php } ?>
-                    <?php } ?>
+                       		<li class="language"> <a href="javascript:void(0);" onClick="setlanguage('<?php echo $value->flag; ?>');">    <img src="<?php echo base_url(); ?>administration/assets/images/flags/png/<?php echo $value->flag; ?>.png"></a></li>
+                       	<?php } ?>
+                   	<?php } ?>
 				</ul>
 			</div>
 
 
 			<div id="navigation">
 				<ul id="nav">
-			  <?php if($motherpage_lists!=NULL) { ?>
-						<?php foreach($motherpage_lists as $key=>$value){ ?>
-                        	<li><a href="<?php echo base_url(); ?><?php echo CURRENT_LANGUAGE."/"; ?><?php echo $value->page_url; ?>"><?php echo $value->page_title; ?></a></li>
-                        <?php }?>
-                    <?php } ?>
+			  		<?php echo render_menu($menu_id=2, $level=3); ?>
 				</ul>
 			</div>
 		</div>
 		<!-- Main Navigation End -->
+		
+		
 		
 	</div>
 	<!-- 960 Container End -->

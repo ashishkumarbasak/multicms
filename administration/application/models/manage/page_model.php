@@ -188,7 +188,8 @@ class Page_model extends CI_Model{
 			$this->db->set('page_seokeywords',$data['page_seokeywords']);
 			$this->db->set('page_seodescription',$data['page_seodescription']);
 		
-			$this->db->set('page_url',strtolower($this->safeURL($data['page_url'])));
+			//$this->db->set('page_url',strtolower($this->safeURL($data['page_url'])));
+			$this->db->set('page_url',$data['page_url']);
 			
 			if($data['main_photo']!="" && $data['main_photo']!=NULL)
 			$this->db->set('photo',$data['main_photo']);

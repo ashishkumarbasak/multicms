@@ -337,18 +337,136 @@ function list_subpages_upto3level($page_id=NULL){
 		if($subpagelist!=NULL){
 			echo "<ul>";
 			foreach ($subpagelist as $key => $value) {
-				echo "<li><a href='".base_url() . CURRENT_LANGUAGE. "/" .$mother_page_url."/".$value->page_url. "'>".$value->page_title."</a></li>";
+				if($CI->config->item('project_type')=="multicms"){
+					echo "<li><a href='".base_url() . CURRENT_LANGUAGE. "/" .$mother_page_url."/".$value->page_url. "'>".$value->page_title."</a></li>";	
+				}else{
+					echo "<li><a href='".base_url() .$mother_page_url."/".$value->page_url. "'>".$value->page_title."</a></li>";
+				}
+				
 				$subpagelist2 = $CI->page_model->get_sub_pages($value->page_id);
 				if($subpagelist2!=NULL){
 					echo "<ul>";
 					foreach ($subpagelist2 as $key2 => $value2) {
-						echo "<li><a href='".base_url() . CURRENT_LANGUAGE. "/" .$mother_page_url ."/". $value->page_url."/".$value2->page_url. "'>".$value2->page_title."</a></li>";
+						if($CI->config->item('project_type')=="multicms"){
+							echo "<li><a href='".base_url() . CURRENT_LANGUAGE. "/" .$mother_page_url ."/". $value->page_url."/".$value2->page_url. "'>".$value2->page_title."</a></li>";		
+						}else{
+							echo "<li><a href='".base_url() . $mother_page_url ."/". $value->page_url."/".$value2->page_url. "'>".$value2->page_title."</a></li>";
+						}
 					}
 					echo "</ul>";
 				}
 				
 			}
 			echo "</ul>";
+		}
+	}
+}
+
+function render_menu($menu_id=NULL, $level=NULL){
+	if($menu_id!=NULL){
+		if($level!=NULL) $level=$level; else $level=1;
+		$CI =& get_instance();
+		$CI->load->model('page_model');
+		$language_id = $CI->language_model->get_language_id(CURRENT_LANGUAGE);
+		
+		$motherpage_lists = $CI->page_model->get_motherpage_lists_for_menu($menu_id,$language_id);	
+		
+		if($motherpage_lists!=NULL) {
+			foreach($motherpage_lists as $key=>$value){
+				if($CI->config->item('project_type')=="multicms"){
+					echo '<li><a href="'.base_url().CURRENT_LANGUAGE.'/'.$value->page_url.'">'.$value->page_title.'</a>';
+					if($level==2 || $level==3){
+						$subpages1 = $CI->page_model->get_sub_pages($value->page_id);
+						if($subpages1!=NULL) {
+							echo "<ul>";
+							foreach($subpages1 as $key1=>$value1){
+								echo '<li><a href="'.base_url().CURRENT_LANGUAGE.'/'.$value1->page_url.'">'.$value1->page_title.'</a>';
+								if($level==3){
+									$subpages2 = $CI->page_model->get_sub_pages($value1->page_id);
+									if($subpages2!=NULL) {
+										echo "<ul>";
+										foreach($subpages2 as $key2=>$value2){
+											echo '<li><a href="'.base_url().CURRENT_LANGUAGE.'/'.$value2->page_url.'">'.$value2->page_title.'</a>';	
+										}
+										echo "</ul>";
+									}
+								}
+								echo '</li>';
+							}
+							echo "</ul>";
+						}
+					}
+					echo '</li>';	
+				}else{
+					echo '<li><a href="'.base_url().$value->page_url.'">'.$value->page_title.'</a>';
+					if($level==2 || $level==3){
+						$subpages1 = $CI->page_model->get_sub_pages($value->page_id);
+						if($subpages1!=NULL) {
+							echo "<ul>";
+							foreach($subpages1 as $key1=>$value1){
+								echo '<li><a href="'.base_url().$value1->page_url.'">'.$value1->page_title.'</a>';
+								if($level==3){
+									$subpages2 = $CI->page_model->get_sub_pages($value1->page_id);
+									if($subpages2!=NULL) {
+										echo "<ul>";
+										foreach($subpages2 as $key2=>$value2){
+											echo '<li><a href="'.base_url().$value2->page_url.'">'.$value2->page_title.'</a>';	
+										}
+										echo "</ul>";
+									}
+								}
+								echo '</li>';
+							}
+							echo "</ul>";
+						}
+					}
+					echo '</li>';
+				}
+         	}
+     	}
+	}
+}
+
+
+
+function render_product_feature($page_id=NULL){
+	if($page_id!=NULL){
+		$CI =& get_instance();
+		$CI->load->model('page_model');
+		$product_id = $CI->page_model->get_product_id_from_page_id($page_id);
+		if($product_id!=NULL){
+			$language_id = $CI->language_model->get_language_id(CURRENT_LANGUAGE);
+			$product_features = $CI->page_model->get_product_features($product_id,$language_id);
+			if($product_features!=NULL){
+				foreach ($product_features as $key => $value) {
+					echo "<li style='list-style:none;'>";
+					echo "<div style='width:130px; float:left; display:inline;'>".$value->feature_title."</div>";
+					echo "<div style='width:200px; float:left; display:inline;'>: ".$value->feature_value."</div>";
+					echo "<div style='clear:both;'></div>";
+					echo "</li>";
+				}
+			}
+		}
+	}
+}
+
+function render_product_packages($page_id=NULL){
+	if($page_id!=NULL){
+		$CI =& get_instance();
+		$CI->load->model('page_model');
+		$product_id = $CI->page_model->get_product_id_from_page_id($page_id);
+		if($product_id!=NULL){
+			$language_id = $CI->language_model->get_language_id(CURRENT_LANGUAGE);
+			$product_packagings = $CI->page_model->get_product_packages($product_id,$language_id);
+			if($product_packagings!=NULL){
+				foreach ($product_packagings as $key => $value) {
+					echo "<li style='list-style:none;'>";
+					echo "<div style='width:130px; float:left; display:inline;'>".$value->pack_title."</div>";
+					echo "<div style='width:200px; float:left; display:inline;'>: ".$value->package_code_value."</div>";
+					echo "<div style='clear:both;'></div>";
+					echo "</li>";
+				}
+			}
 		}
 	}
 }

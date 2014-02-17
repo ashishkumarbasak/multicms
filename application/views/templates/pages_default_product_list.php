@@ -33,10 +33,22 @@
     	<?php foreach($subpagelist as $key=>$value) { ?>
     		
         	<?php 
-				if(isset($mother_page_url) && $mother_page_url!=NULL)
-					$usrl = base_url().CURRENT_LANGUAGE."/".$mother_page_url."/".$value->page_url;
-				else
-					$usrl = base_url().CURRENT_LANGUAGE."/".$value->page_url;
+				if(isset($mother_page_url) && $mother_page_url!=NULL){
+					if($this->config->item('project_type')=="multicms"){
+						$usrl = base_url().CURRENT_LANGUAGE."/".$mother_page_url."/".$value->page_url;
+					}else{
+						$usrl = base_url().$mother_page_url."/".$value->page_url;
+					}	
+					
+				}
+				else{
+					if($this->config->item('project_type')=="multicms"){
+						$usrl = base_url().CURRENT_LANGUAGE."/".$value->page_url;
+					}else{
+						$usrl = base_url().$value->page_url;
+					}
+					
+				}
 			?>
             <li><a href="<?php echo $usrl; ?>"><?php echo $value->page_title; ?></a></li>
         <?php } ?>

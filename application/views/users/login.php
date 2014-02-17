@@ -12,7 +12,7 @@
 	<div class="portfolio-item-meta">
 					<h1 class="headline">AREA RISERVATA</h1>
 							<div id="contact-form">
-			<form id="login" name="login_form" method="post" action="<?php echo base_url();?><?php echo CURRENT_LANGUAGE."/";?><?php echo $this->config->item('login_url');?>">
+			<form id="login" name="login_form" method="post" action="<?php echo base_url();?><?php if($this->config->item('project_type')=="multicms") echo CURRENT_LANGUAGE."/";?><?php echo $this->config->item('login_url');?>">
                             
       									
                                                         

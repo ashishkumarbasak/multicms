@@ -11,8 +11,9 @@ class Pages extends CI_Controller {
 	}
 	
 	function index($url_slug=NULL){
-		//echo $url_slug;
+		$url_slug = urldecode($url_slug);
 		$page_id = $this->page_model->get_page_id($url_slug, $this->language_id);
+		//exit(0);
 		if($page_id!=NULL){
 			$page_content = $this->page_model->get_page_content($page_id);
 			$addition_content =  $this->page_model->get_page_additional_content($page_id);
@@ -175,7 +176,12 @@ class Pages extends CI_Controller {
 			$page_url = $this->page_model->get_url_slug($m_page_ref_id,$this->language_id);
 			if($page_url!=NULL)
 			{
-				redirect(CURRENT_LANGUAGE."/".$page_url,'refresh');
+				if($this->config->item('project_type')=="multicms"){
+					redirect(CURRENT_LANGUAGE."/".$page_url,'refresh');
+				}else{
+					redirect($page_url,'refresh');
+				}
+				
 			}
 			else
 				redirect('','refresh');

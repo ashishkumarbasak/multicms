@@ -20,7 +20,7 @@
 	
 
 		<div class="eight columns">
-			<div id="copyright">© Copyright 2012 by <span>Incredible</span>. All Rights Reserved.</div>
+			<div id="copyright">&copy; Copyright 2012 by <span>Incredible</span>. All Rights Reserved.</div>
 		</div>
 				
 		<div class="eight columns">

@@ -29,6 +29,7 @@ $config['base_url'] .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER
 |
 */
 $config['project_folder_name'] = '';
+$config['project_type'] = 'multicms'; //multicms or monocms
 $config['index_page'] = '';
 
 /*

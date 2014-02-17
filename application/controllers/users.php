@@ -33,7 +33,12 @@ class Users extends CI_Controller{
 		//$this->phpsession->clear();
 		$is_loggedin_true = $this->authentication->is_loggedin();
 		if($is_loggedin_true)
-			redirect(CURRENT_LANGUAGE."/".$this->config->item('dashboard_url'),'refresh');
+			if($this->config->item('project_type')=="multicms"){
+				redirect(CURRENT_LANGUAGE."/".$this->config->item('dashboard_url'),'refresh');
+			}else{
+				redirect($this->config->item('dashboard_url'),'refresh');
+			}
+			
 			//print_r($_SESSION);
 		if($this->input->post('signin')){
 			$this->authentication->authenticate_user();
@@ -59,7 +64,12 @@ class Users extends CI_Controller{
 		}
 		else if($login_fail_counter>=6){
 			$this->phpsession->save('login_fail_counter',3);
-			redirect(CURRENT_LANGUAGE."/".$this->config->item('passrecover_url'),'refresh');
+			if($this->config->item('project_type')=="multicms"){
+				redirect(CURRENT_LANGUAGE."/".$this->config->item('passrecover_url'),'refresh');
+			}else{
+				redirect($this->config->item('passrecover_url'),'refresh');
+			}
+			
 		}
 		$this->template->set('page_js',array('login'));
 		$this->template->render();
@@ -80,8 +90,14 @@ class Users extends CI_Controller{
 	function signup($type=NULL, $invitation_code=NULL){
 		$this->phpsession->save('signup_page_url',uri_string());		
 		$is_loggedin_true = $this->authentication->is_loggedin();
-		if($is_loggedin_true)
-			redirect(CURRENT_LANGUAGE."/".$this->config->item('dashboard_url'),'refresh');
+		if($is_loggedin_true){
+			if($this->config->item('project_type')=="multicms"){
+				redirect(CURRENT_LANGUAGE."/".$this->config->item('dashboard_url'),'refresh');
+			}else{
+				redirect($this->config->item('dashboard_url'),'refresh');
+			}
+		}
+			
 
 		if($this->input->post('cretae_my_account')){
 			//print_r($_POST);
@@ -124,7 +140,11 @@ class Users extends CI_Controller{
 				$replace['verify_link']=base_url().'users/verifyemail/'.md5($user_id).'/'.md5($this->myvalidation->data['email_address']);
 				$this->myemaillibrary->set_email_category('user_signup');
 				$this->myemaillibrary->send_email($toemail,$replace);
-				redirect(CURRENT_LANGUAGE."/".$this->config->item('dashboard_url'),'refresh');
+				if($this->config->item('project_type')=="multicms"){
+					redirect(CURRENT_LANGUAGE."/".$this->config->item('dashboard_url'),'refresh');
+				}else{
+					redirect($this->config->item('dashboard_url'),'refresh');
+				}
 			}
 		}
 
@@ -200,12 +220,20 @@ class Users extends CI_Controller{
 				if($userdetails!=NULL){
 						$this->phpsession->save('loggedin_username', $userdetails[0]->username);
 				}
-				redirect(CURRENT_LANGUAGE."/".$this->config->item('dashboard_url'),'refresh');
+				if($this->config->item('project_type')=="multicms"){
+					redirect(CURRENT_LANGUAGE."/".$this->config->item('dashboard_url'),'refresh');
+				}else{
+					redirect($this->config->item('dashboard_url'),'refresh');	
+				}
 			}
 			else{
 				$this->phpsession->save('display_error','yes');
 				$this->phpsession->save('error_message',$this->lang->line('not_valid_link_for_email_verification'));
-				redirect(CURRENT_LANGUAGE."/".$this->config->item('dashboard_url'),'refresh');
+				if($this->config->item('project_type')=="multicms"){
+					redirect(CURRENT_LANGUAGE."/".$this->config->item('dashboard_url'),'refresh');
+				}else{
+					redirect($this->config->item('dashboard_url'),'refresh');
+				}
 			}
 		}
 	}

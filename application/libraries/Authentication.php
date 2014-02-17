@@ -69,7 +69,12 @@ class Authentication
 				$this->obj->phpsession->save('login_fail_counter',$this->login_fail_counter);
 				$this->obj->phpsession->save('display_error','yes');
 				$this->obj->phpsession->save('error_message',$this->obj->lang->line('login_fail_for_captcha'));
-				redirect(CURRENT_LANGUAGE."/".$this->obj->config->item('login_url'),'refresh');
+				if($this->obj->config->item('project_type')=="multicms"){
+					redirect(CURRENT_LANGUAGE."/".$this->obj->config->item('login_url'),'refresh');	
+				}else{
+					redirect($this->obj->config->item('login_url'),'refresh');
+				}
+				
 			}
 		}
 		//exit(0);
@@ -111,8 +116,14 @@ class Authentication
 				$this->obj->phpsession->clear('redirect_url');
 				if($redirect_url!=NULL)
 					redirect(str_replace("itlink/","",$redirect_url), 'refresh');
-				else
-					redirect(CURRENT_LANGUAGE."/".$this->obj->config->item('dashboard_url'), 'refresh');
+				else{
+					if($this->obj->config->item('project_type')=="multicms"){
+						redirect(CURRENT_LANGUAGE."/".$this->obj->config->item('dashboard_url'), 'refresh');	
+					}else{
+						redirect($this->obj->config->item('dashboard_url'), 'refresh');
+					}
+				}
+					
 			}else
 				return true;
 		}
@@ -126,7 +137,12 @@ class Authentication
 					//exit(0);
 					$this->obj->phpsession->save('display_error','yes');
 					$this->obj->phpsession->save('error_message',$this->obj->lang->line('login_fail_error'));
-					redirect(CURRENT_LANGUAGE."/".$this->obj->config->item('login_url'),'refresh');
+					if($this->obj->config->item('project_type')=="multicms"){
+						redirect(CURRENT_LANGUAGE."/".$this->obj->config->item('login_url'),'refresh');	
+					}else{
+						redirect($this->obj->config->item('login_url'),'refresh');
+					}
+					
 				}else
 					return false;
 		}
@@ -179,7 +195,12 @@ class Authentication
 					$this->obj->phpsession->save('no_of_dashboard_visit', $this->no_of_dashboard_visit);
 					$this->obj->phpsession->save('come_from_cookie', 'yes');
 					$usertype=$this->obj->User->getusertype($loggedin_username);
-					redirect(CURRENT_LANGUAGE.'/dashboard', 'refresh');
+					if($this->obj->config->item('project_type')=="multicms"){
+						redirect(CURRENT_LANGUAGE.'/dashboard', 'refresh');
+					}else{
+						redirect('dashboard', 'refresh');
+					}
+					
 				}
 			}
 			else{
@@ -233,7 +254,12 @@ class Authentication
 		if($this->username!=NULL){
 			//0 normal user, 1 premium user //will use later not first phase
 			if($this->usertype==1){
-				redirect(CURRENT_LANGUAGE.'/permissiondeny','refresh');
+				if($this->obj->config->item('project_type')=="multicms"){
+					redirect(CURRENT_LANGUAGE.'/permissiondeny','refresh');
+				}else{
+					redirect('permissiondeny','refresh');
+				}
+				
 			}
 		}
 	}
@@ -243,7 +269,12 @@ class Authentication
 			$this->obj->phpsession->save('display_error','yes');
 			$this->obj->phpsession->save('error_message',$this->obj->lang->line('session_expire_error'));
 			$this->obj->phpsession->save('redirect_url',$_SERVER['REQUEST_URI']);
-			redirect(CURRENT_LANGUAGE.'/users/login','refresh');
+			if($this->obj->config->item('project_type')=="multicms"){
+				redirect(CURRENT_LANGUAGE.'/users/login','refresh');
+			}else{
+				redirect('users/login','refresh');
+			}
+			
 		}
 	}
 	
@@ -266,24 +297,44 @@ class Authentication
 							else{
 								$this->obj->phpsession->save('show_profile_notification','yes');
 								$this->obj->phpsession->save('profile_notification_message',lang('please_complete_your_profile'));
-								redirect(CURRENT_LANGUAGE."/".$this->obj->config->item('user_profile_edit_url'),'refresh');	
+								if($this->obj->config->item('project_type')=="multicms"){
+									redirect(CURRENT_LANGUAGE."/".$this->obj->config->item('user_profile_edit_url'),'refresh');	
+								}else{
+									redirect($this->obj->config->item('user_profile_edit_url'),'refresh');	
+								}
+								
 							}
 						} 
 					else{
 							$this->obj->phpsession->save('show_payment_notification','yes');
 							$this->obj->phpsession->save('payment_notification_message',lang('please_recharge_your_account'));
-							redirect(CURRENT_LANGUAGE."/".$this->obj->config->item('subscribe_credit_url'),'refresh');	
+							if($this->obj->config->item('project_type')=="multicms"){
+								redirect(CURRENT_LANGUAGE."/".$this->obj->config->item('subscribe_credit_url'),'refresh');	
+							}else{
+								redirect($this->obj->config->item('subscribe_credit_url'),'refresh');	
+							}
+							
 						}
 				}
 				else{
 					$this->obj->phpsession->save('show_payment_notification','yes');
 					$this->obj->phpsession->save('payment_message',lang('please_recharge_your_account'));
-					redirect(CURRENT_LANGUAGE."/".$this->obj->config->item('subscribe_credit_url'),'refresh');	
+					if($this->obj->config->item('project_type')=="multicms"){
+						redirect(CURRENT_LANGUAGE."/".$this->obj->config->item('subscribe_credit_url'),'refresh');
+					}else{
+						redirect($this->obj->config->item('subscribe_credit_url'),'refresh');
+					}
+						
 				}
 			}else{
 				$this->obj->phpsession->save('display_error','yes');
 				$this->obj->phpsession->save('error_message',$this->obj->lang->line('dont_have_permission_to_buy_credit'));
-				redirect(CURRENT_LANGUAGE."/".$this->obj->config->item('dashboard_url'),'refresh');
+				if($this->obj->config->item('project_type')=="multicms"){
+					redirect(CURRENT_LANGUAGE."/".$this->obj->config->item('dashboard_url'),'refresh');
+				}else{
+					redirect($this->obj->config->item('dashboard_url'),'refresh');
+				}
+				
 			}
 			
 		}

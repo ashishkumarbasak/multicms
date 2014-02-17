@@ -45,19 +45,31 @@ $route['it'] = "welcome";
 $route['en'] = "welcome";
 
 $route['(:any)/dashboard'] = "dashboard";
+$route['dashboard'] = "dashboard";
 $route['(:any)/documents'] = "dashboard";
+$route['documents'] = "dashboard";
 $route['(:any)/download'] = "download";
+$route['download'] = "download";
 $route['(:any)/download/page'] = "download/index/1";
+$route['download/page'] = "download/index/1";
 $route['download/files/(:any)/(:num)/(:any)'] = "download/files/$1/$2/$3";
 $route['(:any)/download/category/(:any)/page'] = "download/index";
+$route['download/category/(:any)/page'] = "download/index";
 $route['(:any)/download/category/(:any)/page/(:num)'] = "download/index";
+$route['download/category/(:any)/page/(:num)'] = "download/index";
 
 $route['(:any)/users/login'] = "users/login";
+$route['users/login'] = "users/login";
 $route['(:any)/users/recover'] = "users/recover";
+$route['users/recover'] = "users/recover";
 $route['(:any)/users/logout'] = "users/logout";
+$route['users/logout'] = "users/logout";
 $route['(:any)/documents/page'] = "dashboard/index/1";
+$route['documents/page'] = "dashboard/index/1";
 $route['(:any)/documents/category/(:any)/page'] = "dashboard/index";
+$route['documents/category/(:any)/page'] = "dashboard/index";
 $route['(:any)/documents/category/(:any)/page/(:num)'] = "dashboard/index";
+$route['documents/category/(:any)/page/(:num)'] = "dashboard/index";
 
 $route['(:any)/(:any)/(:any)/(:any)/(:any)/(:any)/(:any)'] = "pages/index/$7";
 $route['(:any)/(:any)/(:any)/(:any)/(:any)/(:any)'] = "pages/index/$6";
@@ -65,6 +77,7 @@ $route['(:any)/(:any)/(:any)/(:any)/(:any)'] = "pages/index/$5";
 $route['(:any)/(:any)/(:any)/(:any)'] = "pages/index/$4";
 $route['(:any)/(:any)/(:any)'] = "pages/index/$3";
 $route['(:any)/(:any)'] = "pages/index/$2";
+$route['(:any)'] = "pages/index/$1";
 
 
 
