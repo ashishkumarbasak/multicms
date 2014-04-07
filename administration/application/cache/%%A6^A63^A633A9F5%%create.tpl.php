@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.19, created on 2014-01-07 09:16:53
+<?php /* Smarty version 2.6.19, created on 2014-03-12 15:44:18
          compiled from manage/products/create.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'manage/products/create.tpl', 110, false),array('modifier', 'count', 'manage/products/create.tpl', 235, false),array('modifier', 'in_array', 'manage/products/create.tpl', 293, false),)), $this); ?>

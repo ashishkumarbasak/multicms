@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.19, created on 2013-12-01 19:47:30
+<?php /* Smarty version 2.6.19, created on 2014-03-09 11:54:04
          compiled from layouts/javascripts.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'replace', 'layouts/javascripts.tpl', 136, false),)), $this); ?>

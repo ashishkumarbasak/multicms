@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.19, created on 2014-01-15 18:01:16
+<?php /* Smarty version 2.6.19, created on 2014-03-09 12:02:50
          compiled from manage/pages/index.tpl */ ?>
 <?php echo '
 <style type="text/css">
